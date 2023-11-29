@@ -39,7 +39,7 @@ pipeline {
         stage ('Prepare') {
             steps {
                 script {
-                    sh 'echo "Testing environment'
+                    sh 'echo "Testing environment"'
                     sh 'ls'
                     sh 'pwd'
                 }
