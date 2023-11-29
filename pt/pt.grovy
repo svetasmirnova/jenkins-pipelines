@@ -1,0 +1,49 @@
+library changelog: false, identifier: "lib@master", retriever: modernSCM([
+    $class: 'GitSCMSource',
+    remote: 'https://github.com/svetasmirnova/jenkins-pipelines.git'
+])
+
+pipeline {
+    agent {
+    label 'min-centos-7-x64'
+    }
+    environment {
+      PATH = '/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/home/ec2-user/.local/bin';
+    }
+    parameters {
+        string(
+            defaultValue: '3.x',
+            description: 'Branch for package-testing repository',
+            name: 'TESTING_BRANCH'
+        )
+    }
+    options {
+        skipDefaultCheckout()
+        disableConcurrentBuilds()
+    }
+    stages {
+        stage('Set build name'){
+            steps {
+                script {
+                    currentBuild.displayName = "${env.BUILD_NUMBER}
+                }
+            }
+        }
+        stage('Check version param and checkout') {
+            steps {
+                deleteDir()
+                checkOrchVersionParam()
+                git poll: false, branch: TESTING_BRANCH, url: "https://github.com/percona/percona-toolkit.git"
+            }
+        }
+        stage ('Prepare') {
+            steps {
+                script {
+                    sh 'echo "Testing environment'
+                    sh 'ls'
+                    sh 'pwd'
+                }
+            }
+        }
+    }
+}
