@@ -49,24 +49,24 @@ pipeline {
                         sh 'ls'
                     }
                 }
-            }
-        }
-        stage ('Setting environment variables') {
-            dir('percona-toolkit') {
-                script {
-                    sh 'export PERCONA_TOOLKIT_SANDBOX=/mnt/jenkins/workspace/sveta-pt-tests/sandbox/Percona-Server-8.0.34-26-Linux.x86_64.glibc2.35'
-                    sh 'export PERCONA_TOOLKIT_BRANCH=`pwd`'
-                    sh 'export BRANCH=$(git rev-parse --abbrev-ref HEAD)'
-                    sh 'export MYSQL_VERSION=8.0'
-                    sh 'export LOG_FILE=~/${BRANCH}-${MYSQL_VERSION}.log'
-                    sh 'sandbox/test-env restart'
+                dir('percona-toolkit') {
+                    script {
+                        sh 'export PERCONA_TOOLKIT_SANDBOX=/mnt/jenkins/workspace/sveta-pt-tests/sandbox/Percona-Server-8.0.34-26-Linux.x86_64.glibc2.35'
+                        sh 'export PERCONA_TOOLKIT_BRANCH=`pwd`'
+                        sh 'export BRANCH=$(git rev-parse --abbrev-ref HEAD)'
+                        sh 'export MYSQL_VERSION=8.0'
+                        sh 'export LOG_FILE=~/${BRANCH}-${MYSQL_VERSION}.log'
+                        sh 'sandbox/test-env restart'
+                    }
                 }
             }
         }
         stage ('Running tests') {
-            dir('percona-toolkit') {
-                script {
-                    sh 'prove -vr --trap --timer t/pt-heartbeat'
+            steps {
+                dir('percona-toolkit') {
+                    script {
+                        sh 'prove -vr --trap --timer t/pt-heartbeat'
+                    }
                 }
             }
         }
