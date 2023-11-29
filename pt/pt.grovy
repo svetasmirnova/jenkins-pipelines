@@ -56,7 +56,7 @@ pipeline {
                             export PERCONA_TOOLKIT_BRANCH=`pwd`
                             export PT_BRANCH=\$(git rev-parse --abbrev-ref HEAD)
                             export MYSQL_VERSION=8.0
-                            export LOG_FILE=~/${PT_BRANCH}-${MYSQL_VERSION}.log
+                            export LOG_FILE=~/\$PT_BRANCH-${MYSQL_VERSION}.log
                             sandbox/test-env restart
                         """
                     //}
