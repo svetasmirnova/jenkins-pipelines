@@ -33,7 +33,7 @@ pipeline {
             steps {
                 deleteDir()
                 //checkOrchVersionParam()
-                git poll: false, branch: TESTING_BRANCH, url: "https://github.com/percona/percona-toolkit.git"
+                git poll: false, branch: TESTING_BRANCH, url: "https://github.com/percona/percona-toolkit.git", relativeTargetDir: "percona-toolkit"
             }
         }
         stage ('Prepare') {
