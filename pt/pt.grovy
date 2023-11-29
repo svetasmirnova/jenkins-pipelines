@@ -52,7 +52,7 @@ pipeline {
             }
         }
         stage ('Setting environment variables') {
-            dir ('percona-toolkit') {
+            dir('percona-toolkit') {
                 script {
                     sh 'export PERCONA_TOOLKIT_SANDBOX=/mnt/jenkins/workspace/sveta-pt-tests/sandbox/Percona-Server-8.0.34-26-Linux.x86_64.glibc2.35'
                     sh 'export PERCONA_TOOLKIT_BRANCH=`pwd`'
@@ -64,7 +64,7 @@ pipeline {
             }
         }
         stage ('Running tests') {
-            dir ('percona-toolkit') {
+            dir('percona-toolkit') {
                 script {
                     sh 'prove -vr --trap --timer t/pt-heartbeat'
                 }
