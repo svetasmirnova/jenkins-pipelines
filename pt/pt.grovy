@@ -4,6 +4,7 @@ pipeline {
     }
     environment {
       PATH = '/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/home/ec2-user/.local/bin';
+      PERCONA_TOOLKIT_BRANCH = "${WORKSPACE}/percona-toolkit"
     }
     parameters {
         string(
@@ -31,11 +32,13 @@ pipeline {
             description: '',
             name: 'PERCONA_TOOLKIT_SANDBOX'
         )
+/*
         string(
             defaultValue: "${WORKSPACE}/percona-toolkit",
             description: 'Path to Percona Toolkit directory',
             name: 'PERCONA_TOOLKIT_BRANCH'
         )
+*/
         string(
             defaultValue: '8.0',
             description: 'Major version of MySQL server',
