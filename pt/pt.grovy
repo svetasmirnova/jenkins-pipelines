@@ -32,7 +32,7 @@ pipeline {
             name: 'PERCONA_TOOLKIT_SANDBOX'
         )
         string(
-            defaultValue: ${env.WORKSPACE}/percona-toolkit,
+            defaultValue: "${env.WORKSPACE}/percona-toolkit",
             description: 'Path to Percona Toolkit directory',
             name: 'PERCONA_TOOLKIT_BRANCH'
         )
