@@ -59,8 +59,6 @@ pipeline {
                     //script {
                         sh """
                             mkdir TMP_DIR
-// /mnt/jenkins/workspace/sveta-pt-tests/tmp
-                            // export TMP_DIR=/mnt/jenkins/workspace/sveta-pt-tests/tmp
                             export PERCONA_TOOLKIT_SANDBOX=/mnt/jenkins/workspace/sveta-pt-tests/sandbox/Percona-Server-8.0.34-26-Linux.x86_64.glibc2.17
                             export PERCONA_TOOLKIT_BRANCH=`pwd`
                             export BRANCH=\$(git rev-parse --abbrev-ref HEAD)
@@ -69,6 +67,8 @@ pipeline {
                             sandbox/test-env restart
                         """
                     //}
+// /mnt/jenkins/workspace/sveta-pt-tests/tmp
+                            // export TMP_DIR=/mnt/jenkins/workspace/sveta-pt-tests/tmp
                 }
             }
         }
