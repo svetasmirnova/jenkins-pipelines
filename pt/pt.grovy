@@ -7,6 +7,7 @@ pipeline {
       PERCONA_TOOLKIT_BRANCH = "${WORKSPACE}/percona-toolkit"
       TMP_DIR = "${WORKSPACE}/tmp"
       PERCONA_TOOLKIT_SANDBOX = "${WORKSPACE}/sandbox/$MYSQL_BASEDIR"
+      LOG_FILE = "${WORKSPACE}/tmp/${TESTING_BRANCH}-${MYSQL_VERSION}.log"
     }
     parameters {
         string(
@@ -25,26 +26,9 @@ pipeline {
             name: 'DOWNLOAD_URL'
         )
         string(
-            defaultValue: '',
-            description: '',
-            name: 'PERCONA_TOOLKIT_SANDBOX'
-        )
-/*
-        string(
-            defaultValue: "${WORKSPACE}/percona-toolkit",
-            description: 'Path to Percona Toolkit directory',
-            name: 'PERCONA_TOOLKIT_BRANCH'
-        )
-*/
-        string(
             defaultValue: '8.0',
             description: 'Major version of MySQL server',
             name: 'MYSQL_VERSION'
-        )
-        string(
-            defaultValue: '',
-            description: '',
-            name: 'LOG_FILE'
         )
 /*
         string(
@@ -83,6 +67,7 @@ pipeline {
                             echo "Preparing sandbox"
                             sudo yum -y install perl-Test-Harness
                             sudo yum -y install libaio
+                            sudo yum -y install perl-Test-Simple
                             curl ${DOWNLOAD_URL}/${MYSQL_BASEDIR}.tar.gz --output ${MYSQL_BASEDIR}.tar.gz
                             tar -xzf ${MYSQL_BASEDIR}.tar.gz
                         """
