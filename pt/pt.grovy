@@ -1,8 +1,3 @@
-//library changelog: false, identifier: "lib@main", retriever: modernSCM([
-//    $class: 'GitSCMSource',
-//    remote: 'https://github.com/svetasmirnova/jenkins-pipelines.git'
-//])
-
 pipeline {
     agent {
     label 'min-centos-7-x64'
@@ -21,6 +16,43 @@ pipeline {
             description: 'Temporary directory for tests',
             name: 'TMP_DIR'
         )
+        string(
+            defaultValue: 'Percona-Server-8.0.34-26-Linux.x86_64.glibc2.17',
+            description: 'MySQL Server directory',
+            name: 'MYSQL_BASEDIR'
+        )
+        string(
+            defaultValue: 'https://downloads.percona.com/downloads/Percona-Server-8.0/Percona-Server-8.0.34-26/binary/tarball/',
+            description: 'Download URL, parent directory',
+            name: 'DOWNLOAD_URL'
+        )
+        string(
+            defaultValue: '',
+            description: '',
+            name: 'PERCONA_TOOLKIT_SANDBOX'
+        )
+        string(
+            defaultValue: ${env.WORKSPACE}/percona-toolkit,
+            description: 'Path to Percona Toolkit directory',
+            name: 'PERCONA_TOOLKIT_BRANCH'
+        )
+        string(
+            defaultValue: '8.0',
+            description: 'Major version of MySQL server',
+            name: 'MYSQL_VERSION'
+        )
+        string(
+            defaultValue: '',
+            description: '',
+            name: 'LOG_FILE'
+        )
+/*
+        string(
+            defaultValue: '',
+            description: '',
+            name: ''
+        )
+*/
     }
     options {
         skipDefaultCheckout()
@@ -50,18 +82,13 @@ pipeline {
                         sh 'echo "Preparing sandbox"'
                         sh 'sudo yum -y install perl-Test-Harness'
                         sh 'sudo yum -y install libaio'
-                        sh 'pwd'
-                        sh 'curl https://downloads.percona.com/downloads/Percona-Server-8.0/Percona-Server-8.0.34-26/binary/tarball/Percona-Server-8.0.34-26-Linux.x86_64.glibc2.17.tar.gz --output Percona-Server-8.0.34-26-Linux.x86_64.glibc2.17.tar.gz'
-                        sh 'tar -xzf Percona-Server-8.0.34-26-Linux.x86_64.glibc2.17.tar.gz'
-                        sh 'ls'
+                        sh 'curl ${DOWNLOAD_URL}/${MYSQL_BASEDIR}.tar.gz --output ${MYSQL_BASEDIR}.tar.gz'
+                        sh 'tar -xzf ${MYSQL_BASEDIR}.tar.gz'
                     }
                 }
                 dir('percona-toolkit') {
-                    //script {
                         sh """
                             mkdir ${TMP_DIR}
-                            ls ${TMP_DIR}
-                            ls ${TMP_DIR}/..
                             export PERCONA_TOOLKIT_SANDBOX=/mnt/jenkins/workspace/sveta-pt-tests/sandbox/Percona-Server-8.0.34-26-Linux.x86_64.glibc2.17
                             export PERCONA_TOOLKIT_BRANCH=`pwd`
                             export BRANCH=\$(git rev-parse --abbrev-ref HEAD)
@@ -69,9 +96,6 @@ pipeline {
                             export LOG_FILE=~/\$BRANCH-\$MYSQL_VERSION.log
                             sandbox/test-env restart
                         """
-                    //}
-// /mnt/jenkins/workspace/sveta-pt-tests/tmp
-                            // export TMP_DIR=/mnt/jenkins/workspace/sveta-pt-tests/tmp
                 }
             }
         }
