@@ -75,8 +75,8 @@ pipeline {
                     }
                 }
                 dir('percona-toolkit') {
+                            //mkdir ${TMP_DIR}
                         sh """
-                            mkdir ${TMP_DIR}
                             export PERCONA_TOOLKIT_SANDBOX=/mnt/jenkins/workspace/sveta-pt-tests/sandbox/Percona-Server-8.0.34-26-Linux.x86_64.glibc2.17
                             export BRANCH=\$(git rev-parse --abbrev-ref HEAD)
                             export MYSQL_VERSION=8.0
