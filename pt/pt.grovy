@@ -53,7 +53,7 @@ pipeline {
                 dir('percona-toolkit') {
                     //script {
                         sh """
-                            export PERCONA_TOOLKIT_SANDBOX=/mnt/jenkins/workspace/sveta-pt-tests/sandbox/Percona-Server-8.0.34-26-Linux.x86_64.glibc2.35
+                            export PERCONA_TOOLKIT_SANDBOX=/mnt/jenkins/workspace/sveta-pt-tests/sandbox/Percona-Server-8.0.34-26-Linux.x86_64.glibc2.31
                             export PERCONA_TOOLKIT_BRANCH=`pwd`
                             export BRANCH=\$(git rev-parse --abbrev-ref HEAD)
                             export MYSQL_VERSION=8.0
