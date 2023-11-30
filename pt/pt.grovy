@@ -43,9 +43,10 @@ pipeline {
                 dir('sandbox') {
                     script {
                         sh 'echo "Preparing sandbox"'
+                        sh 'sudo yum -y install perl'
                         sh 'pwd'
-                        sh 'curl https://downloads.percona.com/downloads/Percona-Server-8.0/Percona-Server-8.0.34-26/binary/tarball/Percona-Server-8.0.34-26-Linux.x86_64.glibc2.35.tar.gz --output Percona-Server-8.0.34-26-Linux.x86_64.glibc2.35.tar.gz'
-                        sh 'tar -xzf Percona-Server-8.0.34-26-Linux.x86_64.glibc2.35.tar.gz'
+                        sh 'curl https://downloads.percona.com/downloads/Percona-Server-8.0/Percona-Server-8.0.34-26/binary/tarball/Percona-Server-8.0.34-26-Linux.x86_64.glibc2.31.tar.gz --output Percona-Server-8.0.34-26-Linux.x86_64.glibc2.31.tar.gz'
+                        sh 'tar -xzf Percona-Server-8.0.34-26-Linux.x86_64.glibc2.31.tar.gz'
                         sh 'ls'
                     }
                 }
