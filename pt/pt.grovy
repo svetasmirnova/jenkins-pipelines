@@ -32,7 +32,7 @@ pipeline {
             name: 'PERCONA_TOOLKIT_SANDBOX'
         )
         string(
-            defaultValue: "${env.WORKSPACE}/percona-toolkit",
+            defaultValue: "${WORKSPACE}/percona-toolkit",
             description: 'Path to Percona Toolkit directory',
             name: 'PERCONA_TOOLKIT_BRANCH'
         )
@@ -92,7 +92,6 @@ pipeline {
                         sh """
                             mkdir ${TMP_DIR}
                             export PERCONA_TOOLKIT_SANDBOX=/mnt/jenkins/workspace/sveta-pt-tests/sandbox/Percona-Server-8.0.34-26-Linux.x86_64.glibc2.17
-                            export PERCONA_TOOLKIT_BRANCH=`pwd`
                             export BRANCH=\$(git rev-parse --abbrev-ref HEAD)
                             export MYSQL_VERSION=8.0
                             export LOG_FILE=~/\$BRANCH-\$MYSQL_VERSION.log
