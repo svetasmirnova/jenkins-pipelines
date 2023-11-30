@@ -5,17 +5,14 @@ pipeline {
     environment {
       PATH = '/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/home/ec2-user/.local/bin';
       PERCONA_TOOLKIT_BRANCH = "${WORKSPACE}/percona-toolkit"
+      TMP_DIR = "${WORKSPACE}/tmp"
+      PERCONA_TOOLKIT_SANDBOX = "${WORKSPACE}/sandbox/$MYSQL_BASEDIR"
     }
     parameters {
         string(
             defaultValue: 'sveta-jenkins-test',
             description: 'Branch for package-testing repository',
             name: 'TESTING_BRANCH'
-        )
-        string(
-            defaultValue: '/mnt/jenkins/workspace/sveta-pt-tests/tmp',
-            description: 'Temporary directory for tests',
-            name: 'TMP_DIR'
         )
         string(
             defaultValue: 'Percona-Server-8.0.34-26-Linux.x86_64.glibc2.17',
