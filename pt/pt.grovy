@@ -60,7 +60,7 @@ pipeline {
                             export BRANCH=\$(git rev-parse --abbrev-ref HEAD)
                             export MYSQL_VERSION=8.0
                             export LOG_FILE=~/\$BRANCH-\$MYSQL_VERSION.log
-                            sandbox/test-env restart
+                            bash -x sandbox/test-env restart
                         """
                     //}
                 }
