@@ -140,7 +140,13 @@ pipeline {
             steps {
                 dir('percona-toolkit') {
                     script {
-                        sh 'prove -vr --trap --timer t/pt-heartbeat'
+                        sh '''
+                            perl --version
+                            which perl
+                            type -a perl
+                            /usr/bin/env perl --version
+                            prove -vr --trap --timer t/pt-heartbeat
+                        '''
                     }
                 }
             }
