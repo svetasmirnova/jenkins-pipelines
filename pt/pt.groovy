@@ -11,6 +11,7 @@ setup_rhel_package_tests = { ->
         sudo yum -y install perl-Locale-Codes
         sudo yum -y install perl-Thread
         sudo yum -y install perl-English
+        sudo yum -y install perl-Sys-Hostname
         sudo yum -y install perl-DBI
         sudo yum -y install perl-DBD-MySQL
     '''
