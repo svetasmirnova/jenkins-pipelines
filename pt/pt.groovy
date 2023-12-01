@@ -38,14 +38,16 @@ setup_ubuntu_package_tests = { ->
         echo "Updated fine"
         sudo apt-get install -y software-properties-common
         echo "Installing"
+        echo "Installed"
+    '''
+/*
+        sudo apt-get install -y libaio
+        sudo apt-get install -y perl-Test-Harness
         sudo apt-get install -y perl-Test-Simple
         sudo apt-get install -y perl-Digest-MD5
         sudo apt-get install -y perl-DBI
         sudo apt-get install -y perl-DBD-MySQL
-        echo "Installed"
-    '''
-        //sudo apt-get install -y libaio
-        // sudo apt-get install -y perl-Test-Harness
+*/
 }
 
 node_setups = [
