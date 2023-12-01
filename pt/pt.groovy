@@ -1,5 +1,18 @@
 setup_rhel_package_tests = { ->
     sh '''
+        sudo yum -y install tar
+        sudo yum -y install libaio
+        sudo yum -y install perl-Time-HiRes
+        sudo yum -y install perl-Test-Harness
+        sudo yum -y install perl-Test-Simple
+        sudo yum -y install perl-Digest-MD5
+        sudo yum -y install perl-DBI
+        sudo yum -y install perl-DBD-MySQL
+    '''
+}
+
+setup_oel9_package_tests = { ->
+    sh '''
         sudo yum -y install epel-release
         sudo yum -y update
         sudo yum -y install tar
@@ -33,7 +46,7 @@ setup_ubuntu_package_tests = { ->
 node_setups = [
     "min-centos-7-x64": setup_rhel_package_tests,
     "min-ol-8-x64": setup_rhel_package_tests,
-    "min-ol-9-x64": setup_rhel_package_tests,
+    "min-ol-9-x64": setup_oel9_package_tests,
     "min-bionic-x64": setup_ubuntu_package_tests,
     "min-focal-x64": setup_ubuntu_package_tests,
     "min-jammy-x64": setup_ubuntu_package_tests,
