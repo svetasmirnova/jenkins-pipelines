@@ -1,5 +1,6 @@
 setup_rhel_package_tests = { ->
     sh '''
+        sudo yum install -y https://dl.fedoraproject.org/pub/epel/epel-release-latest-9.noarch.rpm
         sudo yum -y update
         sudo yum -y install tar
         sudo yum -y install libaio
