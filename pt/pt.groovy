@@ -1,11 +1,24 @@
 setup_rhel_package_tests = { ->
     sh '''
+        sudo yum -y update
         sudo yum -y install perl-Test-Harness
         sudo yum -y install libaio
         sudo yum -y install perl-Test-Simple
         sudo yum -y install perl-Digest-MD5
         sudo yum -y install perl-DBI
         sudo yum -y install perl-DBD-MySQL
+    '''
+}
+
+setup_ubuntu_package_tests = { ->
+    sh '''
+        sudo apt-get update
+        sudo apt-get install -y perl-Test-Harness
+        sudo apt-get install -y libaio
+        sudo apt-get install -y perl-Test-Simple
+        sudo apt-get install -y perl-Digest-MD5
+        sudo apt-get install -y perl-DBI
+        sudo apt-get install -y perl-DBD-MySQL
     '''
 }
 
