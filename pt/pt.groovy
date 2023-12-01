@@ -34,6 +34,7 @@ setup_oel9_package_tests = { ->
 setup_ubuntu_package_tests = { ->
     sh '''
         sudo apt-get update
+        sudo apt-get install -y libnuma1
         sudo apt-get install -y libdbi-perl
         sudo apt-get install -y libdbd-mysql-perl
     '''
