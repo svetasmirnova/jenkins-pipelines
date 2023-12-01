@@ -1,13 +1,13 @@
 pipeline {
     agent {
-    label 'min-centos-7-x64'
+        label 'min-centos-7-x64'
     }
     environment {
-      PATH = '/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/home/ec2-user/.local/bin';
-      PERCONA_TOOLKIT_BRANCH = "${WORKSPACE}/percona-toolkit"
-      TMP_DIR = "/tmp"
-      PERCONA_TOOLKIT_SANDBOX = "${WORKSPACE}/sandbox/$MYSQL_BASEDIR"
-      LOG_FILE = "${WORKSPACE}/tmp/${TESTING_BRANCH}-${MYSQL_VERSION}.log"
+        PATH = '/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/home/ec2-user/.local/bin';
+        PERCONA_TOOLKIT_BRANCH = "${WORKSPACE}/percona-toolkit"
+        TMP_DIR = "/tmp"
+        PERCONA_TOOLKIT_SANDBOX = "${WORKSPACE}/sandbox/$MYSQL_BASEDIR"
+        LOG_FILE = "${WORKSPACE}/tmp/${TESTING_BRANCH}-${MYSQL_VERSION}.log"
     }
     parameters {
         string(
@@ -53,7 +53,6 @@ pipeline {
         stage('Check version param and checkout') {
             steps {
                 deleteDir()
-                //checkOrchVersionParam()
                 dir('percona-toolkit') {
                     git poll: false, branch: TESTING_BRANCH, url: "https://github.com/percona/percona-toolkit.git"
                 }

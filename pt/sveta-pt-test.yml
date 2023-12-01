@@ -12,4 +12,4 @@
             - 'main'
             wipe-workspace: false
       lightweight-checkout: true
-      script-path: pt/pt.grovy
+      script-path: pt/pt.groovy
