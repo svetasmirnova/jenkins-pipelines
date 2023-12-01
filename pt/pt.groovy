@@ -2,8 +2,9 @@ setup_rhel_package_tests = { ->
     sh '''
         sudo yum -y update
         sudo yum -y install tar
-        sudo yum -y install perl-Test-Harness
         sudo yum -y install libaio
+        sudo yum -y install perl-Time-HiRes
+        sudo yum -y install perl-Test-Harness
         sudo yum -y install perl-Test-Simple
         sudo yum -y install perl-Digest-MD5
         sudo yum -y install perl-DBI
