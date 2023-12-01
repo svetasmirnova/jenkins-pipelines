@@ -7,6 +7,7 @@ setup_rhel_package_tests = { ->
         sudo yum -y install perl-Test-Harness
         sudo yum -y install perl-Test-Simple
         sudo yum -y install perl-Digest-MD5
+        sudo yum -y sudo yum install perl-Locale-Codes
         sudo yum -y install perl-DBI
         sudo yum -y install perl-DBD-MySQL
     '''
