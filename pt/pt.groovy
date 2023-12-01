@@ -38,14 +38,14 @@ setup_ubuntu_package_tests = { ->
         echo "Updated fine"
         sudo apt-get install -y software-properties-common
         echo "Installing"
-        sudo apt-get install -y libaio
         sudo apt-get install -y perl-Test-Simple
         sudo apt-get install -y perl-Digest-MD5
         sudo apt-get install -y perl-DBI
         sudo apt-get install -y perl-DBD-MySQL
         echo "Installed"
     '''
-// (running Jenkins temporarily with -Dorg.jenkinsci.plugins.durabletask.BourneShellScript.LAUNCH_DIAGNOSTICS=true might make the problem clearer)
+        //sudo apt-get install -y libaio
+        // sudo apt-get install -y perl-Test-Harness
 }
 
 node_setups = [
