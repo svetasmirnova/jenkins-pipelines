@@ -65,13 +65,6 @@ pipeline {
                 }
             }
         }
-        stage('Install'){
-            steps {
-                agent {
-                    label 'min-centos-7-x64'
-                }
-            }
-        }
         stage('Check version param and checkout') {
             steps {
                 deleteDir()
