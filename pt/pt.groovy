@@ -1,6 +1,7 @@
 setup_rhel_package_tests = { ->
     sh '''
         sudo yum -y update
+        sudo yum -y install tar
         sudo yum -y install perl-Test-Harness
         sudo yum -y install libaio
         sudo yum -y install perl-Test-Simple
@@ -23,14 +24,14 @@ setup_ubuntu_package_tests = { ->
 }
 
 node_setups = [
-    "min-buster-x64": setup_ubuntu_package_tests,
-    "min-bullseye-x64": setup_ubuntu_package_tests,
     "min-centos-7-x64": setup_rhel_package_tests,
     "min-ol-8-x64": setup_rhel_package_tests,
     "min-ol-9-x64": setup_rhel_package_tests,
     "min-bionic-x64": setup_ubuntu_package_tests,
     "min-focal-x64": setup_ubuntu_package_tests,
     "min-jammy-x64": setup_ubuntu_package_tests
+    "min-buster-x64": setup_ubuntu_package_tests,
+    "min-bullseye-x64": setup_ubuntu_package_tests,
 ]
 
 void setup_package_tests() {
