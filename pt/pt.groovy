@@ -33,14 +33,12 @@ setup_oel9_package_tests = { ->
 
 setup_ubuntu_package_tests = { ->
     sh '''
-        echo "Setting up Ubuntu packages"
         sudo apt-get update
-        echo "Updated fine"
-        sudo apt-get install -y software-properties-common
-        echo "Installing"
-        echo "Installed"
+        sudo apt-get install -y libdbi-perl
+        sudo apt-get install -y libdbd-mysql-perl
     '''
 /*
+        sudo apt-get install -y software-properties-common
         sudo apt-get install -y libaio
         sudo apt-get install -y perl-Test-Harness
         sudo apt-get install -y perl-Test-Simple
