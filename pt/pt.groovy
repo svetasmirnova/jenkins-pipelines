@@ -1,3 +1,29 @@
+setup_rhel_package_tests = { ->
+    sh '''
+        sudo yum -y install perl-Test-Harness
+        sudo yum -y install libaio
+        sudo yum -y install perl-Test-Simple
+        sudo yum -y install perl-Digest-MD5
+        sudo yum -y install perl-DBI
+        sudo yum -y install perl-DBD-MySQL
+    '''
+}
+
+node_setups = [
+    "min-buster-x64": setup_ubuntu_package_tests,
+    "min-bullseye-x64": setup_ubuntu_package_tests,
+    "min-centos-7-x64": setup_rhel_package_tests,
+    "min-ol-8-x64": setup_rhel_package_tests,
+    "min-ol-9-x64": setup_rhel_package_tests,
+    "min-bionic-x64": setup_ubuntu_package_tests,
+    "min-focal-x64": setup_ubuntu_package_tests,
+    "min-jammy-x64": setup_ubuntu_package_tests
+]
+
+void setup_package_tests() {
+    node_setups[params.node_to_test]()
+}
+
 pipeline {
     agent {
         label params.node_to_test
@@ -77,14 +103,9 @@ pipeline {
             steps {
                 dir('sandbox') {
                     script {
+                        sh 'echo "Preparing sandbox"'
+                        setup_package_tests() 
                         sh """
-                            echo "Preparing sandbox"
-                            sudo yum -y install perl-Test-Harness
-                            sudo yum -y install libaio
-                            sudo yum -y install perl-Test-Simple
-                            sudo yum -y install perl-Digest-MD5
-                            sudo yum -y install perl-DBI
-                            sudo yum -y install perl-DBD-MySQL
                             curl ${DOWNLOAD_URL}/${MYSQL_BASEDIR}.tar.gz --output ${MYSQL_BASEDIR}.tar.gz
                             tar -xzf ${MYSQL_BASEDIR}.tar.gz
                         """
@@ -98,7 +119,7 @@ pipeline {
                 }
             }
         }
-        stage ('Running tests') {
+        stage ('Run tests') {
             steps {
                 dir('percona-toolkit') {
                     script {
