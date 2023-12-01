@@ -18,7 +18,6 @@ pipeline {
                 'min-buster-x64',
                 'min-bullseye-x64'
             ],
-            defaultValue: 'min-centos-7-x64',
             description: 'Node to run tests on',
             name: 'node_to_test'
         )
@@ -63,8 +62,10 @@ pipeline {
             }
         }
         stage('Install'){
-            agent {
-                label 'min-centos-7-x64'
+            steps {
+                agent {
+                    label 'min-centos-7-x64'
+                }
             }
         }
         stage('Check version param and checkout') {
