@@ -1,4 +1,8 @@
 pipeline {
+    agent {
+        label 'docker'
+    }
+
     environment {
         PATH = '/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/home/ec2-user/.local/bin';
         PERCONA_TOOLKIT_BRANCH = "${WORKSPACE}/percona-toolkit"
