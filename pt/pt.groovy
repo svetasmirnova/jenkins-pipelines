@@ -29,7 +29,7 @@ node_setups = [
     "min-ol-9-x64": setup_rhel_package_tests,
     "min-bionic-x64": setup_ubuntu_package_tests,
     "min-focal-x64": setup_ubuntu_package_tests,
-    "min-jammy-x64": setup_ubuntu_package_tests
+    "min-jammy-x64": setup_ubuntu_package_tests,
     "min-buster-x64": setup_ubuntu_package_tests,
     "min-bullseye-x64": setup_ubuntu_package_tests,
 ]
