@@ -1,7 +1,4 @@
 pipeline {
-    agent {
-        label 'min-centos-7-x64'
-    }
     environment {
         PATH = '/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/home/ec2-user/.local/bin';
         PERCONA_TOOLKIT_BRANCH = "${WORKSPACE}/percona-toolkit"
@@ -10,6 +7,21 @@ pipeline {
         LOG_FILE = "${WORKSPACE}/tmp/${TESTING_BRANCH}-${MYSQL_VERSION}.log"
     }
     parameters {
+        choice(
+            choices: [
+                'min-centos-7-x64',
+                'min-ol-8-x64',
+                'min-ol-9-x64',
+                'min-bionic-x64',
+                'min-focal-x64',
+                'min-jammy-x64',
+                'min-buster-x64',
+                'min-bullseye-x64'
+            ],
+            defaultValue: 'min-centos-7-x64',
+            description: 'Node to run tests on',
+            name: 'node_to_test'
+        )
         string(
             defaultValue: 'sveta-jenkins-test',
             description: 'Branch for package-testing repository',
@@ -46,8 +58,13 @@ pipeline {
         stage('Set build name'){
             steps {
                 script {
-                    currentBuild.displayName = "${env.BUILD_NUMBER}"
+                    currentBuild.displayName = "#${env.BUILD_NUMBER}-${params.node_to_test}"
                 }
+            }
+        }
+        stage('Install'){
+            agent {
+                label 'min-centos-7-x64'
             }
         }
         stage('Check version param and checkout') {
