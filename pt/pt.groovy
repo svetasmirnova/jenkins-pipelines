@@ -6,6 +6,9 @@ setup_rhel_package_tests = { ->
         sudo yum -y install perl-Test-Harness
         sudo yum -y install perl-Test-Simple
         sudo yum -y install perl-Digest-MD5
+        sudo yum -y install perl-File-Slurper
+        sudo yum -y install perl-JSONi-Any
+        sudo yum -y install perl-Net-IP
         sudo yum -y install perl-DBI
         sudo yum -y install perl-DBD-MySQL
     '''
