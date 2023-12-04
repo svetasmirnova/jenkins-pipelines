@@ -170,10 +170,10 @@ pipeline {
             steps {
                 dir('percona-toolkit') {
                     script {
-                        bash -x ./sandbox/jenkins-test
-                        //sh '''
+                        sh '''
+                            bash -x ./sandbox/jenkins-test
                         //    prove -vr --trap --timer t/pt-heartbeat
-                        //'''
+                        '''
                     }
                 }
             }
