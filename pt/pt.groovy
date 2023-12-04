@@ -88,7 +88,7 @@ pipeline {
             choices: [
                 '8.0',
                 '5.7',
-                '8.1',
+                //'8.1',
             ],
             description: 'Major version for Percona Server for MySQL',
             name: 'MYSQL_VERSION'
@@ -97,7 +97,7 @@ pipeline {
             choices: [
                 '8.0.34-26',
                 '5.7.43-47',
-                '8.1.0-1',
+                //'8.1.0-1',
             ],
             description: 'Minor version for Percona Server for MySQL',
             name: 'MYSQL_MINOR'
@@ -170,9 +170,10 @@ pipeline {
             steps {
                 dir('percona-toolkit') {
                     script {
-                        sh '''
-                            prove -vr --trap --timer t/pt-heartbeat
-                        '''
+                        bash -x ./sandbox/jenkins-test
+                        //sh '''
+                        //    prove -vr --trap --timer t/pt-heartbeat
+                        //'''
                     }
                 }
             }
