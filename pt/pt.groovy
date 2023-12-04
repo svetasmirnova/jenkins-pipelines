@@ -126,6 +126,7 @@ pipeline {
             defaultValue: 'prove -vr --trap --timer t/pt-heartbeat',
             description: 'Test command',
             name: 'TEST_CMD'
+        )
 /*
         string(
             defaultValue: '',
