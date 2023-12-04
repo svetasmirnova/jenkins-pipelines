@@ -187,10 +187,10 @@ pipeline {
         }
         stage ('Prepare sandbox') {
             steps {
+                echo "Preparing sandbox"
                 setup_package_tests() 
                 dir('sandbox') {
                     script {
-                        sh 'echo "Preparing sandbox"'
                         sh """
                             curl ${DOWNLOAD_URL}/${MYSQL_BASEDIR}.tar.gz --output ${MYSQL_BASEDIR}.tar.gz
                             tar -xzf ${MYSQL_BASEDIR}.tar.gz
