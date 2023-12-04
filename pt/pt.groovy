@@ -125,6 +125,22 @@ pipeline {
             description: "Normal MySQL or PXC",
             name: 'APP'
         )
+        choice(
+            choices: [
+                0,
+                1,
+            ],
+            description: "Debug code (PTDEBUG)",
+            name: 'PTDEBUG'
+        ),
+        choice(
+            choices: [
+                0,
+                1,
+            ],
+            description: "Debug test (PTDEVDEBUG)",
+            name: 'PTDEVDEBUG'
+        ),
         string(
             defaultValue: 'sveta-jenkins-test',
             description: 'Branch for package-testing repository',
@@ -177,7 +193,11 @@ pipeline {
                 }
                 dir('percona-toolkit') {
                         sh """
-                            sandbox/test-env restart
+                            util/check-dev-env
+                            sandbox/test-env checkconfig
+                            sandbox/test-env stop
+                            sandbox/test-env kill
+                            sandbox/test-env start
                         """
                 }
             }
@@ -187,8 +207,18 @@ pipeline {
                 dir('percona-toolkit') {
                     script {
                         sh '''
-                            bash -x ./sandbox/jenkins-test
-                        //    prove -vr --trap --timer t/pt-heartbeat
+                            prove -vr --trap --timer t/pt-heartbeat
+                        '''
+                    }
+                }
+            }
+        }
+        stage ('Clean up') {
+            steps {
+                dir('percona-toolkit') {
+                    script {
+                        sh '''
+                            sandbox/test-env stop
                         '''
                     }
                 }
