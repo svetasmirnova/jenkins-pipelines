@@ -24,6 +24,9 @@ setup_oel9_package_tests = { ->
         sudo yum -y install perl-Test-Harness
         sudo yum -y install perl-Test-Simple
         sudo yum -y install perl-Digest-MD5
+        sudo yum -y install perl-File-Slurp
+        sudo yum -y install perl-JSON
+        sudo yum -y install perl-NetAddr-IP
         sudo yum -y install perl-Locale-Codes
         sudo yum -y install perl-Thread
         sudo yum -y install perl-English
