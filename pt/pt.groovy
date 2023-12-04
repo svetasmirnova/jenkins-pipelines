@@ -38,15 +38,6 @@ setup_ubuntu_package_tests = { ->
         sudo apt-get install -y libdbi-perl
         sudo apt-get install -y libdbd-mysql-perl
     '''
-/*
-        sudo apt-get install -y software-properties-common
-        sudo apt-get install -y libaio
-        sudo apt-get install -y perl-Test-Harness
-        sudo apt-get install -y perl-Test-Simple
-        sudo apt-get install -y perl-Digest-MD5
-        sudo apt-get install -y perl-DBI
-        sudo apt-get install -y perl-DBD-MySQL
-*/
 }
 
 node_setups = [
@@ -75,6 +66,8 @@ pipeline {
         TMP_DIR = "/tmp"
         PERCONA_TOOLKIT_SANDBOX = "${WORKSPACE}/sandbox/$MYSQL_BASEDIR"
         LOG_FILE = "${WORKSPACE}/tmp/${TESTING_BRANCH}-${MYSQL_VERSION}.log"
+        MYSQL_BASEDIR="Percona-Server-${MYSQL_MINOR}-Linux.x86_64.glibc${GLIBC}"
+        DOWNLOAD_URL="https://downloads.percona.com/downloads/Percona-Server-${MYSQL_VERSION}/Percona-Server-${MYSQL_MINOR}/binary/tarball/"
     }
     parameters {
         choice(
@@ -91,25 +84,40 @@ pipeline {
             description: 'Node to run tests on',
             name: 'node_to_test'
         )
+        choice(
+            choices: [
+                '8.0',
+                '5.7',
+                '8.1',
+            ],
+            description: 'Major version for Percona Server for MySQL',
+            name: 'MYSQL_VERSION'
+        )
+        choice(
+            choices: [
+                '8.0.34-26',
+                '5.7.43-47',
+                '8.1.0-1',
+            ],
+            description: 'Minor version for Percona Server for MySQL',
+            name: 'MYSQL_MINOR'
+        )
+        choice(
+            choices: [
+                '2.17',
+                '2.27',
+                '2.28',
+                '2.31',
+                '2.34',
+                '2.35',
+            ]
+            description: "GLIBC version",
+            name: 'GLIBC'
+        )
         string(
             defaultValue: 'sveta-jenkins-test',
             description: 'Branch for package-testing repository',
             name: 'TESTING_BRANCH'
-        )
-        string(
-            defaultValue: 'Percona-Server-8.0.34-26-Linux.x86_64.glibc2.17',
-            description: 'MySQL Server directory',
-            name: 'MYSQL_BASEDIR'
-        )
-        string(
-            defaultValue: 'https://downloads.percona.com/downloads/Percona-Server-8.0/Percona-Server-8.0.34-26/binary/tarball/',
-            description: 'Download URL, parent directory',
-            name: 'DOWNLOAD_URL'
-        )
-        string(
-            defaultValue: '8.0',
-            description: 'Major version of MySQL server',
-            name: 'MYSQL_VERSION'
         )
 /*
         string(
@@ -152,7 +160,6 @@ pipeline {
                     }
                 }
                 dir('percona-toolkit') {
-                            //mkdir ${TMP_DIR}
                         sh """
                             sandbox/test-env restart
                         """
