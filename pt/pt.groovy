@@ -117,6 +117,14 @@ pipeline {
             description: "GLIBC version",
             name: 'GLIBC'
         )
+        choice(
+            choices: [
+                'mysql',
+                'pxc',
+            ],
+            description: "Normal MySQL or PXC",
+            name: 'APP'
+        )
         string(
             defaultValue: 'sveta-jenkins-test',
             description: 'Branch for package-testing repository',
