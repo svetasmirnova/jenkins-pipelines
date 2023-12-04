@@ -127,16 +127,16 @@ pipeline {
         )
         choice(
             choices: [
-                0,
-                1,
+                '0',
+                '1',
             ],
             description: "Debug code (PTDEBUG)",
             name: 'PTDEBUG'
         ),
         choice(
             choices: [
-                0,
-                1,
+                '0',
+                '1',
             ],
             description: "Debug test (PTDEVDEBUG)",
             name: 'PTDEVDEBUG'
