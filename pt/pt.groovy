@@ -110,7 +110,7 @@ pipeline {
                 '2.31',
                 '2.34',
                 '2.35',
-            ]
+            ],
             description: "GLIBC version",
             name: 'GLIBC'
         )
