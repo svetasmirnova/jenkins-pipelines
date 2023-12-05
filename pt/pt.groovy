@@ -39,7 +39,6 @@ setup_oel9_package_tests = { ->
 
 setup_ubuntu_package_tests = { ->
     echo "Setting Ubuntu packages"
-/*
     sh '''
         sudo apt-get update
         sudo apt-get install -y libnuma1
@@ -49,7 +48,6 @@ setup_ubuntu_package_tests = { ->
         sudo apt-get install -y libdbi-perl
         sudo apt-get install -y libdbd-mysql-perl
     '''
-*/
     echo "Exiting setting Ubuntu packages function"
 }
 
@@ -199,11 +197,15 @@ pipeline {
                         echo "In dir"
                         sh '''
                             echo "In shell script"
+                            curl ${DOWNLOAD_URL}/${MYSQL_BASEDIR}.tar.gz --output ${MYSQL_BASEDIR}.tar.gz
+                            tar -xzf ${MYSQL_BASEDIR}.tar.gz
                         '''
-                            //curl ${DOWNLOAD_URL}/${MYSQL_BASEDIR}.tar.gz --output ${MYSQL_BASEDIR}.tar.gz
-                            //tar -xzf ${MYSQL_BASEDIR}.tar.gz
                     //}
                 }
+            }
+        }
+        stage ('Starting sandbox') {
+            steps {
                 dir('percona-toolkit') {
                         sh """
                             util/check-dev-env
