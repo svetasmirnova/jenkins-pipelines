@@ -195,12 +195,12 @@ pipeline {
                 setup_package_tests() 
                 echo "After setting up packages"
                 dir('sandbox') {
-                    script {
+                    //script {
                         sh """
                             curl ${DOWNLOAD_URL}/${MYSQL_BASEDIR}.tar.gz --output ${MYSQL_BASEDIR}.tar.gz
                             tar -xzf ${MYSQL_BASEDIR}.tar.gz
                         """
-                    }
+                    //}
                 }
                 dir('percona-toolkit') {
                         sh """
@@ -216,11 +216,11 @@ pipeline {
         stage ('Run tests') {
             steps {
                 dir('percona-toolkit') {
-                    script {
+                    //script {
                         sh '''
                             prove -vr --trap --timer t/pt-heartbeat
                         '''
-                    }
+                    //}
                 }
             }
         }
