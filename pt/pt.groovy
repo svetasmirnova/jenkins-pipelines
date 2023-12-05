@@ -38,6 +38,7 @@ setup_oel9_package_tests = { ->
 }
 
 setup_ubuntu_package_tests = { ->
+    echo "Setting Ubuntu packages"
     sh '''
         sudo apt-get update
         sudo apt-get install -y libnuma1
@@ -47,6 +48,7 @@ setup_ubuntu_package_tests = { ->
         sudo apt-get install -y libdbi-perl
         sudo apt-get install -y libdbd-mysql-perl
     '''
+    echo "Exiting setting Ubuntu packages function"
 }
 
 node_setups = [
@@ -189,6 +191,7 @@ pipeline {
             steps {
                 echo "Preparing sandbox"
                 setup_package_tests() 
+                echo "After setting up packages"
                 dir('sandbox') {
                     script {
                         sh """
