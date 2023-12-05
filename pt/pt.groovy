@@ -199,9 +199,9 @@ pipeline {
                         echo "In dir"
                         sh '''
                             echo "In shell script"
-                            curl ${DOWNLOAD_URL}/${MYSQL_BASEDIR}.tar.gz --output ${MYSQL_BASEDIR}.tar.gz
-                            tar -xzf ${MYSQL_BASEDIR}.tar.gz
                         '''
+                            //curl ${DOWNLOAD_URL}/${MYSQL_BASEDIR}.tar.gz --output ${MYSQL_BASEDIR}.tar.gz
+                            //tar -xzf ${MYSQL_BASEDIR}.tar.gz
                     //}
                 }
                 dir('percona-toolkit') {
