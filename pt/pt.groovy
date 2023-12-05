@@ -39,8 +39,8 @@ setup_oel9_package_tests = { ->
 
 setup_ubuntu_package_tests = { ->
     echo "Setting Ubuntu packages"
+        //sudo apt-get update
     sh '''
-        sudo apt-get update
         sudo apt-get install -y libnuma1
         sudo apt-get install -y libfile-slurp-perl
         sudo apt-get install -y libjson-perl
