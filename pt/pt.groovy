@@ -189,42 +189,34 @@ pipeline {
         }
         stage ('Prepare sandbox') {
             steps {
-                echo "Preparing sandbox"
                 setup_package_tests() 
-                echo "After setting up packages"
                 dir('sandbox') {
-                    //script {
-                        echo "In dir"
-                        sh '''
-                            echo "In shell script"
-                            curl ${DOWNLOAD_URL}/${MYSQL_BASEDIR}.tar.gz --output ${MYSQL_BASEDIR}.tar.gz
-                            tar -xzf ${MYSQL_BASEDIR}.tar.gz
-                        '''
-                    //}
+                    sh '''
+                        curl ${DOWNLOAD_URL}/${MYSQL_BASEDIR}.tar.gz --output ${MYSQL_BASEDIR}.tar.gz
+                        tar -xzf ${MYSQL_BASEDIR}.tar.gz
+                    '''
                 }
             }
         }
         stage ('Starting sandbox') {
             steps {
                 dir('percona-toolkit') {
-                        sh """
+                        sh '''
                             util/check-dev-env
                             sandbox/test-env checkconfig
                             sandbox/test-env stop
                             sandbox/test-env kill
                             sandbox/test-env start
-                        """
+                        '''
                 }
             }
         }
         stage ('Run tests') {
             steps {
                 dir('percona-toolkit') {
-                    //script {
-                        sh '''
-                            prove -vr --trap --timer t/pt-heartbeat
-                        '''
-                    //}
+                    sh '''
+                        prove -vr --trap --timer t/pt-heartbeat
+                    '''
                 }
             }
         }
