@@ -1,0 +1,16 @@
+
+- job:
+    name: sveta-pt-tests-all
+    project-type: pipeline
+    description: |
+        Regression tests for Percona Toolkit
+        Do not edit this job through the web!
+    pipeline-scm:
+      scm:
+        - git:
+            url: https://github.com/svetasmirnova/jenkins-pipelines.git
+            branches:
+            - 'main'
+            wipe-workspace: false
+      lightweight-checkout: true
+      script-path: pt/pt-all.groovy
