@@ -146,12 +146,12 @@ pipeline {
             name: 'PTDEVDEBUG'
         )
         string(
-            defaultValue: 'sveta-jenkins-test',
+            defaultValue: '3.x',
             description: 'Branch for package-testing repository',
             name: 'TESTING_BRANCH'
         )
         string(
-            defaultValue: 'prove -vr --trap --timer t/pt-heartbeat',
+            defaultValue: 'prove -vr --trap --timer t',
             description: 'Test command',
             name: 'TEST_CMD'
         )

@@ -1,5 +1,5 @@
 - job:
-    name: sveta-pt-tests
+    name: pt-unit-tests
     project-type: pipeline
     description: |
         Regression tests for Percona Toolkit
@@ -12,4 +12,4 @@
             - 'main'
             wipe-workspace: false
       lightweight-checkout: true
-      script-path: pt/pt.groovy
+      script-path: pt/pt-unit-tests.groovy
