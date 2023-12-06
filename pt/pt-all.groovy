@@ -2,7 +2,7 @@ void runNodeBuild(String node_to_test) {
     build(
         job: 'pt',
         parameters: [
-            string(name: 'node_to_test', value: params.node_to_test),
+            string(name: 'node_to_test', value: node_to_test),
             string(name: 'MYSQL_VERSION', value: params.MYSQL_VERSION),
             string(name: 'MYSQL_MINOR', value: params.MYSQL_MINOR),
             string(name: 'GLIBC', value: params.GLIBC),
@@ -23,20 +23,6 @@ pipeline {
     }
 
     parameters {
-        choice(
-            choices: [
-                'min-centos-7-x64',
-                'min-ol-8-x64',
-                'min-ol-9-x64',
-                'min-bionic-x64',
-                'min-focal-x64',
-                'min-jammy-x64',
-                'min-buster-x64',
-                'min-bullseye-x64'
-            ],
-            description: 'Node to run tests on',
-            name: 'node_to_test'
-        )
         choice(
             choices: [
                 '8.0',
