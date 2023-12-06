@@ -38,7 +38,6 @@ setup_oel9_package_tests = { ->
 }
 
 setup_ubuntu_package_tests = { ->
-    echo "Setting Ubuntu packages"
     sh '''
         sudo apt-get update
         sudo apt-get install -y libnuma1
@@ -48,14 +47,12 @@ setup_ubuntu_package_tests = { ->
         sudo apt-get install -y libdbi-perl
         sudo apt-get install -y libdbd-mysql-perl
     '''
-    echo "Exiting setting Ubuntu packages function"
 }
 
 node_setups = [
     "min-centos-7-x64": setup_rhel_package_tests,
     "min-ol-8-x64": setup_rhel_package_tests,
     "min-ol-9-x64": setup_oel9_package_tests,
-    "min-bionic-x64": setup_ubuntu_package_tests,
     "min-focal-x64": setup_ubuntu_package_tests,
     "min-jammy-x64": setup_ubuntu_package_tests,
     "min-buster-x64": setup_ubuntu_package_tests,
@@ -86,7 +83,6 @@ pipeline {
                 'min-centos-7-x64',
                 'min-ol-8-x64',
                 'min-ol-9-x64',
-                'min-bionic-x64',
                 'min-focal-x64',
                 'min-jammy-x64',
                 'min-buster-x64',

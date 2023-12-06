@@ -87,6 +87,7 @@ pipeline {
             description: 'Test command',
             name: 'TEST_CMD'
         )
+
 /*
         string(
             defaultValue: '',
@@ -104,6 +105,36 @@ pipeline {
     stages {
         stage('Run parallel') {
             parallel {
+                stage('Centos 7') {
+                    steps {
+                        runNodeBuild('min-centos-7-x64')
+                    }
+                }
+
+                stage('OEL 8') {
+                    steps {
+                        runNodeBuild('min-ol-8-x64')
+                    }
+                }
+
+                stage('OEL 9') {
+                    steps {
+                        runNodeBuild('min-ol-9-x64')
+                    }
+                }
+
+                stage('Ubuntu Focal') {
+                    steps {
+                        runNodeBuild('min-focal-x64')
+                    }
+                }
+
+                stage('Ubuntu Jammy') {
+                    steps {
+                        runNodeBuild('min-jammy-x64')
+                    }
+                }
+
                 stage('Debian Buster') {
                     steps {
                         runNodeBuild('min-buster-x64')
@@ -113,18 +144,6 @@ pipeline {
                 stage('Debian Bullseye') {
                     steps {
                         runNodeBuild('min-bullseye-x64')
-                    }
-                }
-
-                stage('Ubuntu Bionic') {
-                    steps {
-                        runNodeBuild('min-bionic-x64')
-                    }
-                }
-
-                stage('Ubuntu Focal') {
-                    steps {
-                        runNodeBuild('min-focal-x64')
                     }
                 }
             }
