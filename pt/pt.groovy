@@ -211,7 +211,7 @@ pipeline {
             steps {
                 dir('percona-toolkit') {
                     sh '''
-                        prove -vr --trap --timer t/pt-heartbeat
+                        ${TEST_CMD}
                     '''
                 }
             }
