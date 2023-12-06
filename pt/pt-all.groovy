@@ -1,6 +1,6 @@
 void runNodeBuild(String node_to_test) {
     build(
-        job: 'pt-package-testing',
+        job: 'pt',
         parameters: [
             string(name: 'node_to_test', value: params.node_to_test),
             string(name: 'MYSQL_VERSION', value: params.MYSQL_VERSION),
