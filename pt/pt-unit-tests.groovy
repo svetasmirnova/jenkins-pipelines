@@ -1,5 +1,7 @@
 setup_rhel_package_tests = { ->
     sh '''
+        sudo yum -y install epel-release
+        sudo yum -y update
         sudo yum -y install tar
         sudo yum -y install libaio
         sudo yum -y install strace
