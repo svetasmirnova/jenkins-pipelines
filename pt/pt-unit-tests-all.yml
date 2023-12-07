@@ -13,4 +13,4 @@
             - 'main'
             wipe-workspace: false
       lightweight-checkout: true
-      script-path: pt-unit-tests-all.groovy
+      script-path: pt/pt-unit-tests-all.groovy
