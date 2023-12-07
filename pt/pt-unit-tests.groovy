@@ -9,6 +9,8 @@ setup_rhel_package_tests = { ->
         sudo yum -y install perl-File-Slurp
         sudo yum -y install perl-JSON
         sudo yum -y install perl-NetAddr-IP
+        sudo yum -y install perl-Text-Diff
+        sudo yum -y install perl-IO-Socket-SSL
         sudo yum -y install perl-DBI
         sudo yum -y install perl-DBD-MySQL
     '''
@@ -32,6 +34,9 @@ setup_oel9_package_tests = { ->
         sudo yum -y install perl-English
         sudo yum -y install perl-FindBin
         sudo yum -y install perl-Sys-Hostname
+        sudo yum -y install perl-sigtrap
+        sudo yum -y install perl-Text-Diff
+        sudo yum -y install perl-IO-Socket-SSL
         sudo yum -y install perl-DBI
         sudo yum -y install perl-DBD-MySQL
     '''
@@ -44,6 +49,8 @@ setup_ubuntu_package_tests = { ->
         sudo apt-get install -y libfile-slurp-perl
         sudo apt-get install -y libjson-perl
         sudo apt-get install -y libnetaddr-ip-perl
+        sudo apt-get install -y libtext-diff-perl
+        sudo apt-get install -y libio-socket-ssl-perl
         sudo apt-get install -y libdbi-perl
         sudo apt-get install -y libdbd-mysql-perl
     '''
