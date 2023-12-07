@@ -2,6 +2,7 @@ setup_rhel_package_tests = { ->
     sh '''
         sudo yum -y install tar
         sudo yum -y install libaio
+        sudo yum -y install strace
         sudo yum -y install perl-Time-HiRes
         sudo yum -y install perl-Test-Harness
         sudo yum -y install perl-Test-Simple
@@ -10,7 +11,9 @@ setup_rhel_package_tests = { ->
         sudo yum -y install perl-JSON
         sudo yum -y install perl-NetAddr-IP
         sudo yum -y install perl-Text-Diff
+        sudo yum -y install perl-IPC-Cmd
         sudo yum -y install perl-IO-Socket-SSL
+        sudo yum -y install perl-Thread-Semaphore
         sudo yum -y install perl-DBI
         sudo yum -y install perl-DBD-MySQL
     '''
@@ -22,6 +25,7 @@ setup_oel9_package_tests = { ->
         sudo yum -y update
         sudo yum -y install tar
         sudo yum -y install libaio
+        sudo yum -y install strace
         sudo yum -y install perl-Time-HiRes
         sudo yum -y install perl-Test-Harness
         sudo yum -y install perl-Test-Simple
@@ -36,7 +40,9 @@ setup_oel9_package_tests = { ->
         sudo yum -y install perl-Sys-Hostname
         sudo yum -y install perl-sigtrap
         sudo yum -y install perl-Text-Diff
+        sudo yum -y install perl-IPC-Cmd
         sudo yum -y install perl-IO-Socket-SSL
+        sudo yum -y install perl-Thread-Semaphore
         sudo yum -y install perl-DBI
         sudo yum -y install perl-DBD-MySQL
     '''
@@ -46,11 +52,14 @@ setup_ubuntu_package_tests = { ->
     sh '''
         sudo apt-get update
         sudo apt-get install -y libnuma1
+        sudo apt-get install -y strace
+        sudo apt-get install -y gawk
         sudo apt-get install -y libfile-slurp-perl
         sudo apt-get install -y libjson-perl
         sudo apt-get install -y libnetaddr-ip-perl
         sudo apt-get install -y libtext-diff-perl
         sudo apt-get install -y libio-socket-ssl-perl
+        sudo apt-get install -y libipc-run-perl
         sudo apt-get install -y libdbi-perl
         sudo apt-get install -y libdbd-mysql-perl
     '''
