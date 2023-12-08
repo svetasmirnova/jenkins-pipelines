@@ -219,8 +219,6 @@ pipeline {
                             sandbox/test-env stop
                             sandbox/test-env kill
                             sandbox/test-env start
-                            echo ${PATH}
-                            mysql --version
                         '''
                 }
             }
