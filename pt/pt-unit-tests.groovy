@@ -1,6 +1,5 @@
 setup_rhel_package_tests = { ->
     sh '''
-        sudo yum -y install epel-release
         sudo yum -y update
         sudo yum -y install tar
         sudo yum -y install libaio
@@ -15,7 +14,6 @@ setup_rhel_package_tests = { ->
         sudo yum -y install perl-Text-Diff
         sudo yum -y install perl-IPC-Cmd
         sudo yum -y install perl-IO-Socket-SSL
-        sudo yum -y install perl-Thread-Semaphore
         sudo yum -y install perl-DBI
         sudo yum -y install perl-DBD-MySQL
     '''
