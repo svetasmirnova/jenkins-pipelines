@@ -85,6 +85,7 @@ pipeline {
     }
 
     environment {
+        LANG="en_US.UTF-8"
         PERCONA_TOOLKIT_BRANCH = "${WORKSPACE}/percona-toolkit"
         TMP_DIR = "/tmp"
         PERCONA_TOOLKIT_SANDBOX = "${WORKSPACE}/sandbox/$MYSQL_BASEDIR"
@@ -219,7 +220,6 @@ pipeline {
                             sandbox/test-env stop
                             sandbox/test-env kill
                             sandbox/test-env start
-                            awk --version
                         '''
                 }
             }
