@@ -62,7 +62,7 @@ setup_ubuntu_package_tests = { ->
         sudo apt-get install -y libipc-run-perl
         sudo apt-get install -y libdbi-perl
         sudo apt-get install -y libdbd-mysql-perl
-        sudo cat /etc/local.gen
+        sudo cat /etc/locale.gen
     '''
 }
 
