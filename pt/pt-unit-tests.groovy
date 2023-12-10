@@ -88,6 +88,7 @@ pipeline {
         LANG="en_US.UTF-8"
         LANGUAGE="en_US.UTF-8"
         LC_ALL="en_US.UTF-8"
+        LC_CTYPE="en_US.UTF-8"
         PERCONA_TOOLKIT_BRANCH = "${WORKSPACE}/percona-toolkit"
         TMP_DIR = "/tmp"
         PERCONA_TOOLKIT_SANDBOX = "${WORKSPACE}/sandbox/$MYSQL_BASEDIR"
