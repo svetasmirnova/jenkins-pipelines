@@ -50,6 +50,8 @@ setup_oel9_package_tests = { ->
 
 setup_ubuntu_package_tests = { ->
     sh '''
+        sudo sed -i -e 's/# en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/g' /etc/locale.gen
+        sudo sudo locale-gen
         sudo apt-get update
         sudo apt-get install -y libnuma1
         sudo apt-get install -y strace
@@ -62,7 +64,6 @@ setup_ubuntu_package_tests = { ->
         sudo apt-get install -y libipc-run-perl
         sudo apt-get install -y libdbi-perl
         sudo apt-get install -y libdbd-mysql-perl
-        sudo cat /etc/locale.gen
     '''
 }
 
