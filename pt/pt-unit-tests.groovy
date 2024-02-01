@@ -16,6 +16,8 @@ setup_rhel_package_tests = { ->
         sudo yum -y install perl-IO-Socket-SSL
         sudo yum -y install perl-DBI
         sudo yum -y install perl-DBD-MySQL
+        sudo yum -y install cpan
+        echo yes | sudo cpan upgrade JSON
     '''
 }
 
@@ -45,6 +47,8 @@ setup_oel9_package_tests = { ->
         sudo yum -y install perl-Thread-Semaphore
         sudo yum -y install perl-DBI
         sudo yum -y install perl-DBD-MySQL
+        sudo yum -y install cpan
+        echo yes | sudo cpan upgrade JSON
     '''
 }
 
