@@ -18,7 +18,6 @@ setup_rhel_package_tests = { ->
         sudo yum -y install perl-DBD-MySQL
         sudo yum -y install cpan
         sudo yum -y install gcc
-        echo yes | sudo cpan install Test
         echo yes | sudo cpan upgrade JSON
     '''
 }
