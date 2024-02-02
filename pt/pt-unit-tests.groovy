@@ -7,7 +7,6 @@ setup_rhel_package_tests = { ->
         sudo yum -y install perl-Time-HiRes
         sudo yum -y install perl-Test-Harness
         sudo yum -y install perl-Test-Simple
-        sudo yum -y install perl-Test
         sudo yum -y install perl-Digest-MD5
         sudo yum -y install perl-File-Slurp
         sudo yum -y install perl-JSON
@@ -19,6 +18,7 @@ setup_rhel_package_tests = { ->
         sudo yum -y install perl-DBD-MySQL
         sudo yum -y install cpan
         sudo yum -y install gcc
+        echo yes | sudo cpan install Test
         echo yes | sudo cpan upgrade JSON
     '''
 }
