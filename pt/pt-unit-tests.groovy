@@ -16,11 +16,31 @@ setup_rhel_package_tests = { ->
         sudo yum -y install perl-IO-Socket-SSL
         sudo yum -y install perl-DBI
         sudo yum -y install perl-DBD-MySQL
+    '''
+}
+
+setup_oel8_package_tests = { ->
+    sh '''
+        sudo yum -y update
+        sudo yum -y install tar
+        sudo yum -y install libaio
+        sudo yum -y install strace
+        sudo yum -y install perl-Time-HiRes
+        sudo yum -y install perl-Test-Harness
+        sudo yum -y install perl-Test-Simple
+        sudo yum -y install perl-Digest-MD5
+        sudo yum -y install perl-File-Slurp
+        sudo yum -y install perl-JSON
+        sudo yum -y install perl-NetAddr-IP
+        sudo yum -y install perl-Text-Diff
+        sudo yum -y install perl-IPC-Cmd
+        sudo yum -y install perl-IO-Socket-SSL
+        sudo yum -y install perl-DBI
+        sudo yum -y install perl-DBD-MySQL
         sudo yum -y install cpan
         sudo yum -y install gcc
         echo yes | sudo cpan install Test
         echo yes | sudo cpan upgrade JSON
-        perl -MJSON  -le 'print $JSON::VERSION'
     '''
 }
 
@@ -77,7 +97,7 @@ setup_ubuntu_package_tests = { ->
 
 node_setups = [
     "min-centos-7-x64": setup_rhel_package_tests,
-    "min-ol-8-x64": setup_rhel_package_tests,
+    "min-ol-8-x64": setup_oel8_package_tests,
     "min-ol-9-x64": setup_oel9_package_tests,
     "min-focal-x64": setup_ubuntu_package_tests,
     "min-jammy-x64": setup_ubuntu_package_tests,
