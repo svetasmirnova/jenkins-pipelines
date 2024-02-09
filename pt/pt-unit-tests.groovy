@@ -84,6 +84,7 @@ setup_ubuntu_package_tests = { ->
         sudo apt-get install -y libnuma1
         sudo apt-get install -y strace
         sudo apt-get install -y gawk
+        sudo apt-get install -y lsof
         sudo apt-get install -y libfile-slurp-perl
         sudo apt-get install -y libjson-perl
         sudo apt-get install -y libnetaddr-ip-perl
