@@ -112,6 +112,7 @@ node_setups = [
     "min-jammy-x64": setup_ubuntu_package_tests,
     "min-buster-x64": setup_ubuntu_package_tests,
     "min-bullseye-x64": setup_ubuntu_package_tests,
+    "min-bookworm-x64": setup_ubuntu_package_tests,
 ]
 
 void setup_package_tests() {

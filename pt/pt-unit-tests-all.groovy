@@ -148,6 +148,12 @@ pipeline {
                         runNodeBuild('min-bullseye-x64')
                     }
                 }
+
+                stage('Debian Bookworm') {
+                    steps {
+                        runNodeBuild('min-bookworm-x64')
+                    }
+                }
             }
         }
     }
