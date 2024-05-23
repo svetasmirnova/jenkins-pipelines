@@ -14,18 +14,10 @@ setup_rhel_package_tests = { ->
         sudo yum -y install perl-Text-Diff
         sudo yum -y install perl-IPC-Cmd
         sudo yum -y install perl-IO-Socket-SSL
-        sudo yum -y install mariadb-libs
-        sudo yum -y install cpan
-        sudo yum -y install gcc
-        echo yes | sudo cpan install DBI
-        echo yes | sudo cpan install Devel::CheckLib
-        echo yes | sudo cpan install DBD::mysql
+        sudo yum -y install perl-DBI
+        sudo yum -y install perl-DBD-MySQL
     '''
 }
-
-//         sudo yum -y install perl-DBI
-//        sudo yum -y install perl-DBD-MySQL
-
 
 setup_oel8_package_tests = { ->
     sh '''
@@ -43,12 +35,12 @@ setup_oel8_package_tests = { ->
         sudo yum -y install perl-Text-Diff
         sudo yum -y install perl-IPC-Cmd
         sudo yum -y install perl-IO-Socket-SSL
+        sudo yum -y install perl-DBI
+        sudo yum -y install perl-DBD-MySQL
         sudo yum -y install cpan
         sudo yum -y install gcc
         echo yes | sudo cpan install Test
         echo yes | sudo cpan upgrade JSON
-        echo yes | sudo cpan install DBI
-        sudo yum -y install perl-DBD-MySQL
     '''
 }
 
