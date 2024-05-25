@@ -2,6 +2,7 @@ setup_rhel_package_tests = { ->
     sh '''
         sudo yum -y update
         sudo yum -y install tar
+        sudo yum -y install jq
         sudo yum -y install libaio
         sudo yum -y install strace
         sudo yum -y install perl-Time-HiRes
@@ -23,6 +24,7 @@ setup_oel8_package_tests = { ->
     sh '''
         sudo yum -y update
         sudo yum -y install tar
+        sudo yum -y install jq
         sudo yum -y install libaio
         sudo yum -y install strace
         sudo yum -y install perl-Time-HiRes
@@ -49,6 +51,7 @@ setup_oel9_package_tests = { ->
         sudo yum -y install epel-release
         sudo yum -y update
         sudo yum -y install tar
+        sudo yum -y install jq
         sudo yum -y install libaio
         sudo yum -y install strace
         sudo yum -y install perl-Time-HiRes
@@ -81,6 +84,7 @@ setup_ubuntu_package_tests = { ->
         sudo sed -i -e 's/# en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/g' /etc/locale.gen
         sudo sudo locale-gen
         sudo apt-get update
+        sudo apt-get install -y jq
         sudo apt-get install -y libnuma1
         sudo apt-get install -y strace
         sudo apt-get install -y gawk
