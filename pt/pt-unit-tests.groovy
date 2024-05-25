@@ -1,6 +1,7 @@
 setup_rhel_package_tests = { ->
     sh '''
         sudo yum -y update
+        sudo yum -y epel-release
         sudo yum -y install tar
         sudo yum -y install jq
         sudo yum -y install libaio
