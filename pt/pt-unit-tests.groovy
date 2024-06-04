@@ -107,7 +107,7 @@ node_setups = [
     "min-ol-9-x64": setup_oel9_package_tests,
     "min-focal-x64": setup_ubuntu_package_tests,
     "min-jammy-x64": setup_ubuntu_package_tests,
-    "min-noble-x64": setup_ubuntu_package_tests,
+    "minimal-ubuntu-noble-x64": setup_ubuntu_package_tests,
     "min-buster-x64": setup_ubuntu_package_tests,
     "min-bullseye-x64": setup_ubuntu_package_tests,
     "min-bookworm-x64": setup_ubuntu_package_tests,
@@ -143,7 +143,7 @@ pipeline {
                 'min-ol-9-x64',
                 'min-focal-x64',
                 'min-jammy-x64',
-                'min-noble-x64',
+                'minimal-ubuntu-noble-x64',
                 'min-buster-x64',
                 'min-bullseye-x64',
                 'min-bookworm-x64'
