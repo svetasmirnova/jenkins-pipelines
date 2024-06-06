@@ -137,6 +137,12 @@ pipeline {
                     }
                 }
 
+                stage('Ubuntu Noble Numbat') {
+                    steps {
+                        runNodeBuild('min-noble-x64')
+                    }
+                }
+
                 stage('Debian Buster') {
                     steps {
                         runNodeBuild('min-buster-x64')
