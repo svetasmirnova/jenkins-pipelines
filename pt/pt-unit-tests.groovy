@@ -104,6 +104,7 @@ setup_ubuntu_package_tests = { ->
 setup_noble_package_tests = { ->
     setup_ubuntu_package_tests()
     sh '''
+        sudo apt-get install -y libaio1t64
         sudo ln -s /usr/lib/x86_64-linux-gnu/libaio.so.1t64 /usr/lib/x86_64-linux-gnu/libaio.so.1
     '''
 }
