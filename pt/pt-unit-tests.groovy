@@ -267,6 +267,7 @@ pipeline {
             steps {
                 dir('percona-toolkit') {
                         sh '''
+                            ${PERCONA_TOOLKIT_SANDBOX}/bin/mysqld --version
                             util/check-dev-env
                             sandbox/test-env checkconfig
                             sandbox/test-env stop
