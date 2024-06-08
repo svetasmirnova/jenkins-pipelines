@@ -101,6 +101,13 @@ setup_ubuntu_package_tests = { ->
     '''
 }
 
+setup_noble_package_tests = { ->
+    setup_ubuntu_package_tests()
+    sh '''
+        sudo ln -s /usr/lib/x86_64-linux-gnu/libaio.so.1t64 /usr/lib/x86_64-linux-gnu/libaio.so.1
+    '''
+}
+
 node_setups = [
     "min-centos-7-x64": setup_rhel_package_tests,
     "min-ol-8-x64": setup_oel8_package_tests,
