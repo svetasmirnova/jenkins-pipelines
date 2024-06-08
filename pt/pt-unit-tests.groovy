@@ -130,7 +130,7 @@ node_setups = [
     "min-ol-9-x64": setup_oel9_package_tests,
     "min-focal-x64": setup_ubuntu_package_tests,
     "min-jammy-x64": setup_ubuntu_package_tests,
-    "min-noble-x64": setup_ubuntu_package_tests,
+    "min-noble-x64": setup_noble_package_tests,
     "min-buster-x64": setup_ubuntu_package_tests,
     "min-bullseye-x64": setup_ubuntu_package_tests,
     "min-bookworm-x64": setup_ubuntu_package_tests,
