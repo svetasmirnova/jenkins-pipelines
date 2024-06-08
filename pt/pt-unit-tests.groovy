@@ -102,9 +102,23 @@ setup_ubuntu_package_tests = { ->
 }
 
 setup_noble_package_tests = { ->
-    setup_ubuntu_package_tests()
     sh '''
-        echo sh for Noble
+        sudo sed -i -e 's/# en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/g' /etc/locale.gen
+        sudo sudo locale-gen
+        sudo apt-get update
+        sudo apt-get install -y jq
+        sudo apt-get install -y libnuma1
+        sudo apt-get install -y strace
+        sudo apt-get install -y gawk
+        sudo apt-get install -y lsof
+        sudo apt-get install -y libfile-slurp-perl
+        sudo apt-get install -y libjson-perl
+        sudo apt-get install -y libnetaddr-ip-perl
+        sudo apt-get install -y libtext-diff-perl
+        sudo apt-get install -y libio-socket-ssl-perl
+        sudo apt-get install -y libipc-run-perl
+        sudo apt-get install -y libdbi-perl
+        sudo apt-get install -y libdbd-mysql-perl
         sudo apt-get install -y libaio1t64
         sudo ln -s /usr/lib/x86_64-linux-gnu/libaio.so.1t64 /usr/lib/x86_64-linux-gnu/libaio.so.1
     '''
