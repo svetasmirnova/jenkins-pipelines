@@ -163,7 +163,7 @@ pipeline {
             choices: [
                 '8.0',
                 '5.7',
-                //'8.1',
+                '8.4',
             ],
             description: 'Major version for Percona Server for MySQL',
             name: 'MYSQL_VERSION'
@@ -172,9 +172,10 @@ pipeline {
             choices: [
                 '8.0.35-27',
                 '8.0.36-28',
+                '8.0.37-29',
                 '5.7.43-47',
                 '5.7.44-48',
-                //'8.1.0-1',
+                '8.4.0-1',
             ],
             description: 'Minor version for Percona Server for MySQL',
             name: 'MYSQL_MINOR'
