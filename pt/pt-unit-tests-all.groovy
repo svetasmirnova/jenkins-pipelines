@@ -37,9 +37,11 @@ pipeline {
                 '8.0.35-27',
                 '8.0.36-28',
                 '8.0.37-29',
+                '8.0.39-30',
                 '5.7.43-47',
                 '5.7.44-48',
                 '8.4.0-1',
+                '8.4.2-2',
             ],
             description: 'Minor version for Percona Server for MySQL',
             name: 'MYSQL_MINOR'
