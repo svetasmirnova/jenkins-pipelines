@@ -91,6 +91,7 @@ setup_ubuntu_package_tests = { ->
         sudo apt-get install -y gawk
         sudo apt-get install -y lsof
         sudo apt-get install -y ncat
+        sudo apt-get install -y ncurses6
         sudo apt-get install -y libfile-slurp-perl
         sudo apt-get install -y libjson-perl
         sudo apt-get install -y libnetaddr-ip-perl
@@ -136,13 +137,13 @@ pipeline {
         LANGUAGE="en_US.UTF-8"
         LC_ALL="en_US.UTF-8"
         LC_CTYPE="en_US.UTF-8"
-        PERCONA_TOOLKIT_BRANCH = "${WORKSPACE}/percona-toolkit"
-        TMP_DIR = "/tmp"
-        PERCONA_TOOLKIT_SANDBOX = "${WORKSPACE}/sandbox/$MYSQL_BASEDIR"
-        LOG_FILE = "${WORKSPACE}/tmp/${TESTING_BRANCH}-${MYSQL_VERSION}.log"
+        PERCONA_TOOLKIT_BRANCH="${WORKSPACE}/percona-toolkit"
+        TMP_DIR="/tmp"
+        PERCONA_TOOLKIT_SANDBOX="${WORKSPACE}/sandbox/$MYSQL_BASEDIR"
+        LOG_FILE="${WORKSPACE}/tmp/${TESTING_BRANCH}-${MYSQL_VERSION}.log"
         MYSQL_BASEDIR="Percona-Server-${MYSQL_MINOR}-Linux.x86_64.glibc${GLIBC}"
         DOWNLOAD_URL="https://downloads.percona.com/downloads/Percona-Server-${MYSQL_VERSION}/Percona-Server-${MYSQL_MINOR}/binary/tarball/"
-        PATH = "/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/home/ec2-user/.local/bin:${PERCONA_TOOLKIT_SANDBOX}/bin";
+        PATH="/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/home/ec2-user/.local/bin:${PERCONA_TOOLKIT_SANDBOX}/bin";
     }
     parameters {
         choice(
