@@ -125,6 +125,10 @@ setup_bullseye_package_tests = { ->
     '''
 }
 
+setup_bookworm_package_tests = { ->
+    setup_bullseye_package_tests()
+}
+
 node_setups = [
     "min-centos-7-x64": setup_rhel_package_tests,
     "min-ol-8-x64": setup_oel8_package_tests,
@@ -134,7 +138,7 @@ node_setups = [
     "min-noble-x64": setup_noble_package_tests,
     "min-buster-x64": setup_ubuntu_package_tests,
     "min-bullseye-x64": setup_bullseye_package_tests,
-    "min-bookworm-x64": setup_ubuntu_package_tests,
+    "min-bookworm-x64": setup_bookworm_package_tests,
 ]
 
 void setup_package_tests() {
