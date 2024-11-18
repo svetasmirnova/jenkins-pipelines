@@ -1,4 +1,4 @@
-setup_rhel_package_tests = { ->
+setup_rhel_tests = { ->
     sh '''
         sudo yum -y install epel-release
         sudo yum -y update
@@ -21,7 +21,7 @@ setup_rhel_package_tests = { ->
     '''
 }
 
-setup_oel8_package_tests = { ->
+setup_oel8_tests = { ->
     sh '''
         sudo yum -y update
         sudo yum -y install tar
@@ -47,7 +47,7 @@ setup_oel8_package_tests = { ->
     '''
 }
 
-setup_oel9_package_tests = { ->
+setup_oel9_tests = { ->
     sh '''
         sudo yum -y install epel-release
         sudo yum -y update
@@ -80,7 +80,7 @@ setup_oel9_package_tests = { ->
     '''
 }
 
-setup_ubuntu_package_tests = { ->
+setup_ubuntu_tests = { ->
     sh '''
         sudo sed -i -e 's/# en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/g' /etc/locale.gen
         sudo sudo locale-gen
@@ -105,16 +105,16 @@ setup_ubuntu_package_tests = { ->
     '''
 }
 
-setup_noble_package_tests = { ->
-    setup_ubuntu_package_tests()
+setup_noble_tests = { ->
+    setup_ubuntu_tests()
     sh '''
         sudo apt-get install -y libaio1t64
         sudo ln -s /usr/lib/x86_64-linux-gnu/libaio.so.1t64 /usr/lib/x86_64-linux-gnu/libaio.so.1
     '''
 }
 
-setup_bullseye_package_tests = { ->
-    setup_ubuntu_package_tests()
+setup_bullseye_tests = { ->
+    setup_ubuntu_tests()
     sh '''
         curl -O https://repo.percona.com/apt/percona-release_latest.generic_all.deb
         sudo apt-get -y install gnupg2 lsb-release
@@ -125,23 +125,23 @@ setup_bullseye_package_tests = { ->
     '''
 }
 
-setup_bookworm_package_tests = { ->
-    setup_bullseye_package_tests()
+setup_bookworm_tests = { ->
+    setup_bullseye_tests()
 }
 
 node_setups = [
-    "min-centos-7-x64": setup_rhel_package_tests,
-    "min-ol-8-x64": setup_oel8_package_tests,
-    "min-ol-9-x64": setup_oel9_package_tests,
-    "min-focal-x64": setup_ubuntu_package_tests,
-    "min-jammy-x64": setup_ubuntu_package_tests,
-    "min-noble-x64": setup_noble_package_tests,
-    "min-buster-x64": setup_ubuntu_package_tests,
-    "min-bullseye-x64": setup_bullseye_package_tests,
-    "min-bookworm-x64": setup_bookworm_package_tests,
+    "min-centos-7-x64": setup_rhel_tests,
+    "min-ol-8-x64": setup_oel8_tests,
+    "min-ol-9-x64": setup_oel9_tests,
+    "min-focal-x64": setup_ubuntu_tests,
+    "min-jammy-x64": setup_ubuntu_tests,
+    "min-noble-x64": setup_noble_tests,
+    "min-buster-x64": setup_ubuntu_tests,
+    "min-bullseye-x64": setup_bullseye_tests,
+    "min-bookworm-x64": setup_bookworm_tests,
 ]
 
-void setup_package_tests() {
+void setup_tests() {
     node_setups[params.node_to_test]()
 }
 
@@ -280,7 +280,7 @@ pipeline {
         }
         stage ('Prepare sandbox') {
             steps {
-                setup_package_tests() 
+                setup_tests() 
                 dir('sandbox') {
                     sh '''
                         curl -L https://github.com/openssl/openssl/releases/download/OpenSSL_1_1_1w/openssl-1.1.1w.tar.gz --output openssl-1.1.1w.tar.gz
