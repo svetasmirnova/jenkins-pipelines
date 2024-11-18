@@ -127,6 +127,16 @@ setup_bullseye_tests = { ->
 
 setup_bookworm_tests = { ->
     setup_bullseye_tests()
+    dir('sandbox') {
+        sh '''
+            curl -L https://github.com/openssl/openssl/releases/download/OpenSSL_1_1_1w/openssl-1.1.1w.tar.gz --output openssl-1.1.1w.tar.gz
+            tar -xzf openssl-1.1.1w.tar.gz
+            cd openssl-1.1.1w
+            ./config --prefix=${SSL_PATH} shared
+            make
+            make install
+        '''
+    }
 }
 
 node_setups = [
@@ -283,13 +293,6 @@ pipeline {
                 setup_tests() 
                 dir('sandbox') {
                     sh '''
-                        curl -L https://github.com/openssl/openssl/releases/download/OpenSSL_1_1_1w/openssl-1.1.1w.tar.gz --output openssl-1.1.1w.tar.gz
-                        tar -xzf openssl-1.1.1w.tar.gz
-                        cd openssl-1.1.1w
-                        ./config --prefix=${SSL_PATH} shared
-                        make
-                        make install
-                        cd ..
                         curl ${DOWNLOAD_URL}/${MYSQL_BASEDIR}.tar.gz --output ${MYSQL_BASEDIR}.tar.gz
                         tar -xzf ${MYSQL_BASEDIR}.tar.gz
                     '''
