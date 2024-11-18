@@ -105,8 +105,22 @@ setup_ubuntu_tests = { ->
     '''
 }
 
+install_ssl = { ->
+    dir('sandbox') {
+        sh '''
+            curl -L https://github.com/openssl/openssl/releases/download/OpenSSL_1_1_1w/openssl-1.1.1w.tar.gz --output openssl-1.1.1w.tar.gz
+            tar -xzf openssl-1.1.1w.tar.gz
+            cd openssl-1.1.1w
+            ./config --prefix=${SSL_PATH} shared
+            make
+            make install
+        '''
+    }
+}
+
 setup_noble_tests = { ->
     setup_ubuntu_tests()
+    install_ssl()
     sh '''
         sudo apt-get install -y libaio1t64
         sudo ln -s /usr/lib/x86_64-linux-gnu/libaio.so.1t64 /usr/lib/x86_64-linux-gnu/libaio.so.1
@@ -127,16 +141,7 @@ setup_debian_tests = { ->
 
 setup_bookworm_tests = { ->
     setup_debian_tests()
-    dir('sandbox') {
-        sh '''
-            curl -L https://github.com/openssl/openssl/releases/download/OpenSSL_1_1_1w/openssl-1.1.1w.tar.gz --output openssl-1.1.1w.tar.gz
-            tar -xzf openssl-1.1.1w.tar.gz
-            cd openssl-1.1.1w
-            ./config --prefix=${SSL_PATH} shared
-            make
-            make install
-        '''
-    }
+    install_ssl()
 }
 
 node_setups = [
