@@ -278,7 +278,7 @@ pipeline {
                 setup_package_tests() 
                 dir('sandbox') {
                     sh '''
-                        curl https://github.com/openssl/openssl/releases/download/OpenSSL_1_1_1w/openssl-1.1.1w.tar.gz --output openssl-1.1.1w.tar.gz
+                        curl -L https://github.com/openssl/openssl/releases/download/OpenSSL_1_1_1w/openssl-1.1.1w.tar.gz --output openssl-1.1.1w.tar.gz
                         tar -xzf openssl-1.1.1w.tar.gz
                         cd openssl-1.1.1w
                         ./config shared
