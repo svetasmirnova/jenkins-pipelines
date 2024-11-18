@@ -285,6 +285,7 @@ pipeline {
                         ./config --prefix=${SSL_PATH} shared
                         make
                         cd ..
+                        make 
                         make install
                         curl ${DOWNLOAD_URL}/${MYSQL_BASEDIR}.tar.gz --output ${MYSQL_BASEDIR}.tar.gz
                         tar -xzf ${MYSQL_BASEDIR}.tar.gz
