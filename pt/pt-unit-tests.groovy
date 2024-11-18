@@ -113,7 +113,7 @@ setup_noble_tests = { ->
     '''
 }
 
-setup_bullseye_tests = { ->
+setup_debian_tests = { ->
     setup_ubuntu_tests()
     sh '''
         curl -O https://repo.percona.com/apt/percona-release_latest.generic_all.deb
@@ -126,7 +126,7 @@ setup_bullseye_tests = { ->
 }
 
 setup_bookworm_tests = { ->
-    setup_bullseye_tests()
+    setup_debian_tests()
     dir('sandbox') {
         sh '''
             curl -L https://github.com/openssl/openssl/releases/download/OpenSSL_1_1_1w/openssl-1.1.1w.tar.gz --output openssl-1.1.1w.tar.gz
@@ -146,8 +146,8 @@ node_setups = [
     "min-focal-x64": setup_ubuntu_tests,
     "min-jammy-x64": setup_ubuntu_tests,
     "min-noble-x64": setup_noble_tests,
-    "min-buster-x64": setup_ubuntu_tests,
-    "min-bullseye-x64": setup_bullseye_tests,
+    "min-buster-x64": setup_debian_tests,
+    "min-bullseye-x64": setup_debian_tests,
     "min-bookworm-x64": setup_bookworm_tests,
 ]
 
