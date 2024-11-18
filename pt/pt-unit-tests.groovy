@@ -115,7 +115,8 @@ setup_bullseye_package_tests = { ->
     sh '''
         sudo apt-get install -y libncurses6
         curl -O https://repo.percona.com/apt/percona-release_latest.generic_all.deb
-        sudo apt -y install gnupg2 lsb-release ./percona-release_latest.generic_all.deb
+        sudo apt -y install gnupg2 lsb-release
+        sudo apt -y install ./percona-release_latest.generic_all.deb
         apt update
         percona-release setup pdps-8.0
         sudo apt -y upgrade perl
