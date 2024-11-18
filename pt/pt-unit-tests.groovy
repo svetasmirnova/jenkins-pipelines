@@ -279,6 +279,7 @@ pipeline {
                         tar -xzf ${MYSQL_BASEDIR}.tar.gz
                         ldd ${MYSQL_BASEDIR}/bin/mysql
                         sudo ln -s /usr/lib/x86_64-linux-gnu/libssl.so.3 /usr/lib/x86_64-linux-gnu/libssl.so.1.1
+                        sudo ln -s /usr/lib/x86_64-linux-gnu/libcrypto.so.3 /usr/lib/x86_64-linux-gnu/libcrypto.so.1.1
                     '''
                 }
             }
