@@ -91,7 +91,6 @@ setup_ubuntu_package_tests = { ->
         sudo apt-get install -y gawk
         sudo apt-get install -y lsof
         sudo apt-get install -y ncat
-        sudo apt-get install -y ncurses6
         sudo apt-get install -y libfile-slurp-perl
         sudo apt-get install -y libjson-perl
         sudo apt-get install -y libnetaddr-ip-perl
@@ -114,6 +113,7 @@ setup_noble_package_tests = { ->
 setup_bullseye_package_tests = { ->
     setup_ubuntu_package_tests()
     sh '''
+        sudo apt-get install -y ncurses6
         curl -O https://repo.percona.com/apt/percona-release_latest.generic_all.deb
         sudo apt -y install gnupg2 lsb-release ./percona-release_latest.generic_all.deb
         apt update
