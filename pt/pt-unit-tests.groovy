@@ -278,6 +278,7 @@ pipeline {
                         curl ${DOWNLOAD_URL}/${MYSQL_BASEDIR}.tar.gz --output ${MYSQL_BASEDIR}.tar.gz
                         tar -xzf ${MYSQL_BASEDIR}.tar.gz
                         ldd ${MYSQL_BASEDIR}/bin/mysql
+                        sudo ln -s libssl.so.3 libssl.so.1.1
                     '''
                 }
             }
