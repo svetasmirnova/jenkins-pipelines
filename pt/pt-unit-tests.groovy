@@ -100,6 +100,8 @@ setup_ubuntu_package_tests = { ->
         sudo apt-get install -y libipc-run-perl
         sudo apt-get install -y libdbi-perl
         sudo apt-get install -y libdbd-mysql-perl
+        sudo apt-get install -y make
+        sudo apt-get install -y gcc
     '''
 }
 
@@ -156,6 +158,7 @@ pipeline {
         MYSQL_BASEDIR="Percona-Server-${MYSQL_MINOR}-Linux.x86_64.glibc${GLIBC}"
         DOWNLOAD_URL="https://downloads.percona.com/downloads/Percona-Server-${MYSQL_VERSION}/Percona-Server-${MYSQL_MINOR}/binary/tarball/"
         PATH="/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/home/ec2-user/.local/bin:${PERCONA_TOOLKIT_SANDBOX}/bin";
+        LD_LIBRARY_PATH="/usr/local/lib:$LD_LIBRARY_PATH"
     }
     parameters {
         choice(
@@ -275,11 +278,14 @@ pipeline {
                 setup_package_tests() 
                 dir('sandbox') {
                     sh '''
+                        curl https://github.com/openssl/openssl/releases/download/OpenSSL_1_1_1w/openssl-1.1.1w.tar.gz --output openssl-1.1.1w.tar.gz
+                        tar -xzf openssl-1.1.1w.tar.gz
+                        cd openssl-1.1.1w
+                        ./config shared
+                        make
+                        make install
                         curl ${DOWNLOAD_URL}/${MYSQL_BASEDIR}.tar.gz --output ${MYSQL_BASEDIR}.tar.gz
                         tar -xzf ${MYSQL_BASEDIR}.tar.gz
-                        ldd ${MYSQL_BASEDIR}/bin/mysql
-                        sudo ln -s /usr/lib/x86_64-linux-gnu/libssl.so.3 /usr/lib/x86_64-linux-gnu/libssl.so.1.1
-                        sudo ln -s /usr/lib/x86_64-linux-gnu/libcrypto.so.3 /usr/lib/x86_64-linux-gnu/libcrypto.so.1.1
                     '''
                 }
             }
