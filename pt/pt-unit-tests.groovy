@@ -78,6 +78,7 @@ setup_oel9_tests = { ->
         sudo yum -y install gcc
         echo yes | sudo cpan upgrade JSON
     '''
+    install_ssl()
 }
 
 setup_ubuntu_tests = { ->
