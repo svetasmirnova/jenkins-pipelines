@@ -24,6 +24,7 @@ setup_rhel_tests = { ->
 setup_oel_tests = { ->
     sh '''
         sudo yum install -y https://repo.percona.com/yum/percona-release-latest.noarch.rpm
+        sudo percona-release setup pdps-8.0
         sudo yum -y upgrade perl
     '''
 }
