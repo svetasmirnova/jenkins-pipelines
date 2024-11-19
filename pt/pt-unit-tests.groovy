@@ -118,6 +118,11 @@ install_ssl = { ->
     }
 }
 
+setup_jammy_tests ={ ->
+    setup_ubuntu_tests(
+    install_ssl()
+}
+
 setup_noble_tests = { ->
     setup_ubuntu_tests()
     install_ssl()
@@ -149,7 +154,7 @@ node_setups = [
     "min-ol-8-x64": setup_oel8_tests,
     "min-ol-9-x64": setup_oel9_tests,
     "min-focal-x64": setup_ubuntu_tests,
-    "min-jammy-x64": setup_ubuntu_tests,
+    "min-jammy-x64": setup_jammy_tests,
     "min-noble-x64": setup_noble_tests,
     "min-buster-x64": setup_debian_tests,
     "min-bullseye-x64": setup_debian_tests,
