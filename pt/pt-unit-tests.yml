@@ -4,6 +4,7 @@
     description: |
         Regression tests for Percona Toolkit
         Do not edit this job through the web!
+    concurrent: true
     pipeline-scm:
       scm:
         - git:
