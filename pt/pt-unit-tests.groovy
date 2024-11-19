@@ -52,6 +52,7 @@ setup_oel8_tests = { ->
         echo yes | sudo cpan install Test
         echo yes | sudo cpan upgrade JSON
     '''
+    install_ssl()
     setup_oel_tests()
 }
 
@@ -87,6 +88,7 @@ setup_oel9_tests = { ->
         echo yes | sudo cpan upgrade JSON
     '''
     install_ssl()
+    setup_oel_tests()
 }
 
 setup_ubuntu_tests = { ->
