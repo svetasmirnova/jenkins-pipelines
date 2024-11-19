@@ -119,7 +119,7 @@ install_ssl = { ->
 }
 
 setup_jammy_tests ={ ->
-    setup_ubuntu_tests(
+    setup_ubuntu_tests()
     install_ssl()
 }
 
