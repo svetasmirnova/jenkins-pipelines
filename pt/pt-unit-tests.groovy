@@ -21,6 +21,13 @@ setup_rhel_tests = { ->
     '''
 }
 
+setup_oel_tests = { ->
+    sh '''
+        sudo yum install -y https://repo.percona.com/yum/percona-release-latest.noarch.rpm
+        sudo yum -y upgrade perl
+    '''
+}
+
 setup_oel8_tests = { ->
     sh '''
         sudo yum -y update
@@ -45,6 +52,7 @@ setup_oel8_tests = { ->
         echo yes | sudo cpan install Test
         echo yes | sudo cpan upgrade JSON
     '''
+    setup_oel_tests()
 }
 
 setup_oel9_tests = { ->
