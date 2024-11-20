@@ -25,8 +25,10 @@ setup_oel_tests = { ->
     sh '''
         sudo yum install -y https://repo.percona.com/yum/percona-release-latest.noarch.rpm
         sudo percona-release setup pdps-8.0
-        sudo yum -y install perl-DBI
-        sudo yum -y install perl-DBD-MySQL
+        sudo yum -y install percona-server-server
+        sudo yum -y install percona-server-client
+        sudo yum -y install percona-server-devel
+        echo yes | sudo cpan install DBD::mysql
     '''
 }
 
@@ -47,6 +49,7 @@ setup_oel8_tests = { ->
         sudo yum -y install perl-Text-Diff
         sudo yum -y install perl-IPC-Cmd
         sudo yum -y install perl-IO-Socket-SSL
+        sudo yum -y install perl-DBI
         sudo yum -y install cpan
         sudo yum -y install gcc
         echo yes | sudo cpan install Test
@@ -81,6 +84,7 @@ setup_oel9_tests = { ->
         sudo yum -y install perl-IPC-Cmd
         sudo yum -y install perl-IO-Socket-SSL
         sudo yum -y install perl-Thread-Semaphore
+        sudo yum -y install perl-DBI
         sudo yum -y install cpan
         sudo yum -y install gcc
         echo yes | sudo cpan upgrade JSON
@@ -88,7 +92,7 @@ setup_oel9_tests = { ->
     install_ssl()
     setup_oel_tests()
 }
-
+perl-IPC-Cmd
 setup_ubuntu_tests = { ->
     sh '''
         sudo sed -i -e 's/# en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/g' /etc/locale.gen
