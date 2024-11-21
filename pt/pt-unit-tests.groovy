@@ -43,8 +43,8 @@ setup_oel8_tests = { ->
         sudo yum -y install gcc
         echo yes | sudo cpan install Test
         echo yes | sudo cpan upgrade JSON
-        sudo yum install -y https://repo.percona.com/yum/percona-release-latest.noarch.rpm
         sudo dnf module disable mysql
+        sudo yum install -y https://repo.percona.com/yum/percona-release-latest.noarch.rpm
         sudo percona-release setup -y pdps-8.0
         sudo yum -y install percona-server-server
         sudo yum -y install percona-server-client
