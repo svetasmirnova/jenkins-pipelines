@@ -21,17 +21,6 @@ setup_rhel_tests = { ->
     '''
 }
 
-setup_oel_tests = { ->
-    sh '''
-        sudo yum install -y https://repo.percona.com/yum/percona-release-latest.noarch.rpm
-        sudo percona-release setup pdps-8.0
-        sudo yum -y install percona-server-server
-        sudo yum -y install percona-server-client
-        sudo yum -y install percona-server-devel
-        echo yes | sudo cpan install DBD::mysql
-    '''
-}
-
 setup_oel8_tests = { ->
     sh '''
         sudo yum -y update
@@ -54,10 +43,14 @@ setup_oel8_tests = { ->
         sudo yum -y install gcc
         echo yes | sudo cpan install Test
         echo yes | sudo cpan upgrade JSON
-        sudo yum -y upgrade rpm
+        sudo yum install -y https://repo.percona.com/yum/percona-release-latest.noarch.rpm
+        sudo percona-release -y setup pdps-8.0
+        sudo yum -y install percona-server-server
+        sudo yum -y install percona-server-client
+        sudo yum -y install percona-server-devel
+        echo yes | sudo cpan install DBD::mysql
     '''
     install_ssl()
-    setup_oel_tests()
 }
 
 setup_oel9_tests = { ->
@@ -89,9 +82,14 @@ setup_oel9_tests = { ->
         sudo yum -y install cpan
         sudo yum -y install gcc
         echo yes | sudo cpan upgrade JSON
+        sudo yum install -y https://repo.percona.com/yum/percona-release-latest.noarch.rpm
+        sudo percona-release -y setup pdps-8.0
+        sudo yum -y install percona-server-server
+        sudo yum -y install percona-server-client
+        sudo yum -y install percona-server-devel
+        echo yes | sudo cpan install DBD::mysql
     '''
     install_ssl()
-    setup_oel_tests()
 }
 
 setup_ubuntu_tests = { ->
