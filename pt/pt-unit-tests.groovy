@@ -185,6 +185,7 @@ setup_bullseye_tests = { ->
         sudo apt-get install -y make
         sudo apt-get install -y gcc
     '''
+    setup_debian_tests()
     install_ssl()
 }
 
