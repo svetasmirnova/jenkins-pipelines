@@ -162,6 +162,11 @@ setup_bookworm_tests = { ->
     install_ssl()
 }
 
+setup_bullseye_tests = { ->
+    export DEBIAN_FRONTEND="noninteractive"
+    setup_ubuntu_tests()
+}
+
 node_setups = [
     "min-ol-8-x64": setup_oel8_tests,
     "min-ol-9-x64": setup_oel9_tests,
