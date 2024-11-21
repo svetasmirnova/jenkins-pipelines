@@ -44,7 +44,7 @@ setup_oel8_tests = { ->
         echo yes | sudo cpan install Test
         echo yes | sudo cpan upgrade JSON
         sudo yum install -y https://repo.percona.com/yum/percona-release-latest.noarch.rpm
-        sudo percona-release -y setup pdps-8.0
+        sudo percona-release setup -y pdps-8.0
         sudo yum -y install percona-server-server
         sudo yum -y install percona-server-client
         sudo yum -y install percona-server-devel
@@ -83,7 +83,7 @@ setup_oel9_tests = { ->
         sudo yum -y install gcc
         echo yes | sudo cpan upgrade JSON
         sudo yum install -y https://repo.percona.com/yum/percona-release-latest.noarch.rpm
-        sudo percona-release -y setup pdps-8.0
+        sudo percona-release setup -y pdps-8.0
         sudo yum -y install percona-server-server
         sudo yum -y install percona-server-client
         sudo yum -y install percona-server-devel
