@@ -28,7 +28,7 @@ setup_oel_tests = { ->
         sudo yum -y install percona-server-server
         sudo yum -y install percona-server-client
         sudo yum -y install percona-server-devel
-        sudo yum -y install perl-DBD-MySQL
+        echo yes | sudo cpan install DBD::mysql
     '''
 }
 
