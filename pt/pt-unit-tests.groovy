@@ -163,6 +163,28 @@ setup_bookworm_tests = { ->
 }
 
 setup_bullseye_tests = { ->
+    sh ''' 
+        sudo sed -i -e 's/# en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/g' /etc/locale.gen
+        sudo sudo locale-gen
+        sudo apt-get update
+        sudo DEBIAN_FRONTEND="noninteractive" apt-get install -y jq
+        sudo DEBIAN_FRONTEND="noninteractive" apt-get install -y libnuma1
+        sudo apt-get install -y strace
+        sudo apt-get install -y libncurses6
+        sudo apt-get install -y gawk
+        sudo apt-get install -y lsof
+        sudo apt-get install -y ncat
+        sudo apt-get install -y libfile-slurp-perl
+        sudo apt-get install -y libjson-perl
+        sudo apt-get install -y libnetaddr-ip-perl
+        sudo apt-get install -y libtext-diff-perl
+        sudo apt-get install -y libio-socket-ssl-perl
+        sudo apt-get install -y libipc-run-perl
+        sudo apt-get install -y libdbi-perl
+        sudo apt-get install -y libdbd-mysql-perl
+        sudo apt-get install -y make
+        sudo apt-get install -y gcc
+    '''
     setup_ubuntu_tests()
 }
 
@@ -172,7 +194,7 @@ node_setups = [
     "min-focal-x64": setup_ubuntu_tests,
     "min-jammy-x64": setup_jammy_tests,
     "min-noble-x64": setup_noble_tests,
-    "min-bullseye-x64": setup_debian_tests,
+    "min-bullseye-x64": setup_bullseye_tests,
     "min-bookworm-x64": setup_bookworm_tests,
 ]
 
@@ -199,7 +221,6 @@ pipeline {
         PATH="/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/home/ec2-user/.local/bin:${PERCONA_TOOLKIT_SANDBOX}/bin";
         SSL_PATH="${WORKSPACE}/sandbox/ssl"
         LD_LIBRARY_PATH="/usr/lib64:${SSL_PATH}/lib:${LD_LIBRARY_PATH}"
-        DEBIAN_FRONTEND="noninteractive"
     }
     parameters {
         choice(
