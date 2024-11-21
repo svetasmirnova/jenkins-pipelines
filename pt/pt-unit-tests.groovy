@@ -185,7 +185,7 @@ setup_bullseye_tests = { ->
         sudo apt-get install -y make
         sudo apt-get install -y gcc
     '''
-    setup_ubuntu_tests()
+    install_ssl()
 }
 
 node_setups = [
