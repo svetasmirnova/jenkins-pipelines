@@ -54,6 +54,7 @@ setup_oel8_tests = { ->
         sudo yum -y install gcc
         echo yes | sudo cpan install Test
         echo yes | sudo cpan upgrade JSON
+        sudo yum -y upgrade rpm
     '''
     install_ssl()
     setup_oel_tests()
