@@ -163,7 +163,6 @@ setup_bookworm_tests = { ->
 }
 
 setup_bullseye_tests = { ->
-    export DEBIAN_FRONTEND="noninteractive"
     setup_ubuntu_tests()
 }
 
@@ -200,6 +199,7 @@ pipeline {
         PATH="/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/home/ec2-user/.local/bin:${PERCONA_TOOLKIT_SANDBOX}/bin";
         SSL_PATH="${WORKSPACE}/sandbox/ssl"
         LD_LIBRARY_PATH="/usr/lib64:${SSL_PATH}/lib:${LD_LIBRARY_PATH}"
+        DEBIAN_FRONTEND="noninteractive"
     }
     parameters {
         choice(
