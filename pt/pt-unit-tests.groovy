@@ -184,8 +184,13 @@ setup_bullseye_tests = { ->
         sudo apt-get install -y libdbd-mysql-perl
         sudo apt-get install -y make
         sudo apt-get install -y gcc
+        curl -O https://repo.percona.com/apt/percona-release_latest.generic_all.deb
+        sudo apt-get -y install gnupg2 lsb-release
+        sudo apt-get -y install ./percona-release_latest.generic_all.deb
+        sudo apt-get update
+        sudo percona-release setup pdps-8.0
+        sudo DEBIAN_FRONTEND="noninteractive" apt-get -y upgrade perl
     '''
-    setup_debian_tests()
     install_ssl()
 }
 
