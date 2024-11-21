@@ -163,13 +163,11 @@ setup_bookworm_tests = { ->
 }
 
 node_setups = [
-    "min-centos-7-x64": setup_rhel_tests,
     "min-ol-8-x64": setup_oel8_tests,
     "min-ol-9-x64": setup_oel9_tests,
     "min-focal-x64": setup_ubuntu_tests,
     "min-jammy-x64": setup_jammy_tests,
     "min-noble-x64": setup_noble_tests,
-    "min-buster-x64": setup_debian_tests,
     "min-bullseye-x64": setup_debian_tests,
     "min-bookworm-x64": setup_bookworm_tests,
 ]
@@ -201,13 +199,11 @@ pipeline {
     parameters {
         choice(
             choices: [
-                'min-centos-7-x64',
                 'min-ol-8-x64',
                 'min-ol-9-x64',
                 'min-focal-x64',
                 'min-jammy-x64',
                 'min-noble-x64',
-                'min-buster-x64',
                 'min-bullseye-x64',
                 'min-bookworm-x64'
             ],
