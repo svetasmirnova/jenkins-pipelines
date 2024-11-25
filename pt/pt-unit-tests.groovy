@@ -156,7 +156,6 @@ setup_debian_tests = { ->
         sudo apt-get -y upgrade perl
         sudo apt-get -y install percona-server-server
         sudo apt-get -y install percona-server-client
-        sudo apt-get -y install percona-server-devel
         echo yes | sudo cpan install DBD::mysql
     '''
 }
@@ -187,7 +186,6 @@ setup_bullseye_tests = { ->
         sudo DEBIAN_FRONTEND="noninteractive" percona-release setup pdps-8.0
         sudo DEBIAN_FRONTEND="noninteractive" apt-get -y install percona-server-server
         sudo DEBIAN_FRONTEND="noninteractive" apt-get -y install percona-server-client
-        sudo DEBIAN_FRONTEND="noninteractive" apt-get -y install percona-server-devel
         sudo DEBIAN_FRONTEND="noninteractive" apt-get -y upgrade perl
         sudo DEBIAN_FRONTEND="noninteractive" apt-get install -y libfile-slurp-perl
         sudo DEBIAN_FRONTEND="noninteractive" apt-get install -y libjson-perl
