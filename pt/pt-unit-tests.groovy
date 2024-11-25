@@ -154,6 +154,7 @@ setup_debian_tests = { ->
         sudo apt-get update
         sudo percona-release setup pdps-8.0
         sudo apt-get -y upgrade perl
+        echo yes | sudo cpan install DBD::mysql
     '''
 }
 
@@ -181,7 +182,6 @@ setup_bullseye_tests = { ->
         sudo apt-get install -y libio-socket-ssl-perl
         sudo apt-get install -y libipc-run-perl
         sudo apt-get install -y libdbi-perl
-        sudo apt-get install -y libdbd-mysql-perl
         sudo apt-get install -y make
         sudo apt-get install -y gcc
         curl -O https://repo.percona.com/apt/percona-release_latest.generic_all.deb
@@ -190,6 +190,7 @@ setup_bullseye_tests = { ->
         sudo apt-get update
         sudo percona-release setup pdps-8.0
         sudo DEBIAN_FRONTEND="noninteractive" apt-get -y upgrade perl
+        sudo apt-get install -y libdbd-mysql-perl
     '''
     install_ssl()
 }
