@@ -173,29 +173,29 @@ setup_bullseye_tests = { ->
         sudo apt-get update
         sudo DEBIAN_FRONTEND="noninteractive" apt-get install -y jq
         sudo DEBIAN_FRONTEND="noninteractive" apt-get install -y libnuma1
-        sudo apt-get install -y strace
-        sudo apt-get install -y libncurses6
-        sudo apt-get install -y gawk
-        sudo apt-get install -y lsof
-        sudo apt-get install -y ncat
-        sudo apt-get install -y libfile-slurp-perl
-        sudo apt-get install -y libjson-perl
-        sudo apt-get install -y libnetaddr-ip-perl
-        sudo apt-get install -y libtext-diff-perl
-        sudo apt-get install -y libio-socket-ssl-perl
-        sudo apt-get install -y libipc-run-perl
-        sudo apt-get install -y libdbi-perl
-        sudo apt-get install -y make
-        sudo apt-get install -y gcc
+        sudo DEBIAN_FRONTEND="noninteractive" apt-get install -y strace
+        sudo DEBIAN_FRONTEND="noninteractive" apt-get install -y libncurses6
+        sudo DEBIAN_FRONTEND="noninteractive" apt-get install -y gawk
+        sudo DEBIAN_FRONTEND="noninteractive" apt-get install -y lsof
+        sudo DEBIAN_FRONTEND="noninteractive" apt-get install -y ncat
+        sudo DEBIAN_FRONTEND="noninteractive" apt-get install -y make
+        sudo DEBIAN_FRONTEND="noninteractive" apt-get install -y gcc
         curl -O https://repo.percona.com/apt/percona-release_latest.generic_all.deb
-        sudo apt-get -y install gnupg2 lsb-release
-        sudo apt-get -y install ./percona-release_latest.generic_all.deb
-        sudo apt-get update
-        sudo percona-release setup pdps-8.0
+        sudo DEBIAN_FRONTEND="noninteractive" apt-get -y install gnupg2 lsb-release
+        sudo DEBIAN_FRONTEND="noninteractive" apt-get -y install ./percona-release_latest.generic_all.deb
+        sudo DEBIAN_FRONTEND="noninteractive" apt-get update
+        sudo DEBIAN_FRONTEND="noninteractive" percona-release setup pdps-8.0
         sudo DEBIAN_FRONTEND="noninteractive" apt-get -y install percona-server-server
-        sudo apt-get -y install percona-server-client
-        sudo apt-get -y install percona-server-devel
+        sudo DEBIAN_FRONTEND="noninteractive" apt-get -y install percona-server-client
+        sudo DEBIAN_FRONTEND="noninteractive" apt-get -y install percona-server-devel
         sudo DEBIAN_FRONTEND="noninteractive" apt-get -y upgrade perl
+        sudo DEBIAN_FRONTEND="noninteractive" apt-get install -y libfile-slurp-perl
+        sudo DEBIAN_FRONTEND="noninteractive" apt-get install -y libjson-perl
+        sudo DEBIAN_FRONTEND="noninteractive" apt-get install -y libnetaddr-ip-perl
+        sudo DEBIAN_FRONTEND="noninteractive" apt-get install -y libtext-diff-perl
+        sudo DEBIAN_FRONTEND="noninteractive" apt-get install -y libio-socket-ssl-perl
+        sudo DEBIAN_FRONTEND="noninteractive" apt-get install -y libipc-run-perl
+        sudo DEBIAN_FRONTEND="noninteractive" apt-get install -y libdbi-perl
         echo yes | sudo cpan install DBD::mysql
     '''
     install_ssl()
