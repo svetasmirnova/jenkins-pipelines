@@ -197,8 +197,6 @@ setup_bullseye_tests = { ->
         sudo DEBIAN_FRONTEND="noninteractive" apt-get install -y libtext-diff-perl
         sudo DEBIAN_FRONTEND="noninteractive" apt-get install -y libio-socket-ssl-perl
         sudo DEBIAN_FRONTEND="noninteractive" apt-get install -y libipc-run-perl
-        ls /usr/lib/x86_64-linux-gnu
-        ls /usr/local/lib
         echo yes | sudo cpan install DBI
         echo yes | sudo cpan install DBD::mysql
     '''
@@ -212,7 +210,7 @@ node_setups = [
     "min-jammy-x64": setup_jammy_tests,
     "min-noble-x64": setup_noble_tests,
     "min-bullseye-x64": setup_bullseye_tests,
-    "min-bookworm-x64": setup_bookworm_tests,
+    "min-bookworm-x64": setup_bullseye_tests,
 ]
 
 void setup_tests() {
