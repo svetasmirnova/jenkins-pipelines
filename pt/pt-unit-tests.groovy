@@ -1,26 +1,3 @@
-setup_rhel_tests = { ->
-    sh '''
-        sudo yum -y install epel-release
-        sudo yum -y update
-        sudo yum -y install tar
-        sudo yum -y install jq
-        sudo yum -y install libaio
-        sudo yum -y install strace
-        sudo yum -y install perl-Time-HiRes
-        sudo yum -y install perl-Test-Harness
-        sudo yum -y install perl-Test-Simple
-        sudo yum -y install perl-Digest-MD5
-        sudo yum -y install perl-File-Slurp
-        sudo yum -y install perl-JSON
-        sudo yum -y install perl-NetAddr-IP
-        sudo yum -y install perl-Text-Diff
-        sudo yum -y install perl-IPC-Cmd
-        sudo yum -y install perl-IO-Socket-SSL
-        sudo yum -y install perl-DBI
-        sudo yum -y install perl-DBD-MySQL
-    '''
-}
-
 setup_oel8_tests = { ->
     sh '''
         sudo yum -y update
@@ -146,27 +123,6 @@ setup_noble_tests = { ->
 }
 
 setup_debian_tests = { ->
-    setup_ubuntu_tests()
-    sh '''
-        curl -O https://repo.percona.com/apt/percona-release_latest.generic_all.deb
-        sudo apt-get -y install gnupg2 lsb-release
-        sudo apt-get -y install ./percona-release_latest.generic_all.deb
-        sudo apt-get update
-        sudo percona-release setup pdps-8.0
-        sudo apt-get -y upgrade perl
-        sudo apt-get -y install percona-server-server
-        sudo apt-get -y install percona-server-client
-        sudo apt-get -y install libperconaserverclient21-dev
-        echo yes | sudo cpan install DBD::mysql
-    '''
-}
-
-setup_bookworm_tests = { ->
-    setup_debian_tests()
-    install_ssl()
-}
-
-setup_bullseye_tests = { ->
     sh ''' 
         sudo sed -i -e 's/# en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/g' /etc/locale.gen
         sudo sudo locale-gen
@@ -209,8 +165,8 @@ node_setups = [
     "min-focal-x64": setup_ubuntu_tests,
     "min-jammy-x64": setup_jammy_tests,
     "min-noble-x64": setup_noble_tests,
-    "min-bullseye-x64": setup_bullseye_tests,
-    "min-bookworm-x64": setup_bullseye_tests,
+    "min-bullseye-x64": setup_debian_tests,
+    "min-bookworm-x64": setup_debian_tests,
 ]
 
 void setup_tests() {
