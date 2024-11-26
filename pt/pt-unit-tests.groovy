@@ -197,9 +197,9 @@ setup_bullseye_tests = { ->
         sudo DEBIAN_FRONTEND="noninteractive" apt-get install -y libtext-diff-perl
         sudo DEBIAN_FRONTEND="noninteractive" apt-get install -y libio-socket-ssl-perl
         sudo DEBIAN_FRONTEND="noninteractive" apt-get install -y libipc-run-perl
-        sudo DEBIAN_FRONTEND="noninteractive" apt-get install -y libdbi-perl
         ls /usr/lib/x86_64-linux-gnu
         ls /usr/local/lib
+        echo yes | sudo cpan install DBI
         echo yes | sudo cpan install DBD::mysql
     '''
     install_ssl()
