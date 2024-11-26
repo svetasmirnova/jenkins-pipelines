@@ -190,6 +190,7 @@ setup_bullseye_tests = { ->
         sudo DEBIAN_FRONTEND="noninteractive" apt-get -y install percona-server-server
         sudo DEBIAN_FRONTEND="noninteractive" apt-get -y install percona-server-client
         sudo DEBIAN_FRONTEND="noninteractive" apt-get -y install libperconaserverclient21-dev
+        sudo DEBIAN_FRONTEND="noninteractive" apt-get -y upgrade perl
         sudo DEBIAN_FRONTEND="noninteractive" apt-get install -y libfile-slurp-perl
         sudo DEBIAN_FRONTEND="noninteractive" apt-get install -y libjson-perl
         sudo DEBIAN_FRONTEND="noninteractive" apt-get install -y libnetaddr-ip-perl
@@ -197,6 +198,8 @@ setup_bullseye_tests = { ->
         sudo DEBIAN_FRONTEND="noninteractive" apt-get install -y libio-socket-ssl-perl
         sudo DEBIAN_FRONTEND="noninteractive" apt-get install -y libipc-run-perl
         sudo DEBIAN_FRONTEND="noninteractive" apt-get install -y libdbi-perl
+        ls /usr/lib/x86_64-linux-gnu
+        ls /usr/local/lib
         echo yes | sudo cpan install DBD::mysql
     '''
     install_ssl()
