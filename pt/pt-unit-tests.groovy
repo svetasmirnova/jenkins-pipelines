@@ -180,6 +180,8 @@ setup_bullseye_tests = { ->
         sudo DEBIAN_FRONTEND="noninteractive" apt-get install -y ncat
         sudo DEBIAN_FRONTEND="noninteractive" apt-get install -y make
         sudo DEBIAN_FRONTEND="noninteractive" apt-get install -y gcc
+        sudo DEBIAN_FRONTEND="noninteractive" apt-get install -y libssl-dev
+        sudo DEBIAN_FRONTEND="noninteractive" apt-get install -y libcrypt-dev
         curl -O https://repo.percona.com/apt/percona-release_latest.generic_all.deb
         sudo DEBIAN_FRONTEND="noninteractive" apt-get -y install gnupg2 lsb-release
         sudo DEBIAN_FRONTEND="noninteractive" apt-get -y install ./percona-release_latest.generic_all.deb
