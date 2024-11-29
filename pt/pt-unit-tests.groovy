@@ -81,7 +81,6 @@ setup_ubuntu_tests = { ->
         sudo apt-get install -y libncurses6
         sudo apt-get install -y gawk
         sudo apt-get install -y lsof
-        sudo apt-get install -y ncat
         sudo apt-get install -y libfile-slurp-perl
         sudo apt-get install -y libjson-perl
         sudo apt-get install -y libnetaddr-ip-perl
@@ -133,7 +132,6 @@ setup_debian_tests = { ->
         sudo DEBIAN_FRONTEND="noninteractive" apt-get install -y libncurses6
         sudo DEBIAN_FRONTEND="noninteractive" apt-get install -y gawk
         sudo DEBIAN_FRONTEND="noninteractive" apt-get install -y lsof
-        sudo DEBIAN_FRONTEND="noninteractive" apt-get install -y ncat
         sudo DEBIAN_FRONTEND="noninteractive" apt-get install -y make
         sudo DEBIAN_FRONTEND="noninteractive" apt-get install -y gcc
         sudo DEBIAN_FRONTEND="noninteractive" apt-get install -y libssl-dev
