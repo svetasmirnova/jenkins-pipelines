@@ -1,0 +1,20 @@
+
+- job:
+    name: pt-unit-tests-molecule-all
+    project-type: pipeline
+    description: |
+        Regression tests for Percona Toolkit
+        Do not edit this job through the web!
+    properties:
+        - build-discarder:
+            num-to-keep: 15
+    concurrent: true
+    pipeline-scm:
+      scm:
+        - git:
+            url: https://github.com/svetasmirnova/jenkins-pipelines.git
+            branches:
+            - 'main'
+            wipe-workspace: true
+      lightweight-checkout: true
+      script-path: pt/pt-unit-tests-molecule-all.groovy
