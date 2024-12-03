@@ -364,7 +364,7 @@ pipeline {
             steps {
                 script {
                     molecule_setups[params.node_to_test]()
-                    // installMolecule()
+                    /* installMolecule() */
                 }
             }
         }
