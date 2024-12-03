@@ -215,7 +215,7 @@ node_setups = [
     "min-bookworm-x64": setup_bookworm_tests,
 ]
 
-def setup_debian_molecule() {
+setup_debian_molecule = { ->
         sh """
             sudo apt update -y
             sudo apt install -y python3 python3-pip python3-dev python3-venv
@@ -229,7 +229,7 @@ def setup_debian_molecule() {
         """
 }
 
-def setup_oel_molecule() {
+setup_oel_molecule = { ->
         sh """
             sudo yum update -y
             sudo yum install -y python3 python3-pip python3-dev python3-venv
