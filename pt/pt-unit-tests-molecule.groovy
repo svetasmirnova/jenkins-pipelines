@@ -232,7 +232,7 @@ setup_debian_molecule = { ->
 setup_oel_molecule = { ->
         sh """
             sudo yum update -y
-            sudo yum install -y python3 python3-pip python3-dev python3-venv
+            sudo yum install -y python3 python3-pip python3-devel python3-virtualenv
             python3 -m venv virtenv
             . virtenv/bin/activate
             python3 --version
