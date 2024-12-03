@@ -215,16 +215,6 @@ node_setups = [
     "min-bookworm-x64": setup_bookworm_tests,
 ]
 
-molecule_setups = [
-    "min-ol-8-x64": setup_oel_molecule,
-    "min-ol-9-x64": setup_oel_molecule,
-    "min-focal-x64": setup_debian_molecule,
-    "min-jammy-x64": setup_debian_molecule,
-    "min-noble-x64": setup_debian_molecule,
-    "min-bullseye-x64": setup_debian_molecule,
-    "min-bookworm-x64": setup_debian_molecule,
-]
-
 def setup_debian_molecule() {
         sh """
             sudo apt update -y
@@ -252,6 +242,16 @@ def setup_oel_molecule() {
             python3 -m pip install --upgrade PyYaml==5.3.1 molecule==3.3.0 testinfra pytest molecule-ec2==0.3 molecule[ansible] "ansible<10.0.0" "ansible-lint>=5.1.1,<6.0.0" boto3 boto
         """
 }
+
+molecule_setups = [
+    "min-ol-8-x64": setup_oel_molecule,
+    "min-ol-9-x64": setup_oel_molecule,
+    "min-focal-x64": setup_debian_molecule,
+    "min-jammy-x64": setup_debian_molecule,
+    "min-noble-x64": setup_debian_molecule,
+    "min-bullseye-x64": setup_debian_molecule,
+    "min-bookworm-x64": setup_debian_molecule,
+]
 
 void setup_molecule() {
     molecule_setups[params.node_to_test]()
