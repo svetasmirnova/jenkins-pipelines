@@ -225,6 +225,38 @@ molecule_setups = [
     "min-bookworm-x64": setup_debian_molecule,
 ]
 
+def setup_debian_molecule() {
+        sh """
+            sudo apt update -y
+            sudo apt install -y python3 python3-pip python3-dev python3-venv
+            python3 -m venv virtenv
+            . virtenv/bin/activate
+            python3 --version
+            python3 -m pip install --upgrade pip
+            python3 -m pip install --upgrade setuptools
+            python3 -m pip install --upgrade setuptools-rust
+            python3 -m pip install --upgrade PyYaml==5.3.1 molecule==3.3.0 testinfra pytest molecule-ec2==0.3 molecule[ansible] "ansible<10.0.0" "ansible-lint>=5.1.1,<6.0.0" boto3 boto
+        """
+}
+
+def setup_oel_molecule() {
+        sh """
+            sudo yum update -y
+            sudo yum install -y python3 python3-pip python3-dev python3-venv
+            python3 -m venv virtenv
+            . virtenv/bin/activate
+            python3 --version
+            python3 -m pip install --upgrade pip
+            python3 -m pip install --upgrade setuptools
+            python3 -m pip install --upgrade setuptools-rust
+            python3 -m pip install --upgrade PyYaml==5.3.1 molecule==3.3.0 testinfra pytest molecule-ec2==0.3 molecule[ansible] "ansible<10.0.0" "ansible-lint>=5.1.1,<6.0.0" boto3 boto
+        """
+}
+
+void setup_molecule() {
+    molecule_setups[params.node_to_test]()
+}
+
 void setup_tests() {
     node_setups[params.node_to_test]()
 }
@@ -363,7 +395,7 @@ pipeline {
         stage('Prepare') {
             steps {
                 script {
-                    molecule_setups[params.node_to_test]()
+                    setup_molecule()
                     /* installMolecule() */
                 }
             }
@@ -424,30 +456,3 @@ pipeline {
     }
 }
 
-def setup_debian_molecule() {
-        sh """
-            sudo apt update -y
-            sudo apt install -y python3 python3-pip python3-dev python3-venv
-            python3 -m venv virtenv
-            . virtenv/bin/activate
-            python3 --version
-            python3 -m pip install --upgrade pip
-            python3 -m pip install --upgrade setuptools
-            python3 -m pip install --upgrade setuptools-rust
-            python3 -m pip install --upgrade PyYaml==5.3.1 molecule==3.3.0 testinfra pytest molecule-ec2==0.3 molecule[ansible] "ansible<10.0.0" "ansible-lint>=5.1.1,<6.0.0" boto3 boto
-        """
-}
-
-def setup_oel_molecule() {
-        sh """
-            sudo yum update -y
-            sudo yum install -y python3 python3-pip python3-dev python3-venv
-            python3 -m venv virtenv
-            . virtenv/bin/activate
-            python3 --version
-            python3 -m pip install --upgrade pip
-            python3 -m pip install --upgrade setuptools
-            python3 -m pip install --upgrade setuptools-rust
-            python3 -m pip install --upgrade PyYaml==5.3.1 molecule==3.3.0 testinfra pytest molecule-ec2==0.3 molecule[ansible] "ansible<10.0.0" "ansible-lint>=5.1.1,<6.0.0" boto3 boto
-        """
-}
