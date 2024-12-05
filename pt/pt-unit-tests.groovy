@@ -110,6 +110,8 @@ install_ssl = { ->
             ./config --prefix=${SSL_PATH} shared
             make
             make install
+            ln -s ${SSL_PATH}/libssl.so.1.0.0 ln -s ${SSL_PATH}/libssl.so.10
+            ln -s ${SSL_PATH}/libcrypto.so.1.0.0 ln -s ${SSL_PATH}/libcrypto.so.10
         '''
     }
 }
