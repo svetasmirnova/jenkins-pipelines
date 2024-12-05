@@ -92,6 +92,7 @@ setup_ubuntu_tests = { ->
         sudo apt-get install -y make
         sudo apt-get install -y gcc
     '''
+    install_ssl()
 }
 
 install_ssl = { ->
@@ -110,7 +111,7 @@ install_ssl = { ->
             ./config --prefix=${SSL_PATH} shared
             make
             make install
-            cd ${SSL_PATH}
+            cd ${SSL_PATH}/lib
             ln -s libssl.so.1.0.0 libssl.so.10
             ln -s libcrypto.so.1.0.0 libcrypto.so.10
         '''
