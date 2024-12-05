@@ -16,7 +16,6 @@ setup_oel8_tests = { ->
         sudo yum -y install perl-IPC-Cmd
         sudo yum -y install perl-IO-Socket-SSL
         sudo yum -y install perl-DBI
-        sudo yum -y install libc6
         sudo yum -y install cpan
         sudo yum -y install gcc
         echo yes | sudo cpan install Test
@@ -90,7 +89,6 @@ setup_ubuntu_tests = { ->
         sudo apt-get install -y libipc-run-perl
         sudo apt-get install -y libdbi-perl
         sudo apt-get install -y libdbd-mysql-perl
-        sudo apt-get install -y libc6
         sudo apt-get install -y make
         sudo apt-get install -y gcc
     '''
@@ -102,6 +100,13 @@ install_ssl = { ->
             curl -L https://github.com/openssl/openssl/releases/download/OpenSSL_1_1_1w/openssl-1.1.1w.tar.gz --output openssl-1.1.1w.tar.gz
             tar -xzf openssl-1.1.1w.tar.gz
             cd openssl-1.1.1w
+            ./config --prefix=${SSL_PATH} shared
+            make
+            make install
+            cd ..
+            curl -L https://github.com/openssl/openssl/releases/download/OpenSSL_1_0_0s/openssl-1.0.0s.tar.gz --output openssl-1.0.0s.tar.gz
+            tar -xzf openssl-1.0.0s.tar.gz
+            cd openssl-1.0.0s
             ./config --prefix=${SSL_PATH} shared
             make
             make install
@@ -134,7 +139,6 @@ setup_debian_tests = { ->
         sudo DEBIAN_FRONTEND="noninteractive" apt-get install -y libncurses6
         sudo DEBIAN_FRONTEND="noninteractive" apt-get install -y gawk
         sudo DEBIAN_FRONTEND="noninteractive" apt-get install -y lsof
-        sudo DEBIAN_FRONTEND="noninteractive" apt-get install -y libc6
         sudo DEBIAN_FRONTEND="noninteractive" apt-get install -y make
         sudo DEBIAN_FRONTEND="noninteractive" apt-get install -y gcc
         sudo DEBIAN_FRONTEND="noninteractive" apt-get install -y libssl-dev
