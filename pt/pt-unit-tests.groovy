@@ -112,8 +112,8 @@ install_ssl = { ->
             make
             make install
             cd ${SSL_PATH}/lib
-            ln -s libssl.so.1.0.0 libssl.so.10
-            ln -s libcrypto.so.1.0.0 libcrypto.so.10
+            test -e libssl.so.10 && echo 1 || ln -s libssl.so.1.0.0 libssl.so.10
+            test -e libcrypto.so.10 && echo 1 || ln -s libcrypto.so.1.0.0 libcrypto.so.10
         '''
     }
 }
