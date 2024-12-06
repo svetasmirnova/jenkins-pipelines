@@ -105,9 +105,9 @@ install_ssl = { ->
             make
             make install
             cd ..
-            curl -L https://github.com/openssl/openssl/releases/download/OpenSSL_1_0_0s/openssl-1.0.0s.tar.gz --output openssl-1.0.0s.tar.gz
-            tar -xzf openssl-1.0.0s.tar.gz
-            cd openssl-1.0.0s
+            curl -L https://github.com/openssl/openssl/releases/download/OpenSSL_1_0_2u/openssl-1.0.2u.tar.gz --output openssl-1.0.2u.tar.gz
+            tar -xzf openssl-1.0.2u.tar.gz
+            cd openssl-1.0.2u
             ./config --prefix=${SSL_PATH} shared
             make
             make install
