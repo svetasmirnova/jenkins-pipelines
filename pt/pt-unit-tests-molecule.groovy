@@ -305,6 +305,7 @@ pipeline {
         choice(
             choices: [
                 'debian-10',
+                'debian-11',
                 'min-ol-8-x64',
                 'min-ol-9-x64',
                 'min-focal-x64',
@@ -409,7 +410,7 @@ pipeline {
         stage('Checkout') {
             steps {
                 deleteDir()
-                git poll: false, branch: "toolkit-pt-molecule", url: "https://github.com/Percona-QA/package-testing.git"
+                git poll: false, branch: "main", url: "https://github.com/svetasmirnova/jenkins-pipelines"
             }
         }
 
