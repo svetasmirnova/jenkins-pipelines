@@ -13,7 +13,7 @@ void runNodeBuild(String node_to_test) {
             string(name: 'TEST_CMD', value: params.TEST_CMD),
         ],
         propagate: true,
-        wait: false
+        wait: true
     )
 }
 
