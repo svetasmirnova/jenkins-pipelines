@@ -261,6 +261,20 @@ void setup_tests() {
     node_setups[params.node_to_test]()
 }
 
+def loadEnvFile(envFilePath) {
+    def envMap = []
+    def envFileContent = readFile(file: envFilePath).trim().split('\n')
+    envFileContent.each { line ->
+        if (line && !line.startsWith('#')) {
+            def parts = line.split('=')
+            if (parts.length == 2) {
+                envMap << "${parts[0].trim()}=${parts[1].trim()}"
+            }
+        }
+    }
+    return envMap
+}
+
 pipeline {
     agent {
         label 'min-ol-8-x64'
