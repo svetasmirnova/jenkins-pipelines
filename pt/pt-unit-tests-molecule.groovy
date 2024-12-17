@@ -275,6 +275,12 @@ def loadEnvFile(envFilePath) {
     return envMap
 }
 
+def getNodeList() {
+    return [
+        params.node_to_test
+    ]
+}
+
 pipeline {
     agent {
         label 'min-ol-8-x64'
