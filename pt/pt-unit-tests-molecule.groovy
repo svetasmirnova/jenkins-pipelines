@@ -396,7 +396,8 @@ pipeline {
         stage('Prepare') {
             steps {
                 script {
-                    setup_molecule()
+                    setup_oel_molecule()
+                    /* setup_molecule() */
                     /* installMolecule() */
                 }
             }
