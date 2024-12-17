@@ -92,7 +92,7 @@ setup_ubuntu_tests = { ->
         sudo apt-get install -y make
         sudo apt-get install -y gcc
     '''
-    install_ssl()
+    /* install_ssl() */
 }
 
 install_ssl = { ->
@@ -120,7 +120,7 @@ install_ssl = { ->
 
 setup_jammy_tests ={ ->
     setup_ubuntu_tests()
-    /* install_ssl() */
+    install_ssl()
 }
 
 setup_noble_tests = { ->
