@@ -284,6 +284,7 @@ pipeline {
     parameters {
         choice(
             choices: [
+                'debian-10',
                 'min-ol-8-x64',
                 'min-ol-9-x64',
                 'min-focal-x64',
@@ -401,6 +402,15 @@ pipeline {
             }
         }
 
+        stage('Run Tests') {
+            steps {
+                script {
+                    moleculeParallelTest(getNodeList(), "molecule/toolkit")
+                }
+            }
+        }
+
+/*
         stage('Check PT version param and checkout') {
             steps {
                 deleteDir()
@@ -435,19 +445,12 @@ pipeline {
         }
         stage ('Run tests') {
             steps {
-                script {
-                    moleculeParallelTest(getNodeList(), "molecule/toolkit/")
-                }
-            }
-/*
-            steps {
                 dir('percona-toolkit') {
                     sh '''
                         ${TEST_CMD}
                     '''
                 }
             }
-*/
         }
         stage ('Clean up') {
             steps {
@@ -460,6 +463,7 @@ pipeline {
                 }
             }
         }
+*/
     }
 }
 
