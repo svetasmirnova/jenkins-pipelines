@@ -435,12 +435,19 @@ pipeline {
         }
         stage ('Run tests') {
             steps {
+                script {
+                    moleculeParallelTest(getNodeList(), "molecule/toolkit/")
+                }
+            }
+/*
+            steps {
                 dir('percona-toolkit') {
                     sh '''
                         ${TEST_CMD}
                     '''
                 }
             }
+*/
         }
         stage ('Clean up') {
             steps {
