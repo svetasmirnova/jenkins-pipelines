@@ -405,7 +405,13 @@ pipeline {
         stage('Run Tests') {
             steps {
                 script {
-                    moleculeParallelTest(getNodeList(), "molecule/toolkit")
+                    sh """
+                        echo PLAYBOOK_VAR="toolkit-testing" > .env.ENV_VARS
+                    """
+                    def envMap = loadEnvFile('.env.ENV_VARS')
+                    withEnv(envMap) {
+                        moleculeParallelTest(getNodeList(), "molecule/toolkit")
+                    }
                 }
             }
         }
