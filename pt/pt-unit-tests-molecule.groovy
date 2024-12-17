@@ -263,7 +263,7 @@ void setup_tests() {
 
 pipeline {
     agent {
-        label params.node_to_test
+        label 'min-ol-8-x64'
     }
 
     environment {
