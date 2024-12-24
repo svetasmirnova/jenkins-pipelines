@@ -1,6 +1,6 @@
 
 
-    library changelog: false, identifier: "lib@toolkit-pt-molecule", retriever: modernSCM([
+    library changelog: false, identifier: "lib@main", retriever: modernSCM([
         $class: 'GitSCMSource',
         remote: 'https://github.com/svetasmirnova/jenkins-pipelines.git'
     ])
