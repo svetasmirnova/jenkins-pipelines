@@ -2,7 +2,7 @@
 
     library changelog: false, identifier: "lib@toolkit-pt-molecule", retriever: modernSCM([
         $class: 'GitSCMSource',
-        remote: 'https://github.com/Percona-Lab/jenkins-pipelines.git'
+        remote: 'https://github.com/svetasmirnova/jenkins-pipelines.git'
     ])
 
     pipeline {

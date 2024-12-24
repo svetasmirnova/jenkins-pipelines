@@ -1,5 +1,5 @@
 - job:
-    name: toolkit-package-testing-molecule
+    name: toolkit-package-testing-molecule-sveta
     project-type: pipeline
     description: |
         Do not edit this job through the web!
@@ -10,9 +10,9 @@
     pipeline-scm:
         scm:
             - git:
-                url: https://github.com/Percona-Lab/jenkins-pipelines.git
+                url: https://github.com/svetasmirnova/jenkins-pipelines.git
                 branches:
-                    - 'toolkit-pt-molecule'
+                    - 'main'
                 wipe-workspace: true
         lightweight-checkout: true
-        script-path: toolkit/jenkins/toolkit-testing-molecule.groovy
+        script-path: test-molecule/toolkit-testing-molecule.groovy
