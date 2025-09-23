@@ -100,7 +100,7 @@
         )
     }
     options {
-        withCredentials(moleculePdpsJenkinsCreds())
+        withCredentials(moleculePdpxcJenkinsCreds())
     }
 
         stages {
