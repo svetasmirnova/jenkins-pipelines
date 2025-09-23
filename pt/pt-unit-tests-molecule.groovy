@@ -3,6 +3,20 @@
         remote: 'https://github.com/svetasmirnova/jenkins-pipelines.git'
     ])
 
+def awsCredentials = [
+        sshUserPrivateKey(
+            credentialsId: 'MOLECULE_AWS_PRIVATE_KEY',
+            keyFileVariable: 'MOLECULE_AWS_PRIVATE_KEY',
+            passphraseVariable: '',
+            usernameVariable: ''
+        ),
+        aws(
+            accessKeyVariable: 'AWS_ACCESS_KEY_ID',
+            credentialsId: '7e252458-7ef8-4d0e-a4d5-5773edcbfa5e',
+            secretKeyVariable: 'AWS_SECRET_ACCESS_KEY'
+        )
+    ]
+
     pipeline {
     agent {
         label 'min-bookworm-x64'
@@ -163,20 +177,6 @@
             }
         }
     }
-
-def awsCredentials = [
-        sshUserPrivateKey(
-            credentialsId: 'MOLECULE_AWS_PRIVATE_KEY',
-            keyFileVariable: 'MOLECULE_AWS_PRIVATE_KEY',
-            passphraseVariable: '',
-            usernameVariable: ''
-        ),
-        aws(
-            accessKeyVariable: 'AWS_ACCESS_KEY_ID',
-            credentialsId: '7e252458-7ef8-4d0e-a4d5-5773edcbfa5e',
-            secretKeyVariable: 'AWS_SECRET_ACCESS_KEY'
-        )
-    ]
 
 def installMolecule() {
         sh """
