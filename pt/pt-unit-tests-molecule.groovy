@@ -151,7 +151,6 @@
 
                                      sh """
                                         echo PLAYBOOK_VAR="toolkit-testing" > .env.ENV_VARS
-                                        mkdir -p env.MOLECULE_DIR
                                     """
                     
                                 def envMap = loadEnvFile('.env.ENV_VARS')
