@@ -98,9 +98,9 @@
             name: 'TEST_CMD'
         )
     }
-    options {
-        withCredentials(moleculePdpsJenkinsCreds())
-    }
+    //options {
+    //    withCredentials(moleculePdpsJenkinsCreds())
+    //}
 
         stages {
             stage('Set Build Name'){
