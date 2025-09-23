@@ -114,7 +114,7 @@
             stage('Checkout') {
                 steps {
                     deleteDir()
-                    git poll: false, branch: "toolkit-pt-molecule", url: "https://github.com/svetasmirnova/jenkins-pipelines.git.git"
+                    git poll: false, branch: "main", url: "https://github.com/svetasmirnova/jenkins-pipelines.git.git"
                 }
             }
 
