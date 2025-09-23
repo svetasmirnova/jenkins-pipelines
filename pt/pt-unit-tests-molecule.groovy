@@ -18,6 +18,7 @@
         PATH = "/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/home/ec2-user/.local/bin:${PERCONA_TOOLKIT_SANDBOX}/bin"
         SSL_PATH = "${WORKSPACE}/sandbox/ssl"
         LD_LIBRARY_PATH = "${SSL_PATH}/lib:${LD_LIBRARY_PATH}"
+        MOLECULE_DIR = "molecule/toolkit"
 
     }
     parameters {
@@ -154,7 +155,7 @@
                     
                                 def envMap = loadEnvFile('.env.ENV_VARS')
                                 withEnv(envMap) {
-                                    moleculeParallelTest(getNodeList(), "molecule/toolkit/")
+                                    moleculeParallelTest(getNodeList(), env.MOLECULE_DIR)
                                 }
 
                             }
