@@ -100,7 +100,7 @@
         )
     }
     options {
-        withCredentials([[$class: 'AmazonWebServicesCredentialsBinding', accessKeyVariable: 'AWS_ACCESS_KEY_ID', credentialsId: 'c42456e5-c28d-4962-b32c-b75d161bff27', secretKeyVariable: 'AWS_SECRET_ACCESS_KEY']])
+        withCredentials(awsCredentials)
     }
 
         stages {
@@ -163,6 +163,20 @@
             }
         }
     }
+
+def awsCredentials = [
+        sshUserPrivateKey(
+            credentialsId: 'MOLECULE_AWS_PRIVATE_KEY',
+            keyFileVariable: 'MOLECULE_AWS_PRIVATE_KEY',
+            passphraseVariable: '',
+            usernameVariable: ''
+        ),
+        aws(
+            accessKeyVariable: 'AWS_ACCESS_KEY_ID',
+            credentialsId: '7e252458-7ef8-4d0e-a4d5-5773edcbfa5e',
+            secretKeyVariable: 'AWS_SECRET_ACCESS_KEY'
+        )
+    ]
 
 def installMolecule() {
         sh """
