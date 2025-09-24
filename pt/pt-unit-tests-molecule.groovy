@@ -38,7 +38,7 @@ def awsCredentials = [
     parameters {
         choice(
             choices: [
-                'debian-10'
+                'debian-10',
                 'debian-11'
             ],
             description: 'Node to run tests on',
