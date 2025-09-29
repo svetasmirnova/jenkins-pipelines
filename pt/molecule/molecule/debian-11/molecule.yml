@@ -6,10 +6,11 @@ driver:
 platforms:
   - name: debian11-${BUILD_NUMBER}-${JOB_NAME}-${PLAYBOOK_VAR}
     #region: eu-central-1
-    region: us-west-2
-    image: ami-007428d10865c9957
+    region: us-west-1
+    #image: ami-007428d10865c9957
+    image: ami-09b4378b1d3387f81
     #vpc_subnet_id: subnet-085deaca8c1c59a4f
-    vpc_subnet_id: subnet-03136d8c244f56036
+    vpc_subnet_id: subnet-04a8ad1b1d4da874c
     instance_type: t2.medium
     ssh_user: admin
     instance_tags:
