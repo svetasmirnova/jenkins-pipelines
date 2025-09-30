@@ -25,6 +25,11 @@
         SSL_PATH: "{{ lookup('env', 'SSL_PATH') }}"
         LD_LIBRARY_PATH: "{{ lookup('env', 'LD_LIBRARY_PATH') }}"
 
+    - name: Fix Debian Buster EOL repositories
+      shell: sed -i 's|http://deb.debian.org/debian%7Chttp://archive.debian.org/debian%7Cg; s|http://cdn-aws.deb.debian.org/debian%7Chttp://archive.debian.org/debian%7Cg; s|http://security.debian.org/debian-security%7Chttp://archive.debian.org/debian-security%7Cg; /buster-updates/d' /etc/apt/sources.list
+      become: yes
+      when: ansible_os_family == "Debian" and ansible_distribution_release == "buster"
+
     - name: Download Percona release package
       ansible.builtin.get_url:
         url: https://repo.percona.com/apt/percona-release_latest.generic_all.deb
@@ -33,7 +38,6 @@
     - name: Update apt cache before installing dependencies
       ansible.builtin.apt:
         update_cache: yes
-      ignore_errors: yes
 
     - name: Install required dependencies
       ansible.builtin.apt:
