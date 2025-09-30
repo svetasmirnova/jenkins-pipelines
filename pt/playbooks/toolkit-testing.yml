@@ -19,6 +19,7 @@
         TMP_DIR: "{{ lookup('env', 'TMP_DIR') }}"
         LOG_FILE: "{{ lookup('env', 'LOG_FILE') }}"
         MYSQL_BASEDIR: "{{ lookup('env', 'MYSQL_BASEDIR') }}"
+        PERCONA_TOOLKIT_SANDBOX_DIR: "{{ lookup('env', 'PERCONA_TOOLKIT_SANDBOX_DIR') }}"
         PERCONA_TOOLKIT_SANDBOX: "{{ lookup('env', 'PERCONA_TOOLKIT_SANDBOX') }}"
         DOWNLOAD_URL: "{{ lookup('env', 'DOWNLOAD_URL') }}"
         PATH: "{{ lookup('env', 'PATH') }}"
