@@ -40,7 +40,7 @@
         sed -i -e 's/# en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/g' /etc/locale.gen
         locale-gen
       become: yes
-`
+
     - name: Download Percona release package
       ansible.builtin.get_url:
         url: https://repo.percona.com/apt/percona-release_latest.generic_all.deb
