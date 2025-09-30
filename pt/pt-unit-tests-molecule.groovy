@@ -38,7 +38,6 @@ def awsCredentials = [
     parameters {
         choice(
             choices: [
-                'debian-10',
                 'debian-11',
                 'debian-12',
             ],
@@ -47,9 +46,9 @@ def awsCredentials = [
         )
         choice(
             choices: [
+                '8.4',
                 '8.0',
                 '5.7',
-                '8.4',
             ],
             description: 'Major version for Percona Server for MySQL',
             name: 'MYSQL_VERSION'
