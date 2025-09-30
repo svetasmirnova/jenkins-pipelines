@@ -74,6 +74,7 @@
     - name: Install required dependencies for tests
       ansible.builtin.apt:
         name:
+          - git
           - jq
           - libnuma1
           - strace
