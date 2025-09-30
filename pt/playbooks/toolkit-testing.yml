@@ -113,7 +113,7 @@
           - "LD_LIBRARY_PATH: {{ LD_LIBRARY_PATH }}"
 
     - name: Clone Percona Toolkit repository
-      ansible.builtin.git:
+      git:
         repo: 'https://github.com/percona/percona-toolkit.git'
         version: "{{ PERCONA_TOOLKIT_BRANCH | default('3.x') }}"
         dest: "/root/percona-toolkit"
