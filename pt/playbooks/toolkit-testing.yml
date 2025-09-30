@@ -33,6 +33,7 @@
     - name: Update apt cache before installing dependencies
       ansible.builtin.apt:
         update_cache: yes
+      ignore_errors: yes
 
     - name: Install required dependencies
       ansible.builtin.apt:
