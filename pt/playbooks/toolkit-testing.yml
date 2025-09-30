@@ -32,7 +32,7 @@
 
     - name: Install required dependencies
       ansible.builtin.apt:
-        name: 
+        name:
           - gnupg2
           - lsb-release
         state: present
@@ -67,5 +67,4 @@
           - "PATH: {{ PATH }}"
           - "SSL_PATH: {{ SSL_PATH }}"
           - "LD_LIBRARY_PATH: {{ LD_LIBRARY_PATH }}"
-
 
