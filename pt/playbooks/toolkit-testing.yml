@@ -114,9 +114,9 @@
 
     - name: Clone Percona Toolkit repository
       git:
-        repo: 'https://github.com/percona/percona-toolkit.git'
-        version: "{{ PERCONA_TOOLKIT_BRANCH | default('3.x') }}"
-        dest: "/root/percona-toolkit"
+        repo: https://github.com/percona/percona-toolkit.git
+        version: "{{ TESTING_BRANCH | default('3.x') }}"
+        dest: /root/percona-toolkit
 
     - name: Prepare sandbox
       shell: |
