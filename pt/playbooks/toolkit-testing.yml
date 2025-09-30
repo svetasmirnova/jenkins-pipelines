@@ -121,9 +121,11 @@
 
     - name: Prepare sandbox
       shell: |
-        mkdir -p "{{ PERCONA_TOOLKIT_SANDBOX_DIR}}"
+        mkdir -p "{{ PERCONA_TOOLKIT_SANDBOX_DIR }}"
         cd "{{ PERCONA_TOOLKIT_SANDBOX_DIR }}"
         curl "{{ DOWNLOAD_URL }}/{{ MYSQL_BASEDIR }}.tar.gz --output {{ MYSQL_BASEDIR }}.tar.gz"
+        ls
+        pwd
         tar -xzf "{{ MYSQL_BASEDIR }}.tar.gz"
       become: yes
 
