@@ -116,7 +116,7 @@
       git:
         repo: https://github.com/percona/percona-toolkit.git
         version: "{{ TESTING_BRANCH | default('3.x') }}"
-        dest: {{ PERCONA_TOOLKIT_BRANCH}}
+        dest: {{ PERCONA_TOOLKIT_BRANCH }}
 
     - name: Prepare sandbox
       shell: |
