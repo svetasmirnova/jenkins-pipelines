@@ -123,7 +123,7 @@
       shell: |
         mkdir -p "{{ PERCONA_TOOLKIT_SANDBOX_DIR }}"
         cd "{{ PERCONA_TOOLKIT_SANDBOX_DIR }}"
-        curl "{{ DOWNLOAD_URL }}/{{ MYSQL_BASEDIR }}.tar.gz --output {{ MYSQL_BASEDIR }}.tar.gz"
+        curl "{{ DOWNLOAD_URL }}/{{ MYSQL_BASEDIR }}.tar.gz" --output "{{ MYSQL_BASEDIR }}.tar.gz"
         ls
         pwd
         tar -xzf "{{ MYSQL_BASEDIR }}.tar.gz"
