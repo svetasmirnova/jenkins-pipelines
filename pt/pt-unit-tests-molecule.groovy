@@ -1,26 +1,27 @@
-    library changelog: false, identifier: "lib@main", retriever: modernSCM([
-        $class: 'GitSCMSource',
-        remote: 'https://github.com/svetasmirnova/jenkins-pipelines.git'
-    ])
+library changelog: false, identifier: "lib@main", retriever: modernSCM([
+    $class: 'GitSCMSource',
+    remote: 'https://github.com/svetasmirnova/jenkins-pipelines.git'
+])
 
 def awsCredentials = [
-        sshUserPrivateKey(
-            credentialsId: 'MOLECULE_AWS_PRIVATE_KEY',
-            keyFileVariable: 'MOLECULE_AWS_PRIVATE_KEY',
-            passphraseVariable: '',
-            usernameVariable: ''
-        ),
-        aws(
-            accessKeyVariable: 'AWS_ACCESS_KEY_ID',
-            credentialsId: '7e252458-7ef8-4d0e-a4d5-5773edcbfa5e',
-            secretKeyVariable: 'AWS_SECRET_ACCESS_KEY'
-        )
-    ]
+    sshUserPrivateKey(
+        credentialsId: 'MOLECULE_AWS_PRIVATE_KEY',
+        keyFileVariable: 'MOLECULE_AWS_PRIVATE_KEY',
+        passphraseVariable: '',
+        usernameVariable: ''
+    ),
+    aws(
+        accessKeyVariable: 'AWS_ACCESS_KEY_ID',
+        credentialsId: '7e252458-7ef8-4d0e-a4d5-5773edcbfa5e',
+        secretKeyVariable: 'AWS_SECRET_ACCESS_KEY'
+    )
+]
 
-    pipeline {
+pipeline {
     agent {
         label 'min-bookworm-x64'
     }
+
     environment {
 
         PERCONA_TOOLKIT_BRANCH = "${WORKSPACE}/percona-toolkit"
@@ -118,66 +119,66 @@ def awsCredentials = [
         withCredentials(awsCredentials)
     }
 
-        stages {
-            stage('Set Build Name'){
-                steps {
-                    script {
-                        currentBuild.displayName = "${env.BUILD_NUMBER}-${node_to_test}"
-                    }
+    stages {
+        stage('Set Build Name'){
+            steps {
+                script {
+                    currentBuild.displayName = "${env.BUILD_NUMBER}-${node_to_test}"
                 }
-            }
-
-            stage('Checkout') {
-                steps {
-                    deleteDir()
-                    git poll: false, branch: "main", url: "https://github.com/svetasmirnova/jenkins-pipelines.git"
-                }
-            }
-
-            stage('Prepare') {
-                steps {
-                    script {
-                        installMolecule()
-                    }
-                }
-            }
-
-            stage('PRINT ENV VARS') {
-                steps {
-                    script {
-                        sh """
-                            echo "PERCONA_TOOLKIT_BRANCH: ${PERCONA_TOOLKIT_BRANCH}"
-                            echo "TMP_DIR: ${TMP_DIR}"
-                            echo "LOG_FILE: ${LOG_FILE}"
-                            echo "MYSQL_BASEDIR: ${MYSQL_BASEDIR}"
-                            echo "PERCONA_TOOLKIT_SANDBOX: ${PERCONA_TOOLKIT_SANDBOX}"
-                            echo "DOWNLOAD_URL: ${DOWNLOAD_URL}"
-                            echo "PATH: ${PATH}"
-                            echo "SSL_PATH: ${SSL_PATH}"
-                            echo "LD_LIBRARY_PATH: ${LD_LIBRARY_PATH}"
-                        """
-                    }
-                }
-            }
-
-            stage('RUN TESTS') {
-                        steps {
-                            script {
-
-                                     sh """
-                                        echo PLAYBOOK_VAR="toolkit-testing" > .env.ENV_VARS
-                                    """
-                    
-                                def envMap = loadEnvFile('.env.ENV_VARS')
-                                withEnv(envMap) {
-                                    moleculeParallelTest(getNodeList(), env.MOLECULE_DIR)
-                                }
-
-                            }
-                        }
             }
         }
+
+        stage('Checkout') {
+            steps {
+                deleteDir()
+                git poll: false, branch: "main", url: "https://github.com/svetasmirnova/jenkins-pipelines.git"
+            }
+        }
+
+        stage('Prepare') {
+            steps {
+                script {
+                    installMolecule()
+                }
+            }
+        }
+
+        stage('PRINT ENV VARS') {
+            steps {
+                script {
+                    sh """
+                        echo "PERCONA_TOOLKIT_BRANCH: ${PERCONA_TOOLKIT_BRANCH}"
+                        echo "TMP_DIR: ${TMP_DIR}"
+                        echo "LOG_FILE: ${LOG_FILE}"
+                        echo "MYSQL_BASEDIR: ${MYSQL_BASEDIR}"
+                        echo "PERCONA_TOOLKIT_SANDBOX: ${PERCONA_TOOLKIT_SANDBOX}"
+                        echo "DOWNLOAD_URL: ${DOWNLOAD_URL}"
+                        echo "PATH: ${PATH}"
+                        echo "SSL_PATH: ${SSL_PATH}"
+                        echo "LD_LIBRARY_PATH: ${LD_LIBRARY_PATH}"
+                    """
+                }
+            }
+        }
+
+        stage('RUN TESTS') {
+                    steps {
+                        script {
+
+                                sh """
+                                    echo PLAYBOOK_VAR="toolkit-testing" > .env.ENV_VARS
+                                """
+                
+                            def envMap = loadEnvFile('.env.ENV_VARS')
+                            withEnv(envMap) {
+                                moleculeParallelTest(getNodeList(), env.MOLECULE_DIR)
+                            }
+
+                        }
+                    }
+        }
     }
+}
 
 def installMolecule() {
         sh """
