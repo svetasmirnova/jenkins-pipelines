@@ -30,6 +30,10 @@
         url: https://repo.percona.com/apt/percona-release_latest.generic_all.deb
         dest: /tmp/percona-release_latest.generic_all.deb
 
+    - name: Update apt cache before installing dependencies
+      ansible.builtin.apt:
+        update_cache: yes
+
     - name: Install required dependencies
       ansible.builtin.apt:
         name:
