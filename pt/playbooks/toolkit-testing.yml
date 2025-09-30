@@ -116,19 +116,19 @@
       git:
         repo: https://github.com/percona/percona-toolkit.git
         version: "{{ TESTING_BRANCH | default('3.x') }}"
-        dest: /root/percona-toolkit
+        dest: {{ PERCONA_TOOLKIT_BRANCH}}
 
     - name: Prepare sandbox
       shell: |
-        mkdir -p /root/sandbox
-        cd /root/sandbox
+        mkdir -p {{ PERCONA_TOOLKIT_SANDBOX_DIR}}
+        cd {{ PERCONA_TOOLKIT_SANDBOX_DIR }}
         curl {{ DOWNLOAD_URL }}/{{ MYSQL_BASEDIR }}.tar.gz --output {{ MYSQL_BASEDIR }}.tar.gz
         tar -xzf {{ MYSQL_BASEDIR }}.tar.gz
       become: yes
 
     - name: Start sandbox
       shell: |
-        cd /root/percona-toolkit
+        cd {{ PERCONA_TOOLKIT_BRANCH }}
         ./util/check-dev-env
         ./sandbox/test-env checkconfig
         ./sandbox/test-env stop
@@ -138,6 +138,6 @@
 
     - name: Stop sandbox
       shell: |
-        cd /root/percona-toolkit
+        cd {{ PERCONA_TOOLKIT_BRANCH}}
         ./sandbox/test-env stop
       become: yes
