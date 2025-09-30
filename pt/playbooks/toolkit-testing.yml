@@ -74,9 +74,27 @@
     - name: Install required dependencies for tests
       ansible.builtin.apt:
         name:
+          - jq
+          - libnuma1
+          - strace
+          - libncurses6
+          - gawk
+          - lsof
+          - make
+          - gcc
+          - libssl-dev
+          - libcrypt-dev
+          - libfile-slurp-perl
+          - libjson-perl
+          - libnetaddr-ip-perl
+          - libtext-diff-perl
+          - libio-socket-ssl-perl
+          - libipc-run-perl
+          - libdbi-perl
+          - libdbd-mysql-perl
           - percona-server-server
           - percona-server-client
-          - percona-server-devel
+          - libperconaserverclient21-dev # Debian
         state: present
         update_cache: yes
 
