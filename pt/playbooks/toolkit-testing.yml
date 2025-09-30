@@ -30,6 +30,11 @@
       become: yes
       when: ansible_os_family == "Debian" and ansible_distribution_release == "buster"
 
+    - name: Fix Debian Bullseye EOL repositories
+      shell: sed -i 's|http://deb.debian.org/debian|http://archive.debian.org/debian|g; s|http://cdn-aws.deb.debian.org/debian|http://archive.debian.org/debian|g; s|http://security.debian.org/debian-security|http://archive.debian.org/debian-security|g; /bullseye-updates/d' /etc/apt/sources.list
+      become: yes
+      when: ansible_os_family == "Debian" and ansible_distribution_release == "bullseye"
+
     - name: Download Percona release package
       ansible.builtin.get_url:
         url: https://repo.percona.com/apt/percona-release_latest.generic_all.deb
