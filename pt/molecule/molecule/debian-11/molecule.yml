@@ -10,6 +10,7 @@ platforms:
     vpc_subnet_id: subnet-04a8ad1b1d4da874c
     instance_type: t2.large
     ssh_user: admin
+    root_device_name: /dev/xvda
     instance_tags:
       iit-billing-tag: toolkit-package-testing
       job-name: ${JOB_NAME}
