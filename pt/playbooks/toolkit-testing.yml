@@ -129,16 +129,16 @@
 
     - name: Start sandbox
       shell: |
-#        cd "{{ PERCONA_TOOLKIT_BRANCH }}"
-#        ./util/check-dev-env
-#        ./sandbox/test-env checkconfig
-#        ./sandbox/test-env stop
-#        ./sandbox/test-env kill
-#        ./sandbox/test-env start
+        cd "{{ PERCONA_TOOLKIT_BRANCH }}"
+        ./util/check-dev-env
+        ./sandbox/test-env checkconfig
+        ./sandbox/test-env stop
+        ./sandbox/test-env kill
+        ./sandbox/test-env start
       become: yes
 
     - name: Stop sandbox
       shell: |
         cd {{ PERCONA_TOOLKIT_BRANCH}}
-#        ./sandbox/test-env stop
+        ./sandbox/test-env stop
       become: yes
