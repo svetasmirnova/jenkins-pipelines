@@ -25,7 +25,7 @@ pipeline {
     environment {
 
         PERCONA_TOOLKIT_BRANCH = "${WORKSPACE}/percona-toolkit"
-        TMP_DIR = "/tmp"
+        TMP_DIR = "${WORKSPACE}/tmp"
         LOG_FILE = "${WORKSPACE}/tmp/${params.TESTING_BRANCH}-${params.MYSQL_VERSION}.log"
         MYSQL_BASEDIR = "Percona-Server-${params.MYSQL_MINOR}-Linux.x86_64.glibc${params.GLIBC}"
         PERCONA_TOOLKIT_SANDBOX_DIR = "${WORKSPACE}/sandbox"
