@@ -132,6 +132,7 @@
     - name: Start sandbox
       shell: |
         cd "{{ PERCONA_TOOLKIT_BRANCH }}"
+        pwd
         ./util/check-dev-env
         ./sandbox/test-env checkconfig
         ./sandbox/test-env stop
