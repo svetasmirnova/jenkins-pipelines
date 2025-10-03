@@ -35,6 +35,14 @@ pipeline {
         SSL_PATH = "${WORKSPACE}/sandbox/ssl"
         LD_LIBRARY_PATH = "${SSL_PATH}/lib:${LD_LIBRARY_PATH}"
         MOLECULE_DIR = "pt/molecule"
+        TESTING_BRANCH = "${params.TESTING_BRANCH}"
+        TEST_CMD = "${params.TEST_CMD}"
+        APP = "${params.APP}"
+        MYSQL_VERSION = "${params.MYSQL_VERSION}"
+        MYSQL_MINOR = "${params.MYSQL_MINOR}"
+        GLIBC = "${params.GLIBC}"
+        PTDEBUG = "${params.PTDEBUG}"
+        PTDEVDEBUG = "${params.PTDEVDEBUG}"
 
     }
     parameters {
