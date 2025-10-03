@@ -135,6 +135,9 @@
         ./sandbox/test-env stop
         ./sandbox/test-env kill
         ./sandbox/test-env start
+      environment:
+        PERCONA_TOOLKIT_BRANCH: "{{ PERCONA_TOOLKIT_BRANCH }}"
+        PERCONA_TOOLKIT_SANDBOX: "{{ PERCONA_TOOLKIT_SANDBOX }}"
       become: yes
 
     - name: Stop sandbox
