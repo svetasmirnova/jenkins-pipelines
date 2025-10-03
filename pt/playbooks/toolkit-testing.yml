@@ -144,4 +144,7 @@
       shell: |
         cd {{ PERCONA_TOOLKIT_BRANCH}}
         ./sandbox/test-env stop
+      environment:
+        PERCONA_TOOLKIT_BRANCH: "{{ PERCONA_TOOLKIT_BRANCH }}"
+        PERCONA_TOOLKIT_SANDBOX: "{{ PERCONA_TOOLKIT_SANDBOX }}"
       become: yes
