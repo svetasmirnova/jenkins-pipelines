@@ -95,6 +95,7 @@
           - libipc-run-perl
           - libdbi-perl
           - libdbd-mysql-perl
+          - prove6
           - percona-server-server
           - percona-server-client
           - libperconaserverclient21-dev # Debian
