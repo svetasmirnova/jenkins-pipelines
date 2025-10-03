@@ -145,8 +145,7 @@
     - name: Run tests
       shell: |
         cd "{{ PERCONA_TOOLKIT_BRANCH }}"
-        pwd
-        ls t
+        which prove
         "{{ TEST_CMD }}"
       environment:
         PERCONA_TOOLKIT_BRANCH: "{{ PERCONA_TOOLKIT_BRANCH }}"
