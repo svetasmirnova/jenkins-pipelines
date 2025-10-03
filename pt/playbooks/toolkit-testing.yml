@@ -146,7 +146,7 @@
       shell: |
         cd "{{ PERCONA_TOOLKIT_BRANCH }}"
         pwd
-        ls -la
+        ls t
         "{{ TEST_CMD }}"
       environment:
         PERCONA_TOOLKIT_BRANCH: "{{ PERCONA_TOOLKIT_BRANCH }}"
