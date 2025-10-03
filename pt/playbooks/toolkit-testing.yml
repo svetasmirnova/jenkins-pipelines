@@ -145,10 +145,17 @@
     - name: Run tests
       shell: |
         cd "{{ PERCONA_TOOLKIT_BRANCH }}"
+        pwd
+        ls -la
         "{{ TEST_CMD }}"
       environment:
         PERCONA_TOOLKIT_BRANCH: "{{ PERCONA_TOOLKIT_BRANCH }}"
         PERCONA_TOOLKIT_SANDBOX: "{{ PERCONA_TOOLKIT_SANDBOX }}"
+      register: run_tests
+
+    - debug: msg="{{ run_tests.stdout }}"
+
+    - debug: msg="{{ run_tests.stderr }}"
 
     - name: Stop sandbox
       shell: |
