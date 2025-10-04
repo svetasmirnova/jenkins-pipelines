@@ -96,7 +96,6 @@
           - libdbi-perl
           - libdbd-mysql-perl
           - libtest-simple-perl
-          - prove6
           - percona-server-server
           - percona-server-client
           - libperconaserverclient21-dev # Debian
