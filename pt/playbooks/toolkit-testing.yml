@@ -146,6 +146,7 @@
       shell: |
         cd "{{ PERCONA_TOOLKIT_BRANCH }}"
         which prove
+        ls -l t/pt-sift
         "{{ TEST_CMD }}"
       environment:
         PERCONA_TOOLKIT_BRANCH: "{{ PERCONA_TOOLKIT_BRANCH }}"
