@@ -68,6 +68,17 @@
     - name: Setup Percona pdps-8.0
       ansible.builtin.command: percona-release setup pdps-8.0
 
+    - name: Upgrade Perl package
+      ansible.builtin.apt:
+        name: perl
+        state: latest
+        update_cache: yes
+      register: upgrade_perl
+
+    - debug: msg="{{ upgrade_perl.stdout }}"
+
+    - debug: msg="{{ upgrade_perl.stderr }}"
+
     - name: Install required dependencies for tests
       ansible.builtin.apt:
         name:
@@ -80,7 +91,6 @@
           - lsof
           - make
           - gcc
-          - perl
           - libssl-dev
           - libcrypt-dev
           - libfile-slurp-perl
@@ -102,11 +112,6 @@
     - debug: msg="{{ install_deps.stdout }}"
 
     - debug: msg="{{ install_deps.stderr }}"
-
-    - name: Upgrade Perl package
-      ansible.builtin.apt:
-        name: perl
-        state: latest
 
     - name: Print the variables
       ansible.builtin.debug:
