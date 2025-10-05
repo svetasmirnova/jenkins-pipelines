@@ -68,11 +68,6 @@
     - name: Setup Percona pdps-8.0
       ansible.builtin.command: percona-release setup pdps-8.0
 
-    - name: Upgrade Perl package
-      ansible.builtin.apt:
-        name: perl
-        state: latest
-
     - name: Install required dependencies for tests
       ansible.builtin.apt:
         name:
@@ -102,6 +97,11 @@
           - libperconaserverclient21-dev # Debian
         state: present
         update_cache: yes
+
+    - name: Upgrade Perl package
+      ansible.builtin.apt:
+        name: perl
+        state: latest
 
     - name: Print the variables
       ansible.builtin.debug:
