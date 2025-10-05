@@ -189,6 +189,7 @@
       shell: |
         cd "{{ PERCONA_TOOLKIT_BRANCH }}"
         which prove
+        which perl
         ls -l t/pt-sift
         "{{ TEST_CMD }}"
       environment:
