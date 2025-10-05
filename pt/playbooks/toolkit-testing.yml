@@ -14,7 +14,7 @@
     PERCONA_TELEMETRY_URL: "https://check-dev.percona.com/v1/telemetry/GenericReport"
   tasks:
     - set_fact:
-        percona_version: "{{ lookup('env', 'PERCONA_VERSION', default='8.4') }}"
+        MYSQL_VERSION: "{{ lookup('env', 'MYSQL_VERSION', default='8.4') }}"
         PERCONA_TOOLKIT_BRANCH : "{{ lookup('env', 'PERCONA_TOOLKIT_BRANCH') }}"
         TMP_DIR: "{{ lookup('env', 'TMP_DIR') }}"
         LOG_FILE: "{{ lookup('env', 'LOG_FILE') }}"
@@ -149,6 +149,7 @@
       environment:
         PERCONA_TOOLKIT_BRANCH: "{{ PERCONA_TOOLKIT_BRANCH }}"
         PERCONA_TOOLKIT_SANDBOX: "{{ PERCONA_TOOLKIT_SANDBOX }}"
+        MYSQL_VERSION: "{{ MYSQL_VERSION }}"
       register: run_tests
 
     - name: View Clear Output
