@@ -97,6 +97,11 @@
           - libperconaserverclient21-dev # Debian
         state: present
         update_cache: yes
+      register: install_deps
+
+    - debug: msg="{{ install_deps.stdout }}"
+
+    - debug: msg="{{ install_deps.stderr }}"
 
     - name: Upgrade Perl package
       ansible.builtin.apt:
