@@ -72,24 +72,6 @@
       ansible.builtin.apt:
         name: perl
         state: latest
-        update_cache: yes
-      register: upgrade_perl
-
-    - debug: msg="{{ upgrade_perl.stdout }}"
-
-    - debug: msg="{{ upgrade_perl.stderr }}"
-
-    - name: Which perl
-      shell: |
-        which perl
-      environment:
-        PERCONA_TOOLKIT_BRANCH: "{{ PERCONA_TOOLKIT_BRANCH }}"
-        PERCONA_TOOLKIT_SANDBOX: "{{ PERCONA_TOOLKIT_SANDBOX }}"
-      register: which_perl
-
-    - debug: msg="{{ which_perl.stdout }}"
-
-    - debug: msg="{{ which_perl.stderr }}"
 
     - name: Install required dependencies for tests
       ansible.builtin.apt:
@@ -120,18 +102,6 @@
         state: present
         update_cache: yes
 
-    - name: Which perl 2
-      shell: |
-        which perl
-      environment:
-        PERCONA_TOOLKIT_BRANCH: "{{ PERCONA_TOOLKIT_BRANCH }}"
-        PERCONA_TOOLKIT_SANDBOX: "{{ PERCONA_TOOLKIT_SANDBOX }}"
-      register: which_perl2
-
-    - debug: msg="{{ which_perl2.stdout }}"
-
-    - debug: msg="{{ which_perl2.stderr }}"
-
     - name: Print the variables
       ansible.builtin.debug:
         msg:
@@ -150,19 +120,6 @@
         repo: https://github.com/percona/percona-toolkit.git
         version: "{{ TESTING_BRANCH | default('3.x') }}"
         dest: "{{ PERCONA_TOOLKIT_BRANCH }}"
-
-    - name: Which perl 3
-      shell: |
-        cd "{{ PERCONA_TOOLKIT_BRANCH }}"
-        which perl
-      environment:
-        PERCONA_TOOLKIT_BRANCH: "{{ PERCONA_TOOLKIT_BRANCH }}"
-        PERCONA_TOOLKIT_SANDBOX: "{{ PERCONA_TOOLKIT_SANDBOX }}"
-      register: which_perl3
-
-    - debug: msg="{{ which_perl3.stdout }}"
-
-    - debug: msg="{{ which_perl3.stderr }}"
 
     - name: Prepare sandbox
       shell: |
@@ -194,9 +151,9 @@
         PERCONA_TOOLKIT_SANDBOX: "{{ PERCONA_TOOLKIT_SANDBOX }}"
       register: run_tests
 
-    - debug: msg="{{ run_tests.stdout }}"
+    # - debug: msg="{{ run_tests.stdout }}"
 
-    - debug: msg="{{ run_tests.stderr }}"
+    # - debug: msg="{{ run_tests.stderr }}"
 
     - name: Stop sandbox
       shell: |
