@@ -151,6 +151,10 @@
         PERCONA_TOOLKIT_SANDBOX: "{{ PERCONA_TOOLKIT_SANDBOX }}"
       register: run_tests
 
+    - name: View Clear Output
+      debug: 
+        var: run_tests
+
     # - debug: msg="{{ run_tests.stdout }}"
 
     # - debug: msg="{{ run_tests.stderr }}"
