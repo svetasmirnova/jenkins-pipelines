@@ -160,6 +160,7 @@
       environment:
         PERCONA_TOOLKIT_BRANCH: "{{ PERCONA_TOOLKIT_BRANCH }}"
         PERCONA_TOOLKIT_SANDBOX: "{{ PERCONA_TOOLKIT_SANDBOX }}"
+        LD_LIBRARY_PATH: "{{ LD_LIBRARY_PATH }}"
       become: yes
 
     - name: Run tests
