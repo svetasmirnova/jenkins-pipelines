@@ -175,7 +175,7 @@
         MYSQL_VERSION: "{{ MYSQL_VERSION }}"
       register: run_tests
 
-    # - debug: msg="{{ run_tests.stdout }}"
+    - debug: msg="{{ run_tests.stdout }}"
 
     # - debug: msg="{{ run_tests.stderr }}"
 
