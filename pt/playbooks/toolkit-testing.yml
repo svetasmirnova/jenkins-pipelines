@@ -104,6 +104,9 @@
         update_cache: yes
 
     - name: Install SSL
+    # We need various SSL versions for testing
+    # We will have "no version information available" spam messages in the beginning of the tests
+    # This message is harmless and can be ignored
       shell: |
         mkdir -p "{{ PERCONA_TOOLKIT_SANDBOX_DIR }}"
         cd "{{ PERCONA_TOOLKIT_SANDBOX_DIR }}"
