@@ -33,7 +33,7 @@ pipeline {
         DOWNLOAD_URL = "https://downloads.percona.com/downloads/Percona-Server-${params.MYSQL_VERSION}/Percona-Server-${params.MYSQL_MINOR}/binary/tarball/"
         PATH = "/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/home/ec2-user/.local/bin:${PERCONA_TOOLKIT_SANDBOX}/bin"
         SSL_PATH = "${WORKSPACE}/sandbox/ssl"
-        LD_LIBRARY_PATH = "/usr/lib64:${SSL_PATH}/lib:${LD_LIBRARY_PATH}"
+        LD_LIBRARY_PATH = "/usr/lib64:/usr/lib/x86_64-linux-gnu:${SSL_PATH}/lib:${LD_LIBRARY_PATH}"
         MOLECULE_DIR = "pt/molecule"
         TESTING_BRANCH = "${params.TESTING_BRANCH}"
         TEST_CMD = "${params.TEST_CMD}"
