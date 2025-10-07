@@ -20,12 +20,15 @@
         TMP_DIR: "{{ WORKSPACE }}/tmp"
         TESTING_BRANCH: "{{ lookup('env', 'TESTING_BRANCH', default='3.x') }}"
         MYSQL_VERSION: "{{ lookup('env', 'MYSQL_VERSION', default='8.4') }}"
-        LOG_FILE: "{{ TMP_DIR }}/{{ TESTING_BRANCH }}-{{ MYSQL_VERSION }}.log"
         MYSQL_MINOR: "{{ lookup('env', 'MYSQL_MINOR') }}"
         GLIBC: "{{ lookup('env', 'GLIBC') }}"
-        MYSQL_BASEDIR: "Percona-Server-{{ MYSQL_MINOR }}-Linux.x86_64.glibc{{ GLIBC }}"
         PERCONA_TOOLKIT_SANDBOX_DIR: "{{ WORKSPACE }}/sandbox"
+    - set_fact:
+        MYSQL_BASEDIR: "Percona-Server-{{ MYSQL_MINOR }}-Linux.x86_64.glibc{{ GLIBC }}"
+    - set_fact:
         PERCONA_TOOLKIT_SANDBOX: "{{ PERCONA_TOOLKIT_SANDBOX_DIR }}/{{ MYSQL_BASEDIR }}"
+    - set_fact:
+        LOG_FILE: "{{ TMP_DIR }}/{{ TESTING_BRANCH }}-{{ MYSQL_VERSION }}.log"
         DOWNLOAD_URL: "https://downloads.percona.com/downloads/Percona-Server-{{ MYSQL_VERSION }}/Percona-Server-{{ MYSQL_MINOR }}/binary/tarball/"
         PATH: "/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/home/ec2-user/.local/bin:{{ PERCONA_TOOLKIT_SANDBOX }}/bin"
         SSL_PATH: "{{ WORKSPACE }}/sandbox/ssl"
