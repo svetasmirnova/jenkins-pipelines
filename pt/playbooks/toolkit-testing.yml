@@ -172,7 +172,7 @@
       environment:
         PERCONA_TOOLKIT_BRANCH: "{{ PERCONA_TOOLKIT_BRANCH }}"
         PERCONA_TOOLKIT_SANDBOX: "{{ PERCONA_TOOLKIT_SANDBOX }}"
-        LD_LIBRARY_PATH: "{{ LD_LIBRARY_PATH }}"
+        #LD_LIBRARY_PATH: "{{ LD_LIBRARY_PATH }}"
         MYSQL_VERSION: "{{ MYSQL_VERSION }}"
       register: run_tests
 
