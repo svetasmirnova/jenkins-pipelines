@@ -117,16 +117,13 @@
         curl -L https://github.com/openssl/openssl/releases/download/OpenSSL_1_0_2u/openssl-1.0.2u.tar.gz --output openssl-1.0.2u.tar.gz
         tar -xzf openssl-1.0.2u.tar.gz
         cd openssl-1.0.2u
-        echo "OPENSSL_1.0.0 { global:\n *; };" > openssl.map
-        ./config --prefix="{{ SSL_PATH }}" shared -Wl,--version-script=openssl.map
+        ./config --prefix="{{ SSL_PATH }}" shared
         make
         make install
         cd "{{ SSL_PATH }}/lib"
         test -e libssl.so.10 && echo 1 || ln -s libssl.so.1.0.0 libssl.so.10
         test -e libcrypto.so.10 && echo 1 || ln -s libcrypto.so.1.0.0 libcrypto.so.10
       become: yes
-
-      # ./config --prefix="{{ SSL_PATH }}" shared -Wl,--version-script=openssl.map -Wl,-Bsymbolic-functions
 
     - name: Print the variables
       ansible.builtin.debug:
