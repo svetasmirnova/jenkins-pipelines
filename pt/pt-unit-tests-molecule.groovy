@@ -85,7 +85,7 @@ pipeline {
             description: 'Minor version for Percona Server for MySQL',
             name: 'MYSQL_MINOR'
         )
-        choice(
+ /*       choice(
             choices: [
                 '2.17',
                 '2.27',
@@ -97,6 +97,7 @@ pipeline {
             description: "GLIBC version",
             name: 'GLIBC'
         )
+        */
         choice(
             choices: [
                 'mysql',
