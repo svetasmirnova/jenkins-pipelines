@@ -33,7 +33,7 @@ pipeline {
         DOWNLOAD_URL = "https://downloads.percona.com/downloads/Percona-Server-${params.MYSQL_VERSION}/Percona-Server-${params.MYSQL_MINOR}/binary/tarball/"
         PATH = "/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/home/ec2-user/.local/bin:${PERCONA_TOOLKIT_SANDBOX}/bin"
         SSL_PATH = "${WORKSPACE}/sandbox/ssl"
-        LD_LIBRARY_PATH = "${SSL_PATH}/lib:${LD_LIBRARY_PATH}"
+        LD_LIBRARY_PATH = "/usr/lib64:${SSL_PATH}/lib:${LD_LIBRARY_PATH}"
         MOLECULE_DIR = "pt/molecule"
         TESTING_BRANCH = "${params.TESTING_BRANCH}"
         TEST_CMD = "${params.TEST_CMD}"
@@ -65,14 +65,22 @@ pipeline {
         )
         choice(
             choices: [
-                '8.0.35-27',
-                '8.0.36-28',
-                '8.0.37-29',
-                '8.0.39-30',
-                '5.7.43-47',
-                '5.7.44-48',
-                '8.4.0-1',
+                '8.4.6-6',
+                '8.4.5-5',
+                '8.4.4-4',
+                '8.4.3-3',
                 '8.4.2-2',
+                '8.4.0-1',
+                '8.0.43-34',
+                '8.0.42-33',
+                '8.0.41-32',
+                '8.0.40-31',
+                '8.0.39-30',
+                '8.0.37-29',
+                '8.0.36-28',
+                '8.0.35-27',
+                '5.7.44-48',
+                '5.7.43-47',
             ],
             description: 'Minor version for Percona Server for MySQL',
             name: 'MYSQL_MINOR'
