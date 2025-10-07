@@ -36,7 +36,7 @@
         TEST_CMD: "{{ lookup('env', 'TEST_CMD', default='prove -vr --trap --timer t') }}"
         APP: "{{ lookup('env', 'APP', default='mysql') }}"
         PTDEBUG: "{{ lookup('env', 'PTDEBUG', default='0') }}"
-        PTDEVDEBUG: "{{ lookup('env', 'PTDEVDEBUG', default='0')"
+        PTDEVDEBUG: "{{ lookup('env', 'PTDEVDEBUG', default='0') }}"
 
         # MOLECULE_DIR = "pt/molecule"
 
