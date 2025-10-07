@@ -15,6 +15,7 @@
   tasks:
     - set_fact:
         WORKSPACE: "{{ lookup('env', 'WORKSPACE', default='/mnt/jenkins/workspace/pt-unit-tests-molecule/') }}"
+    - set_fact:
         PERCONA_TOOLKIT_BRANCH: "{{ WORKSPACE }}/percona-toolkit"
         TMP_DIR: "{{ WORKSPACE }}/tmp"
         TESTING_BRANCH: "{{ lookup('env', 'TESTING_BRANCH', default='3.x') }}"
