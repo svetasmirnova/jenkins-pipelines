@@ -14,6 +14,7 @@
     PERCONA_TELEMETRY_URL: "https://check-dev.percona.com/v1/telemetry/GenericReport"
   tasks:
     - set_fact:
+        WORKSPACE: "{{ lookup('env', 'WORKSPACE', default='/mnt/jenkins/workspace/pt-unit-tests-molecule/') }}"
         PERCONA_TOOLKIT_BRANCH: "{{ WORKSPACE }}/percona-toolkit"
         TMP_DIR: "{{ WORKSPACE }}/tmp"
         TESTING_BRANCH: "{{ lookup('env', 'TESTING_BRANCH', default='3.x') }}"
