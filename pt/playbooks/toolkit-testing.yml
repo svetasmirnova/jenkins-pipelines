@@ -169,6 +169,8 @@
 
     - name: Start sandbox
       shell: |
+        cd "{{ PERCONA_TOOLKIT_SANDBOX DIR }}"
+        ./bin/mysqld --version
         cd "{{ PERCONA_TOOLKIT_BRANCH }}"
         ./util/check-dev-env
         ./sandbox/test-env checkconfig
@@ -180,6 +182,9 @@
         PERCONA_TOOLKIT_SANDBOX: "{{ PERCONA_TOOLKIT_SANDBOX }}"
         LD_LIBRARY_PATH: "{{ LD_LIBRARY_PATH }}"
       become: yes
+      register: start_sandbox
+
+    - debug: msg="{{ start_sandbox.stdout }}"
 
     - name: Run tests
       command:
