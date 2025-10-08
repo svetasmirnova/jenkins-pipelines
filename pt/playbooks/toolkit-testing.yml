@@ -169,7 +169,7 @@
 
     - name: Start sandbox
       shell: |
-        cd "{{ PERCONA_TOOLKIT_SANDBOX DIR }}"
+        cd "{{ PERCONA_TOOLKIT_SANDBOX }}"
         ./bin/mysqld --version
         cd "{{ PERCONA_TOOLKIT_BRANCH }}"
         ./util/check-dev-env
