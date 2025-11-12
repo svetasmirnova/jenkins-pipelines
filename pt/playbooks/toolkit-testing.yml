@@ -160,6 +160,8 @@
         repo: https://github.com/percona/percona-toolkit.git
         version: "{{ TESTING_BRANCH | default('3.x') }}"
         dest: "{{ PERCONA_TOOLKIT_BRANCH }}"
+      environment:
+        PERCONA_TOOLKIT_BRANCH: "{{ PERCONA_TOOLKIT_BRANCH }}"
 
     - name: Prepare sandbox
       shell: |
@@ -178,7 +180,9 @@
     - name: Start sandbox
       shell: |
         pwd
+        ls "{{ PERCONA_TOOLKIT_SANDBOX_DIR }}"
         ls "{{ PERCONA_TOOLKIT_SANDBOX }}"
+        ls "{{ PERCONA_TOOLKIT_BRANCH }}"
         cd "{{ PERCONA_TOOLKIT_SANDBOX }}"
         ./bin/mysqld --version
         cd "{{ PERCONA_TOOLKIT_BRANCH }}"
@@ -190,6 +194,7 @@
       environment:
         PERCONA_TOOLKIT_BRANCH: "{{ PERCONA_TOOLKIT_BRANCH }}"
         PERCONA_TOOLKIT_SANDBOX: "{{ PERCONA_TOOLKIT_SANDBOX }}"
+        PERCONA_TOOLKIT_SANDBOX_DIR: "{{ PERCONA_TOOLKIT_SANDBOX_DIR }}"
         LD_LIBRARY_PATH: "{{ LD_LIBRARY_PATH }}"
       become: yes
       register: start_sandbox
