@@ -22,7 +22,6 @@
         MYSQL_VERSION: "{{ lookup('env', 'MYSQL_VERSION', default='8.4') }}"
         MYSQL_MINOR: "{{ lookup('env', 'MYSQL_MINOR') }}"
         GLIBC: "{{ lookup('env', 'GLIBC') }}"
-        # GLIBC: "{{ '2.31' if ansible_os_family == 'Debian' else '2.34' }}"
         PERCONA_TOOLKIT_SANDBOX_DIR: "{{ WORKSPACE }}/sandbox"
         SSL_PATH: "{{ WORKSPACE }}/sandbox/ssl"
     - set_fact:
@@ -171,6 +170,8 @@
 
     - name: Start sandbox
       shell: |
+        pwd
+        ls "{{ PERCONA_TOOLKIT_SANDBOX }}"
         cd "{{ PERCONA_TOOLKIT_SANDBOX }}"
         ./bin/mysqld --version
         cd "{{ PERCONA_TOOLKIT_BRANCH }}"
