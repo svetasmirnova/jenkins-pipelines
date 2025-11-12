@@ -34,7 +34,7 @@ pipeline {
         // PATH = "/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/home/ec2-user/.local/bin:${PERCONA_TOOLKIT_SANDBOX}/bin"
         // SSL_PATH = "${WORKSPACE}/sandbox/ssl"
         // LD_LIBRARY_PATH = "/usr/lib64:/usr/lib/x86_64-linux-gnu:${SSL_PATH}/lib:${LD_LIBRARY_PATH}"
-        // MOLECULE_DIR = "pt/molecule"
+        MOLECULE_DIR = "pt/molecule"
         TESTING_BRANCH = "${params.TESTING_BRANCH}"
         TEST_CMD = "${params.TEST_CMD}"
         APP = "${params.APP}"
