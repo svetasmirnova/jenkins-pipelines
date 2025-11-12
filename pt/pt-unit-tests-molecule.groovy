@@ -161,22 +161,6 @@ pipeline {
             }
         }
 
-        stage('PRINT ENV VARS') {
-            steps {
-                script {
-                    sh """
-                        echo "PERCONA_TOOLKIT_BRANCH: ${PERCONA_TOOLKIT_BRANCH}"
-                        echo "TMP_DIR: ${TMP_DIR}"
-                        echo "LOG_FILE: ${LOG_FILE}"
-                        echo "DOWNLOAD_URL: ${DOWNLOAD_URL}"
-                        echo "PATH: ${PATH}"
-                        echo "SSL_PATH: ${SSL_PATH}"
-                        echo "LD_LIBRARY_PATH: ${LD_LIBRARY_PATH}"
-                    """
-                }
-            }
-        }
-
         stage('RUN TESTS') {
                     steps {
                         script {
