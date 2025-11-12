@@ -17,13 +17,13 @@ platforms:
 provisioner:
   name: ansible
   log: True
+  env:
+    GLIBC: "2.31"
   playbooks:
     create: ../../playbooks/create.yml
     destroy: ../../playbooks/destroy.yml
     prepare: ../../playbooks/prepare.yml
     converge: ../../../playbooks/${PLAYBOOK_VAR}.yml
-  env:
-    GLIBC: "2.31"
 scenario:
   name: debian-11
   destroy_sequence:
