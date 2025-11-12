@@ -168,8 +168,6 @@ pipeline {
                         echo "PERCONA_TOOLKIT_BRANCH: ${PERCONA_TOOLKIT_BRANCH}"
                         echo "TMP_DIR: ${TMP_DIR}"
                         echo "LOG_FILE: ${LOG_FILE}"
-                        echo "MYSQL_BASEDIR: ${MYSQL_BASEDIR}"
-                        echo "PERCONA_TOOLKIT_SANDBOX: ${PERCONA_TOOLKIT_SANDBOX}"
                         echo "DOWNLOAD_URL: ${DOWNLOAD_URL}"
                         echo "PATH: ${PATH}"
                         echo "SSL_PATH: ${SSL_PATH}"
