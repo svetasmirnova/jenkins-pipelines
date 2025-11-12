@@ -12,6 +12,7 @@
   become_method: sudo
   environment:
     PERCONA_TELEMETRY_URL: "https://check-dev.percona.com/v1/telemetry/GenericReport"
+    GLIBC: "{{ GLIBC }}" 
   tasks:
     - set_fact:
         WORKSPACE: "{{ lookup('env', 'WORKSPACE', default='/mnt/jenkins/workspace/pt-unit-tests-molecule/') }}"
