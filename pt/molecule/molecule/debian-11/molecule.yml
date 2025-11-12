@@ -17,9 +17,8 @@ platforms:
 provisioner:
   name: ansible
   log: True
-  config_options:
-    defaults:
-      GLIBC: "2.31"
+  env:
+    GLIBC: "2.31"
   playbooks:
     create: ../../playbooks/create.yml
     destroy: ../../playbooks/destroy.yml
