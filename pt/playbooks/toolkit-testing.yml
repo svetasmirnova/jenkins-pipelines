@@ -12,7 +12,6 @@
   become_method: sudo
   environment:
     PERCONA_TELEMETRY_URL: "https://check-dev.percona.com/v1/telemetry/GenericReport"
-    GLIBC: "{{ GLIBC }}" 
   tasks:
     - set_fact:
         WORKSPACE: "{{ lookup('env', 'WORKSPACE', default='/mnt/jenkins/workspace/pt-unit-tests-molecule/') }}"
@@ -154,6 +153,7 @@
           - "PATH: {{ PATH }}"
           - "SSL_PATH: {{ SSL_PATH }}"
           - "LD_LIBRARY_PATH: {{ LD_LIBRARY_PATH }}"
+          - "GLIBC": "{{ GLIBC }}"
 
     - name: Clone Percona Toolkit repository
       git:
