@@ -21,7 +21,8 @@
         TESTING_BRANCH: "{{ lookup('env', 'TESTING_BRANCH', default='3.x') }}"
         MYSQL_VERSION: "{{ lookup('env', 'MYSQL_VERSION', default='8.4') }}"
         MYSQL_MINOR: "{{ lookup('env', 'MYSQL_MINOR') }}"
-        #GLIBC: "{{ lookup('env', 'GLIBC') }}"
+        # GLIBC: "{{ lookup('env', 'GLIBC') }}"
+        GLIBC: "{{ '2.35' if ansible_os_family == 'Debian' else '2.34' }}"
         PERCONA_TOOLKIT_SANDBOX_DIR: "{{ WORKSPACE }}/sandbox"
         SSL_PATH: "{{ WORKSPACE }}/sandbox/ssl"
     - set_fact:
