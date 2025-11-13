@@ -17,6 +17,8 @@ platforms:
 provisioner:
   name: ansible
   log: True
+  env:
+    GLIBC: "2.35"
   playbooks:
     create: ../../playbooks/create.yml
     destroy: ../../playbooks/destroy.yml
