@@ -50,6 +50,7 @@ pipeline {
             choices: [
                 'debian-11',
                 'debian-12',
+                'debian-13',
             ],
             description: 'Node to run tests on',
             name: 'node_to_test'
