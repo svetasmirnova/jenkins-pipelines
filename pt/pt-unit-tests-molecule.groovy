@@ -51,6 +51,11 @@ pipeline {
                 'debian-11',
                 'debian-12',
                 'debian-13',
+                'ol-8',
+                'ol-9',
+                'ubuntu-focal',
+                'ubuntu-jammy',
+                'ubuntu-noble',
             ],
             description: 'Node to run tests on',
             name: 'node_to_test'
