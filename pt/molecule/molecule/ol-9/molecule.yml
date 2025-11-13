@@ -6,7 +6,7 @@ driver:
 platforms:
   - name: ol-9-${BUILD_NUMBER}-${JOB_NAME}-${PLAYBOOK_VAR}
     region: us-west-1
-    image: ami-06339041e422fab06
+    image: ami-0d1958c85fb6a7b3e
     vpc_subnet_id: subnet-04a8ad1b1d4da874c
     instance_type: t2.large
     ssh_user: admin
