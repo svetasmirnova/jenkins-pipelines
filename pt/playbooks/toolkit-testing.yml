@@ -114,33 +114,12 @@
         update_cache: yes
 
     - name: Install OEL packages
-      ansible.builtin.yum:
+      ansible.builtin.apt:
         name:
-          - git
-          - jq
-          - numactl
-          - strace
-          - ncurses-libs
-          - gawk
-          - lsof
-          - make
-          - gcc
-          - openssl-devel
           - krb5-libs
-          - perl-File-Slurper
-          - perl-JSON
-          - perl-NetAddr-IP
-          - perl-Text-Diff
-          - perl-IO-Socket-SSL
-          - perl-IPC-Run
-          - perl-DBI
-          - perl-DBD-MySQL
-          - perl-Test-Simple
-          - Percona-Server-server-80
-          - Percona-Server-client-80
-          - Percona-Server-devel-80
         state: present
         update_cache: yes
+      when: ansible_os_family == "RedHat"
 
 
 #    - name: Install SSL
