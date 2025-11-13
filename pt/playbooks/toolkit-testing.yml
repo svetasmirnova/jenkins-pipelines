@@ -180,6 +180,8 @@
     - name: Start sandbox
       shell: |
         pwd
+        echo "{{ WORKSPACE }}"
+        ls "{{ WORKSPACE }}"
         echo "{{ PERCONA_TOOLKIT_SANDBOX_DIR }}"
         ls "{{ PERCONA_TOOLKIT_SANDBOX_DIR }}"
         echo "{{ PERCONA_TOOLKIT_SANDBOX }}"
@@ -199,6 +201,7 @@
         PERCONA_TOOLKIT_SANDBOX: "{{ PERCONA_TOOLKIT_SANDBOX }}"
         PERCONA_TOOLKIT_SANDBOX_DIR: "{{ PERCONA_TOOLKIT_SANDBOX_DIR }}"
         LD_LIBRARY_PATH: "{{ LD_LIBRARY_PATH }}"
+        WORKSPACE: "{{ WORKSPACE }}"
       become: yes
       register: start_sandbox
 
