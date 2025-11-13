@@ -176,19 +176,10 @@
       become: yes
       register: prepare_sandbox
 
-    - debug: msg="{{ prepare_sandbox.stdout }}"
+    # - debug: msg="{{ prepare_sandbox.stdout }}"
 
     - name: Start sandbox
       shell: |
-        pwd
-        echo "{{ WORKSPACE }}"
-        ls "{{ WORKSPACE }}"
-        echo "{{ PERCONA_TOOLKIT_SANDBOX_DIR }}"
-        ls "{{ PERCONA_TOOLKIT_SANDBOX_DIR }}"
-        echo "{{ PERCONA_TOOLKIT_SANDBOX }}"
-        ls "{{ PERCONA_TOOLKIT_SANDBOX }}"
-        echo "{{ PERCONA_TOOLKIT_BRANCH }}"
-        ls "{{ PERCONA_TOOLKIT_BRANCH }}"
         cd "{{ PERCONA_TOOLKIT_SANDBOX }}"
         ./bin/mysqld --version
         cd "{{ PERCONA_TOOLKIT_BRANCH }}"
@@ -206,7 +197,7 @@
       become: yes
       register: start_sandbox
 
-    - debug: msg="{{ start_sandbox.stdout }}"
+    # - debug: msg="{{ start_sandbox.stdout }}"
 
     - name: Run tests
       command:
@@ -219,7 +210,7 @@
         MYSQL_VERSION: "{{ MYSQL_VERSION }}"
       register: run_tests
 
-    - debug: msg="{{ run_tests.stdout }}"
+    # - debug: msg="{{ run_tests.stdout }}"
 
     # - debug: msg="{{ run_tests.stderr }}"
 
