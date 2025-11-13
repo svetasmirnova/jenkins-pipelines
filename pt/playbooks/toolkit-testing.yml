@@ -180,8 +180,11 @@
     - name: Start sandbox
       shell: |
         pwd
+        echo "{{ PERCONA_TOOLKIT_SANDBOX_DIR }}"
         ls "{{ PERCONA_TOOLKIT_SANDBOX_DIR }}"
+        echo "{{ PERCONA_TOOLKIT_SANDBOX }}"
         ls "{{ PERCONA_TOOLKIT_SANDBOX }}"
+        echo "{{ PERCONA_TOOLKIT_BRANCH }}"
         ls "{{ PERCONA_TOOLKIT_BRANCH }}"
         cd "{{ PERCONA_TOOLKIT_SANDBOX }}"
         ./bin/mysqld --version
