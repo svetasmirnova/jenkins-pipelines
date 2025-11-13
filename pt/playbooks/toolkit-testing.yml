@@ -96,7 +96,6 @@
           - lsof
           - make
           - gcc
-          - libkrb5
           - libssl-dev
           - libcrypt-dev
           - libfile-slurp-perl
@@ -111,6 +110,35 @@
           - percona-server-server
           - percona-server-client
           - libperconaserverclient21-dev # Debian
+        state: present
+        update_cache: yes
+
+    - name: Install OEL packages
+      ansible.builtin.yum:
+        name:
+          - git
+          - jq
+          - numactl
+          - strace
+          - ncurses-libs
+          - gawk
+          - lsof
+          - make
+          - gcc
+          - openssl-devel
+          - krb5-libs
+          - perl-File-Slurper
+          - perl-JSON
+          - perl-NetAddr-IP
+          - perl-Text-Diff
+          - perl-IO-Socket-SSL
+          - perl-IPC-Run
+          - perl-DBI
+          - perl-DBD-MySQL
+          - perl-Test-Simple
+          - Percona-Server-server-80
+          - Percona-Server-client-80
+          - Percona-Server-devel-80
         state: present
         update_cache: yes
 
