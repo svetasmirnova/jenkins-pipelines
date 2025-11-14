@@ -18,7 +18,7 @@ provisioner:
   name: ansible
   log: True
   env:
-    GLIBC: "2.28"
+    GLIBC: "2.31"
   playbooks:
     create: ../../playbooks/create.yml
     destroy: ../../playbooks/destroy.yml
