@@ -129,7 +129,7 @@
       when: ansible_os_family == "RedHat"
 
     - name: Setup Percona pdps-8.0
-      ansible.builtin.command: percona-release setup pdps-8.0
+      ansible.builtin.command: percona-release enable ps-84-lts pt
 
     - name: Upgrade Perl package on Debian
       ansible.builtin.apt:
