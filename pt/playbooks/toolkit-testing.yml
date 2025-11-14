@@ -131,9 +131,8 @@
     - name: Print OS info
       shell: |
         uname -a
-        lsb_release -a || cat /etc/os-release
-        percona-release show
-        percona-release
+        cat /etc/os-release
+        echo $(grep VERSION_ID= /etc/os-release | awk -F'"' '{print $2}' | awk -F'.' '{print $1}')
       become: yes
       register: os_info
 
