@@ -187,7 +187,11 @@
         update_cache: yes
       when: ansible_os_family == "Debian"
 
-    - name: Install required dependencies for tests on Debian on OEL
+     - name: disable the mysql module on RHEL/CentOS 8
+       command: /usr/bin/dnf module disable mysql -y
+       when: ansible_os_family == "RedHat" and ansible_distribution_major_version == "8"
+
+    - name: Install required dependencies for tests on OEL
       yum:
         name: "{{ packages }}"
         state: present
@@ -195,6 +199,27 @@
       vars:
         packages:
           - krb5-libs
+          - git
+          - jq
+          - libaio
+          - strace
+          - perl-Time-HiRes
+          - perl-Test-Harness
+          - perl-Test-Simple
+          - perl-Digest-MD5
+          - perl-File-Slurp
+          - perl-JSON
+          - perl-NetAddr-IP
+          - perl-Text-Diff
+          - perl-IPC-Cmd
+          - perl-IO-Socket-SSL
+          - perl-DBI
+          - cpan
+          - gcc
+          - percona-server-server
+          - percona-server-client
+          - percona-server-devel
+          - perl-DBD-MySQL
       when: ansible_os_family == "RedHat"
 
 
