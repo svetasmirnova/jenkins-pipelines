@@ -77,27 +77,49 @@
       vars:
         packages:
           - gnupg2
-          - lsb-release
       when: ansible_os_family == "RedHat"
 
     - name: Install Percona release package
       ansible.builtin.command:
         cmd: dpkg -i /tmp/percona-release_latest.generic_all.deb
         creates: /etc/apt/sources.list.d/percona-release.list
+      when: ansible_os_family == "Debian"
+
+    - name: Install Percona release package
+      yum: name=https://repo.percona.com/yum/percona-release-latest.noarch.rpm
+      when: ansible_os_family == "RedHat"
 
     - name: Update apt cache
       ansible.builtin.apt:
         update_cache: yes
+      when: ansible_os_family == "Debian"
+
+    - name: Update yum cache
+      shell: |
+        yum clean all
+        yum makecache
+      when: ansible_os_family == "RedHat"
 
     - name: Setup Percona pdps-8.0
       ansible.builtin.command: percona-release setup pdps-8.0
 
-    - name: Upgrade Perl package
+    - name: Upgrade Perl package on Debian
       ansible.builtin.apt:
         name: perl
         state: latest
+      when: ansible_os_family == "Debian"
 
-    - name: Install required dependencies for tests
+    - name: Upgrade Perl package on OEL
+      yum:
+        name: "{{ packages }}"
+        state: latest
+        update_cache: yes
+      vars:
+        packages:
+          - perl
+      when: ansible_os_family == "RedHat"
+
+    - name: Install required dependencies for tests on Debian
       ansible.builtin.apt:
         name:
           - git
@@ -125,11 +147,13 @@
           - libperconaserverclient21-dev # Debian
         state: present
         update_cache: yes
+      when: ansible_os_family == "Debian"
 
-    - name: Install OEL packages
+    - name: Install required dependencies for tests on Debian on OEL
       yum:
         name: "{{ packages }}"
-        state: latest
+        state: present
+        update_cache: yes
       vars:
         packages:
           - krb5-libs
