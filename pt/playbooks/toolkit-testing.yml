@@ -201,6 +201,7 @@
           - krb5-libs
           - git
           - jq
+          - tar
           - libaio
           - strace
           - perl-Time-HiRes
