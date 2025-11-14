@@ -1,0 +1,36 @@
+---
+dependency:
+  name: galaxy
+driver:
+  name: ec2
+platforms:
+  - name: ubuntu-jammy-${BUILD_NUMBER}-${JOB_NAME}-${PLAYBOOK_VAR}
+    region: us-west-1
+    image: ami-0dc5e9ff792ec08e3
+    vpc_subnet_id: subnet-04a8ad1b1d4da874c
+    instance_type: t2.large
+    ssh_user: ubuntu
+    root_device_name: /dev/sda1
+    instance_tags:
+      iit-billing-tag: toolkit-package-testing
+      job-name: ${JOB_NAME}
+provisioner:
+  name: ansible
+  log: True
+  env:
+    GLIBC: "2.35"
+  playbooks:
+    create: ../../playbooks/create.yml
+    destroy: ../../playbooks/destroy.yml
+    prepare: ../../playbooks/prepare.yml
+    converge: ../../../playbooks/${PLAYBOOK_VAR}.yml
+scenario:
+  name: ubuntu-jammy
+  destroy_sequence:
+    - destroy
+  test_sequence:
+    - destroy
+    - create
+    - prepare
+    - converge
+    - destroy

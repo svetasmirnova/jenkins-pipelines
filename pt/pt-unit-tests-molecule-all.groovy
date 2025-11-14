@@ -112,43 +112,43 @@ pipeline {
             parallel {
                 stage('OEL 8') {
                     steps {
-                        runNodeBuild('min-ol-8-x64')
+                        runNodeBuild('ol-8')
                     }
                 }
 
                 stage('OEL 9') {
                     steps {
-                        runNodeBuild('min-ol-9-x64')
+                        runNodeBuild('ol-9')
                     }
                 }
 
                 stage('Ubuntu Focal') {
                     steps {
-                        runNodeBuild('min-focal-x64')
+                        runNodeBuild('ubuntu-focal')
                     }
                 }
 
                 stage('Ubuntu Jammy') {
                     steps {
-                        runNodeBuild('min-jammy-x64')
+                        runNodeBuild('ubuntu-jammy')
                     }
                 }
 
                 stage('Ubuntu Noble Numbat') {
                     steps {
-                        runNodeBuild('min-noble-x64')
+                        runNodeBuild('ubuntu-noble')
                     }
                 }
 
                 stage('Debian Bullseye') {
                     steps {
-                        runNodeBuild('min-bullseye-x64')
+                        runNodeBuild('debian-11')
                     }
                 }
 
                 stage('Debian Bookworm') {
                     steps {
-                        runNodeBuild('min-bookworm-x64')
+                        runNodeBuild('debian-12')
                     }
                 }
             }
