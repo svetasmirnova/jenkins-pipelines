@@ -182,7 +182,7 @@
           - libtest-simple-perl
           - percona-server-server
           - percona-server-client
-          - libperconaserverclient21-dev # Debian
+          # - libperconaserverclient21-dev # Debian
         state: present
         update_cache: yes
       when: ansible_os_family == "Debian"
