@@ -132,6 +132,8 @@
       shell: |
         uname -a
         lsb_release -a || cat /etc/os-release
+        percona-release show
+        percona-release
       become: yes
       register: os_info
 
