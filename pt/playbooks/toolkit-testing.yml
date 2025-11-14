@@ -169,6 +169,7 @@
           - lsof
           - make
           - gcc
+          - libkrb5
           - libssl-dev
           - libcrypt-dev
           - libfile-slurp-perl
