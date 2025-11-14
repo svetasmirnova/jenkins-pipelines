@@ -9,7 +9,7 @@ platforms:
     image: ami-0d1958c85fb6a7b3e
     vpc_subnet_id: subnet-04a8ad1b1d4da874c
     instance_type: t2.large
-    ssh_user: admin
+    ssh_user: ec2-user
     root_device_name: /dev/xvda
     instance_tags:
       iit-billing-tag: toolkit-package-testing
