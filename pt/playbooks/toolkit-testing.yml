@@ -187,9 +187,9 @@
         update_cache: yes
       when: ansible_os_family == "Debian"
 
-     - name: disable the mysql module on RHEL/CentOS 8
-       command: /usr/bin/dnf module disable mysql -y
-       when: ansible_os_family == "RedHat" and ansible_distribution_major_version == "8"
+    - name: disable the mysql module on RHEL/CentOS 8
+      command: /usr/bin/dnf module disable mysql -y
+      when: ansible_os_family == "RedHat" and ansible_distribution_major_version == "8"
 
     - name: Install required dependencies for tests on OEL
       yum:
