@@ -12,6 +12,10 @@
   become_method: sudo
   environment:
     PERCONA_TELEMETRY_URL: "https://check-dev.percona.com/v1/telemetry/GenericReport"
+  vars:
+    gnupg_home: /root/.gnupg
+    percona_key1: 4D1BB29D63D98E422B2113B19334A25F8507EFA5
+    percona_key1_file: "{{ gnupg_home }}/PERCONA-PACKAGING-KEY"
   tasks:
     - set_fact:
         WORKSPACE: "{{ lookup('env', 'WORKSPACE', default='/mnt/jenkins/workspace/pt-unit-tests-molecule/') }}"
@@ -79,38 +83,37 @@
           - gnupg2
       when: ansible_os_family == "RedHat"
 
-    - name: Install Percona release package
+    - name: Install Percona release package on Debian
       ansible.builtin.command:
         cmd: dpkg -i /tmp/percona-release_latest.generic_all.deb
         creates: /etc/apt/sources.list.d/percona-release.list
       when: ansible_os_family == "Debian"
 
-      - name: Receive GPG key 1
-        command: "gpg --batch --keyserver keyserver.ubuntu.com --recv-keys {{ percona_key1 }}"
-        environment:
-          GNUPGHOME: "{{ gnupg_home }}"
-        when: ansible_os_family == "RedHat"
+    - name: Receive GPG key 1
+      command: "gpg --batch --keyserver keyserver.ubuntu.com --recv-keys {{ percona_key1 }}"
+      environment:
+        GNUPGHOME: "{{ gnupg_home }}"
+      when: ansible_os_family == "RedHat"
 
-      - name: Export GPG key 1
-        command: "gpg --batch --export --armor {{ percona_key1 }}"
-        register: gpg_key1
-        environment:
-          GNUPGHOME: "{{ gnupg_home }}"
-        when: ansible_os_family == "RedHat"
+    - name: Export GPG key 1
+      command: "gpg --batch --export --armor {{ percona_key1 }}"
+      register: gpg_key1
+      environment:
+        GNUPGHOME: "{{ gnupg_home }}"
+      when: ansible_os_family == "RedHat"
 
-      - name: Save GPG key 1 to file
-        copy:
-          content: "{{ gpg_key1.stdout }}"
-          dest: "{{ percona_key1_file }}"
-          mode: '0644'
-        when: ansible_os_family == "RedHat"
+    - name: Save GPG key 1 to file
+      copy:
+        content: "{{ gpg_key1.stdout }}"
+        dest: "{{ percona_key1_file }}"
+        mode: '0644'
+      when: ansible_os_family == "RedHat"
 
-      - name: Import GPG keys with rpmkeys
-        command: "rpmkeys --import {{ percona_key1_file }}"
-        when: ansible_os_family == "RedHat"
+    - name: Import GPG keys with rpmkeys
+      command: "rpmkeys --import {{ percona_key1_file }}"
+      when: ansible_os_family == "RedHat"
 
-
-    - name: Install Percona release package
+    - name: Install Percona release package on OEL
       yum: name=https://repo.percona.com/yum/percona-release-latest.noarch.rpm
       when: ansible_os_family == "RedHat"
 
