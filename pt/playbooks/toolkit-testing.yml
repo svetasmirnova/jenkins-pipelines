@@ -128,6 +128,15 @@
         yum makecache
       when: ansible_os_family == "RedHat"
 
+    - name: Print OS info
+      shell: |
+        uname -a
+        lsb_release -a || cat /etc/os-release
+      become: yes
+      register: os_info
+
+    - debug: msg="{{ os_info.stdout }}"
+
     - name: Setup Percona pdps-8.0
       ansible.builtin.command: percona-release enable ps-80 pt
 
