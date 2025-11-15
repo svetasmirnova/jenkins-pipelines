@@ -224,32 +224,6 @@
           - perl-DBD-MySQL
       when: ansible_os_family == "RedHat"
 
-
-#    - name: Install SSL
-    # We need various SSL versions for testing
-    # We will have "no version information available" spam messages in the beginning of the tests
-    # This message is harmless and can be ignored
-#      shell: |
-#        mkdir -p "{{ PERCONA_TOOLKIT_SANDBOX_DIR }}"
-#        cd "{{ PERCONA_TOOLKIT_SANDBOX_DIR }}"
-#        curl -L https://github.com/openssl/openssl/releases/download/OpenSSL_1_1_1w/openssl-1.1.1w.tar.gz --output openssl-1.1.1w.tar.gz
-#        tar -xzf openssl-1.1.1w.tar.gz
-#        cd openssl-1.1.1w
-#        ./config --prefix="{{ SSL_PATH }}" shared
-#        make
-#        make install
-#        cd ..
-#        curl -L https://github.com/openssl/openssl/releases/download/OpenSSL_1_0_2u/openssl-1.0.2u.tar.gz --output openssl-1.0.2u.tar.gz
-#        tar -xzf openssl-1.0.2u.tar.gz
-#        cd openssl-1.0.2u
-#        ./config --prefix="{{ SSL_PATH }}" shared
-#        make
-#        make install
-#        cd "{{ SSL_PATH }}/lib"
-#        test -e libssl.so.10 && echo 1 || ln -s libssl.so.1.0.0 libssl.so.10
-#        test -e libcrypto.so.10 && echo 1 || ln -s libcrypto.so.1.0.0 libcrypto.so.10
-#      become: yes
-
     - name: Print all available facts
       ansible.builtin.debug:
         var: ansible_facts

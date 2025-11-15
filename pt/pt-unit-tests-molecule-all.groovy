@@ -25,38 +25,34 @@ pipeline {
     parameters {
         choice(
             choices: [
+                '8.4',
                 '8.0',
                 '5.7',
-                '8.4',
             ],
             description: 'Major version for Percona Server for MySQL',
             name: 'MYSQL_VERSION'
         )
         choice(
             choices: [
-                '8.0.35-27',
-                '8.0.36-28',
-                '8.0.37-29',
-                '8.0.39-30',
-                '5.7.43-47',
-                '5.7.44-48',
-                '8.4.0-1',
+                '8.4.6-6',
+                '8.4.5-5',
+                '8.4.4-4',
+                '8.4.3-3',
                 '8.4.2-2',
+                '8.4.0-1',
+                '8.0.43-34',
+                '8.0.42-33',
+                '8.0.41-32',
+                '8.0.40-31',
+                '8.0.39-30',
+                '8.0.37-29',
+                '8.0.36-28',
+                '8.0.35-27',
+                '5.7.44-48',
+                '5.7.43-47',
             ],
             description: 'Minor version for Percona Server for MySQL',
             name: 'MYSQL_MINOR'
-        )
-        choice(
-            choices: [
-                '2.17',
-                '2.27',
-                '2.28',
-                '2.31',
-                '2.34',
-                '2.35',
-            ],
-            description: "GLIBC version",
-            name: 'GLIBC'
         )
         choice(
             choices: [
