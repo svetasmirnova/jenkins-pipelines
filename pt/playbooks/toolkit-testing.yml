@@ -245,7 +245,6 @@
         mkdir -p {{ WORKSPACE }}
         chown -R "{{ lookup('env', 'ssh_user') }}" {{ WORKSPACE }}
         echo 111 - "{{ lookup('env', 'ssh_user') }}"
-        echo 222 - {{ ssh_user }}
         ls -ld {{ WORKSPACE }}
       become: yes
       register: workspace_perms
