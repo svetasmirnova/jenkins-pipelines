@@ -244,6 +244,7 @@
       shell: |
         mkdir -p {{ WORKSPACE }}
         chown -R "{{ lookup('env', 'SUDO_USER') }}" {{ WORKSPACE }}
+        echo "{{ lookup('env', 'SUDO_USER') }}"
         ls -ld {{ WORKSPACE }}
       become: yes
       register: workspace_perms
