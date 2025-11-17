@@ -23,26 +23,14 @@ pipeline {
     }
 
     environment {
-
-        // PERCONA_TOOLKIT_BRANCH = "${WORKSPACE}/percona-toolkit"
-        // TMP_DIR = "${WORKSPACE}/tmp"
-        // LOG_FILE = "${WORKSPACE}/tmp/${params.TESTING_BRANCH}-${params.MYSQL_VERSION}.log"
-        // MYSQL_BASEDIR = "Percona-Server-${params.MYSQL_MINOR}-Linux.x86_64.glibc${params.GLIBC}"
-        // PERCONA_TOOLKIT_SANDBOX_DIR = "${WORKSPACE}/sandbox"
-        // PERCONA_TOOLKIT_SANDBOX = "${PERCONA_TOOLKIT_SANDBOX_DIR}/${MYSQL_BASEDIR}"
-        // DOWNLOAD_URL = "https://downloads.percona.com/downloads/Percona-Server-${params.MYSQL_VERSION}/Percona-Server-${params.MYSQL_MINOR}/binary/tarball/"
-        // PATH = "/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/home/ec2-user/.local/bin:${PERCONA_TOOLKIT_SANDBOX}/bin"
-        // SSL_PATH = "${WORKSPACE}/sandbox/ssl"
-        // LD_LIBRARY_PATH = "/usr/lib64:/usr/lib/x86_64-linux-gnu:${SSL_PATH}/lib:${LD_LIBRARY_PATH}"
         MOLECULE_DIR = "pt/molecule"
-        TESTING_BRANCH = "${params.TESTING_BRANCH}"
-        TEST_CMD = "${params.TEST_CMD}"
-        APP = "${params.APP}"
         MYSQL_VERSION = "${params.MYSQL_VERSION}"
         MYSQL_MINOR = "${params.MYSQL_MINOR}"
-        // GLIBC = "${params.GLIBC}"
+        APP = "${params.APP}"
         PTDEBUG = "${params.PTDEBUG}"
         PTDEVDEBUG = "${params.PTDEVDEBUG}"
+        TESTING_BRANCH = "${params.TESTING_BRANCH}"
+        TEST_CMD = "${params.TEST_CMD}"
 
     }
     parameters {

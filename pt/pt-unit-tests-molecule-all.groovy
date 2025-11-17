@@ -5,7 +5,6 @@ void runNodeBuild(String node_to_test) {
             string(name: 'node_to_test', value: node_to_test),
             string(name: 'MYSQL_VERSION', value: params.MYSQL_VERSION),
             string(name: 'MYSQL_MINOR', value: params.MYSQL_MINOR),
-            string(name: 'GLIBC', value: params.GLIBC),
             string(name: 'APP', value: params.APP),
             string(name: 'PTDEBUG', value: params.PTDEBUG),
             string(name: 'PTDEVDEBUG', value: params.PTDEVDEBUG),

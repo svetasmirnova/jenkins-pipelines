@@ -64,7 +64,7 @@
         url: https://repo.percona.com/apt/percona-release_latest.generic_all.deb
         dest: /tmp/percona-release_latest.generic_all.deb
 
-    - name: Install required dependencies
+    - name: Install required dependencies on Debian
       ansible.builtin.apt:
         name:
           - gnupg2
@@ -73,7 +73,7 @@
         update_cache: yes
       when: ansible_os_family == "Debian"
 
-    - name: Install required dependencies
+    - name: Install required dependencies on OEL
       yum:
         name: "{{ packages }}"
         state: present
@@ -89,27 +89,27 @@
         creates: /etc/apt/sources.list.d/percona-release.list
       when: ansible_os_family == "Debian"
 
-    - name: Receive GPG key 1
+    - name: Receive GPG key 1 on OEL
       command: "gpg --batch --keyserver keyserver.ubuntu.com --recv-keys {{ percona_key1 }}"
       environment:
         GNUPGHOME: "{{ gnupg_home }}"
       when: ansible_os_family == "RedHat"
 
-    - name: Export GPG key 1
+    - name: Export GPG key 1 on OEL
       command: "gpg --batch --export --armor {{ percona_key1 }}"
       register: gpg_key1
       environment:
         GNUPGHOME: "{{ gnupg_home }}"
       when: ansible_os_family == "RedHat"
 
-    - name: Save GPG key 1 to file
+    - name: Save GPG key 1 to file on OEL
       copy:
         content: "{{ gpg_key1.stdout }}"
         dest: "{{ percona_key1_file }}"
         mode: '0644'
       when: ansible_os_family == "RedHat"
 
-    - name: Import GPG keys with rpmkeys
+    - name: Import GPG keys with rpmkeys on OEL
       command: "rpmkeys --import {{ percona_key1_file }}"
       when: ansible_os_family == "RedHat"
 
@@ -117,26 +117,26 @@
       yum: name=https://repo.percona.com/yum/percona-release-latest.noarch.rpm
       when: ansible_os_family == "RedHat"
 
-    - name: Update apt cache
+    - name: Update apt cache on Debian
       ansible.builtin.apt:
         update_cache: yes
       when: ansible_os_family == "Debian"
 
-    - name: Update yum cache
+    - name: Update yum cache on OEL
       shell: |
         yum clean all
         yum makecache
       when: ansible_os_family == "RedHat"
 
-    - name: Print OS info
-      shell: |
-        uname -a
-        cat /etc/os-release
-        echo $(grep VERSION_ID= /etc/os-release | awk -F'"' '{print $2}' | awk -F'.' '{print $1}')
-      become: yes
-      register: os_info
-
-    - debug: msg="{{ os_info.stdout }}"
+#    - name: Print OS info
+#      shell: |
+#        uname -a
+#        cat /etc/os-release
+#        echo $(grep VERSION_ID= /etc/os-release | awk -F'"' '{print $2}' | awk -F'.' '{print $1}')
+#      become: yes
+#      register: os_info
+#
+#    - debug: msg="{{ os_info.stdout }}"
 
     - name: Setup Percona pdps-8.4
       ansible.builtin.command: percona-release enable pdps-84-lts
@@ -224,23 +224,21 @@
           - perl-DBD-MySQL
       when: ansible_os_family == "RedHat"
 
-    - name: Print all available facts
-      ansible.builtin.debug:
-        var: ansible_facts
+#    - name: Print all available facts
+#      ansible.builtin.debug:
+#        var: ansible_facts
 
-    - name: Print the variables
-      ansible.builtin.debug:
-        msg:
-          - "PERCONA_TOOLKIT_BRANCH: {{ PERCONA_TOOLKIT_BRANCH }}"
-          - "TMP_DIR: {{ TMP_DIR }}"
-          - "LOG_FILE: {{ LOG_FILE }}"
-          #- "MYSQL_BASEDIR: {{ MYSQL_BASEDIR }}"
-          #- "PERCONA_TOOLKIT_SANDBOX: {{ PERCONA_TOOLKIT_SANDBOX }}"
-          - "DOWNLOAD_URL: {{ DOWNLOAD_URL }}"
-          - "PATH: {{ PATH }}"
-          - "SSL_PATH: {{ SSL_PATH }}"
-          - "LD_LIBRARY_PATH: {{ LD_LIBRARY_PATH }}"
-          - "GLIBC": "{{ GLIBC }}"
+#    - name: Print the variables
+#      ansible.builtin.debug:
+#        msg:
+#          - "PERCONA_TOOLKIT_BRANCH: {{ PERCONA_TOOLKIT_BRANCH }}"
+#          - "TMP_DIR: {{ TMP_DIR }}"
+#          - "LOG_FILE: {{ LOG_FILE }}"
+#          - "DOWNLOAD_URL: {{ DOWNLOAD_URL }}"
+#          - "PATH: {{ PATH }}"
+#          - "SSL_PATH: {{ SSL_PATH }}"
+#          - "LD_LIBRARY_PATH: {{ LD_LIBRARY_PATH }}"
+#          - "GLIBC": "{{ GLIBC }}"
 
     - name: Clone Percona Toolkit repository
       git:
@@ -252,24 +250,20 @@
 
     - name: Prepare sandbox
       shell: |
-        echo "{{ PERCONA_TOOLKIT_SANDBOX_DIR }}"
         mkdir "{{ PERCONA_TOOLKIT_SANDBOX_DIR }}"
         cd "{{ PERCONA_TOOLKIT_SANDBOX_DIR }}"
         curl "{{ DOWNLOAD_URL }}/{{ MYSQL_BASEDIR }}.tar.gz" --output "{{ MYSQL_BASEDIR }}.tar.gz"
         tar -xzf "{{ MYSQL_BASEDIR }}.tar.gz"
         cd "{{ MYSQL_BASEDIR }}"
-        ./bin/mysqld --version
       environment:
         PERCONA_TOOLKIT_SANDBOX_DIR: "{{ PERCONA_TOOLKIT_SANDBOX_DIR }}"
       become: yes
       register: prepare_sandbox
 
-    - debug: msg="{{ prepare_sandbox.stdout }}"
+#    - debug: msg="{{ prepare_sandbox.stdout }}"
 
     - name: Start sandbox
       shell: |
-        cd "{{ PERCONA_TOOLKIT_SANDBOX }}"
-        ./bin/mysqld --version
         cd "{{ PERCONA_TOOLKIT_BRANCH }}"
         ./util/check-dev-env
         ./sandbox/test-env checkconfig
