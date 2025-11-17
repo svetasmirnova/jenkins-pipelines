@@ -224,10 +224,9 @@
           - perl-DBD-MySQL
       when: ansible_os_family == "RedHat"
 
-    - name: Print all available facts
-      ansible.builtin.debug:
-        var: ansible_facts
-      become: false
+#    - name: Print all available facts
+#      ansible.builtin.debug:
+#        var: ansible_facts
 
 #    - name: Print the variables
 #      ansible.builtin.debug:
@@ -244,7 +243,7 @@
     - name: Grant permissions to WORKSPACE
       shell: |
         mkdir -p {{ WORKSPACE }}
-        chown -R $(whoami) {{ WORKSPACE }}
+        chown -R {{ SUDO_USER }} {{ WORKSPACE }}
         ls -ld {{ WORKSPACE }}
       become: yes
       register: workspace_perms
