@@ -244,7 +244,11 @@
       shell: |
         mkdir -p {{ WORKSPACE }}
         chown -R $(whoami) {{ WORKSPACE }}
+        ls -ld {{ WORKSPACE }}
       become: yes
+      register: workspace_perms
+
+    - debug: msg="{{ workspace_perms.stdout }}"
 
     - name: Clone Percona Toolkit repository
       git:
