@@ -132,7 +132,7 @@
         jid: "{{ item.ansible_job_id }}"
       register: ec2_jobs
       until: ec2_jobs.finished
-      retries: 300
+      retries: 600
       with_items: "{{ server.results }}"
     # Mandatory configuration for Molecule to function.
     - name: Populate instance config dict

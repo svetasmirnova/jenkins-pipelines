@@ -247,6 +247,7 @@
         dest: "{{ PERCONA_TOOLKIT_BRANCH }}"
       environment:
         PERCONA_TOOLKIT_BRANCH: "{{ PERCONA_TOOLKIT_BRANCH }}"
+      become: false
 
     - name: Prepare sandbox
       shell: |
@@ -257,7 +258,7 @@
         cd "{{ MYSQL_BASEDIR }}"
       environment:
         PERCONA_TOOLKIT_SANDBOX_DIR: "{{ PERCONA_TOOLKIT_SANDBOX_DIR }}"
-      become: yes
+      become: false
       register: prepare_sandbox
 
 #    - debug: msg="{{ prepare_sandbox.stdout }}"
@@ -276,7 +277,7 @@
         PERCONA_TOOLKIT_SANDBOX_DIR: "{{ PERCONA_TOOLKIT_SANDBOX_DIR }}"
         LD_LIBRARY_PATH: "{{ LD_LIBRARY_PATH }}"
         WORKSPACE: "{{ WORKSPACE }}"
-      become: yes
+      become: false
       register: start_sandbox
 
     # - debug: msg="{{ start_sandbox.stdout }}"
@@ -290,6 +291,7 @@
         PERCONA_TOOLKIT_SANDBOX: "{{ PERCONA_TOOLKIT_SANDBOX }}"
         LD_LIBRARY_PATH: "{{ LD_LIBRARY_PATH }}"
         MYSQL_VERSION: "{{ MYSQL_VERSION }}"
+      become: false
       register: run_tests
 
     # - debug: msg="{{ run_tests.stdout }}"
@@ -304,4 +306,4 @@
         PERCONA_TOOLKIT_BRANCH: "{{ PERCONA_TOOLKIT_BRANCH }}"
         PERCONA_TOOLKIT_SANDBOX: "{{ PERCONA_TOOLKIT_SANDBOX }}"
         LD_LIBRARY_PATH: "{{ LD_LIBRARY_PATH }}"
-      become: yes
+      become: false
