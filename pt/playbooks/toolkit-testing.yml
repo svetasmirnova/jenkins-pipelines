@@ -243,7 +243,7 @@
     - name: Grant permissions to WORKSPACE
       shell: |
         mkdir -p {{ WORKSPACE }}
-        chown -R {{ SUDO_USER }} {{ WORKSPACE }}
+        chown -R "{{ lookup('env', 'SUDO_USER') }}" {{ WORKSPACE }}
         ls -ld {{ WORKSPACE }}
       become: yes
       register: workspace_perms
