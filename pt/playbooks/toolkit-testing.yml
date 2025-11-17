@@ -242,6 +242,7 @@
 
     - name: Grant permissions to WORKSPACE
       shell: |
+        mkdir -p {{ WORKSPACE }}
         chown -R $(whoami) {{ WORKSPACE }}
       become: yes
 
