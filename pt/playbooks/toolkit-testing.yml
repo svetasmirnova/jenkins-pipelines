@@ -244,7 +244,7 @@
       shell: |
         mkdir -p {{ WORKSPACE }}
         chown -R "{{ lookup('env', 'ssh_user') }}" {{ WORKSPACE }}
-        echo 111 - {{ ansible_facts['env']['ssh_user'] }}
+        echo 111 - {{ ansible_facts['env']['SUDO_USER'] }}
         ls -ld {{ WORKSPACE }}
       become: yes
       register: workspace_perms
