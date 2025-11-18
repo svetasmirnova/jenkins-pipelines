@@ -244,8 +244,6 @@
       shell: |
         mkdir -p {{ WORKSPACE }}
         chown -R {{ ansible_facts['env']['SUDO_USER'] }} {{ WORKSPACE }}
-        echo 111 - {{ ansible_facts['env']['SUDO_USER'] }}
-        ls -ld {{ WORKSPACE }}
       become: yes
       register: workspace_perms
 
@@ -305,7 +303,7 @@
       become: false
       register: run_tests
 
-    # - debug: msg="{{ run_tests.stdout }}"
+    - debug: msg="{{ run_tests.stdout }}"
 
     # - debug: msg="{{ run_tests.stderr }}"
 
