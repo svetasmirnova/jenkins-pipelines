@@ -146,6 +146,12 @@ pipeline {
                         runNodeBuild('debian-12')
                     }
                 }
+
+                stage('Debian Trixie') {
+                    steps {
+                        runNodeBuild('debian-13')
+                    }
+                }
             }
         }
     }
