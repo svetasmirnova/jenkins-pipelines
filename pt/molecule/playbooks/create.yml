@@ -125,14 +125,14 @@
       loop: "{{ molecule_yml.platforms }}"
       loop_control:
         index_var: index
-      async: 7200
+      async: 9000
       poll: 0
     - name: Wait for instance(s) creation to complete
       async_status:
         jid: "{{ item.ansible_job_id }}"
       register: ec2_jobs
       until: ec2_jobs.finished
-      retries: 600
+      retries: 300
       with_items: "{{ server.results }}"
     # Mandatory configuration for Molecule to function.
     - name: Populate instance config dict
