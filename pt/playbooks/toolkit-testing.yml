@@ -244,6 +244,8 @@
       shell: |
         mkdir -p {{ WORKSPACE }}
         chown -R {{ ansible_facts['env']['SUDO_USER'] }} {{ WORKSPACE }}
+        locale
+        locale -a
       become: yes
       register: workspace_perms
 
