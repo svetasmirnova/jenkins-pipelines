@@ -52,12 +52,12 @@
       become: yes
       when: ansible_os_family == "Debian" and ansible_distribution_release == "bullseye"
 
-    - name: Update locale
-      shell: |
-        sed -i -e 's/# en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/g' /etc/locale.gen
-        locale-gen
-      become: yes
-      when: ansible_os_family == "Debian"
+#    - name: Update locale
+#      shell: |
+#        sed -i -e 's/# en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/g' /etc/locale.gen
+#        locale-gen
+#      become: yes
+#      when: ansible_os_family == "Debian"
 
     - name: Download Percona release package
       ansible.builtin.get_url:
@@ -244,8 +244,6 @@
       shell: |
         mkdir -p {{ WORKSPACE }}
         chown -R {{ ansible_facts['env']['SUDO_USER'] }} {{ WORKSPACE }}
-        locale
-        locale -a
       become: yes
       register: workspace_perms
 
