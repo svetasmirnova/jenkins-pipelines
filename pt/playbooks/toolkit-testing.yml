@@ -169,6 +169,7 @@
           - lsof
           - make
           - gcc
+          - moreutils
           - libkrb5-3
           - libssl-dev
           - libcrypt-dev
@@ -205,6 +206,7 @@
           - tar
           - libaio
           - strace
+          - moreutils
           - perl-Time-HiRes
           - perl-Test-Harness
           - perl-Test-Simple
