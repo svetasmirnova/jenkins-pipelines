@@ -130,7 +130,7 @@
     - name: Enable powertools
       shell: |
         yum install -y dnf-plugins-core
-        dnf config-manager --set-enabled powertools
+        dnf config-manager --enable ol{{ ansible_distribution_major_version }}_codeready_builder
       when: ansible_os_family == "RedHat" and ansible_distribution_major_version | int >= 8
 
     - name: Update apt cache on Debian
