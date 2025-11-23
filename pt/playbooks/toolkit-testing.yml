@@ -117,6 +117,16 @@
       yum: name=https://repo.percona.com/yum/percona-release-latest.noarch.rpm
       when: ansible_os_family == "RedHat"
 
+    - name: install GPG key for epel
+      rpm_key:
+        state: present
+        key: https://dl.fedoraproject.org/pub/epel/RPM-GPG-KEY-EPEL-{{ ansible_distribution_major_version }}
+      when: ansible_os_family == "RedHat"
+
+    - name: setup epel repo
+      yum: name=https://dl.fedoraproject.org/pub/epel/epel-release-latest-{{ ansible_distribution_major_version }}.noarch.rpm state=present
+      when: ansible_os_family == "RedHat"
+
     - name: Update apt cache on Debian
       ansible.builtin.apt:
         update_cache: yes
