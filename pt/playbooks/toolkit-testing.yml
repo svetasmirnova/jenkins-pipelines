@@ -249,6 +249,10 @@
           - perl-DBD-MySQL
       when: ansible_os_family == "RedHat"
 
+    - name: Upgrade Perl JSON module
+      command: "echo yes | sudo cpan upgrade JSON"
+      when: ansible_os_family == "RedHat"
+
 #    - name: Print all available facts
 #      ansible.builtin.debug:
 #        var: ansible_facts
