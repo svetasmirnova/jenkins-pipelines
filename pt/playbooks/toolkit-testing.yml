@@ -63,6 +63,7 @@
       ansible.builtin.get_url:
         url: https://repo.percona.com/apt/percona-release_latest.generic_all.deb
         dest: /tmp/percona-release_latest.generic_all.deb
+      when: ansible_os_family == "Debian"
 
     - name: Install required dependencies on Debian
       ansible.builtin.apt:
@@ -240,11 +241,15 @@
           - percona-server-server
           - percona-server-client
           - percona-server-devel
-          - perl-DBD-MySQL
+          # - perl-DBD-MySQL
       when: ansible_os_family == "RedHat"
 
     - name: Upgrade Perl JSON module
       ansible.builtin.shell: echo yes | cpan upgrade JSON
+      when: ansible_os_family == "RedHat"
+
+    - name: Install Perl DBD::MySQL module
+      ansible.builtin.shell: echo yes | sudo cpan install DBD::mysql
       when: ansible_os_family == "RedHat"
 
 #    - name: Print all available facts
