@@ -250,7 +250,7 @@
       when: ansible_os_family == "RedHat"
 
     - name: Upgrade Perl JSON module
-      command: "echo yes | cpan upgrade JSON"
+      command: echo yes | cpan upgrade JSON
       when: ansible_os_family == "RedHat"
       register: upgrade_perl_json
 
