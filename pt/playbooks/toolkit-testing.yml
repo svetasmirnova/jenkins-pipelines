@@ -246,9 +246,6 @@
     - name: Upgrade Perl JSON module
       ansible.builtin.shell: echo yes | cpan upgrade JSON
       when: ansible_os_family == "RedHat"
-      register: upgrade_perl_json
-
-    - debug: msg="{{ upgrade_perl_json.stdout }}"
 
 #    - name: Print all available facts
 #      ansible.builtin.debug:
