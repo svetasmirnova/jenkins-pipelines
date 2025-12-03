@@ -117,6 +117,12 @@ pipeline {
                     }
                 }
 
+                stage('RedHat 10') {
+                    steps {
+                        runNodeBuild('rh-10')
+                    }
+                }
+
                 stage('Ubuntu Focal') {
                     steps {
                         runNodeBuild('ubuntu-focal')
@@ -156,4 +162,3 @@ pipeline {
         }
     }
 }
-

@@ -41,6 +41,7 @@ pipeline {
                 'debian-13',
                 'ol-8',
                 'ol-9',
+                'rh-10',
                 'ubuntu-focal',
                 'ubuntu-jammy',
                 'ubuntu-noble',
@@ -149,7 +150,7 @@ pipeline {
                                 sh """
                                     echo PLAYBOOK_VAR="toolkit-testing" > .env.ENV_VARS
                                 """
-                
+
                             def envMap = loadEnvFile('.env.ENV_VARS')
                             withEnv(envMap) {
                                 moleculeParallelTest(getNodeList(), env.MOLECULE_DIR)
@@ -194,4 +195,3 @@ def getNodeList() {
         params.node_to_test
     ]
 }
-
