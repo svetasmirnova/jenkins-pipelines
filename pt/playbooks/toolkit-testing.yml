@@ -107,7 +107,7 @@
       copy:
         content: "{{ gpg_key1.stdout }}"
         dest: "{{ percona_key1_file }}"
-        mode: '0644'
+        mode: "0644"
       when: ansible_os_family == "RedHat"
 
     - name: Import GPG keys with rpmkeys on OEL
@@ -132,7 +132,7 @@
       shell: |
         yum install -y dnf-plugins-core
         dnf config-manager --enable ol{{ ansible_distribution_major_version }}_codeready_builder
-      when: ansible_os_family == "RedHat" and ansible_distribution_major_version | int >= 8
+      when: ansible_os_family == "RedHat" and ansible_distribution_major_version | int = 8
 
     - name: Update apt cache on Debian
       ansible.builtin.apt:
@@ -145,15 +145,15 @@
         yum makecache
       when: ansible_os_family == "RedHat"
 
-#    - name: Print OS info
-#      shell: |
-#        uname -a
-#        cat /etc/os-release
-#        echo $(grep VERSION_ID= /etc/os-release | awk -F'"' '{print $2}' | awk -F'.' '{print $1}')
-#      become: yes
-#      register: os_info
-#
-#    - debug: msg="{{ os_info.stdout }}"
+    #    - name: Print OS info
+    #      shell: |
+    #        uname -a
+    #        cat /etc/os-release
+    #        echo $(grep VERSION_ID= /etc/os-release | awk -F'"' '{print $2}' | awk -F'.' '{print $1}')
+    #      become: yes
+    #      register: os_info
+    #
+    #    - debug: msg="{{ os_info.stdout }}"
 
     - name: Setup Percona pdps-8.0
       ansible.builtin.command: percona-release enable pdps-8.0
@@ -252,21 +252,21 @@
       ansible.builtin.shell: echo yes | sudo cpan install DBD::mysql
       when: ansible_os_family == "RedHat"
 
-#    - name: Print all available facts
-#      ansible.builtin.debug:
-#        var: ansible_facts
+    #    - name: Print all available facts
+    #      ansible.builtin.debug:
+    #        var: ansible_facts
 
-#    - name: Print the variables
-#      ansible.builtin.debug:
-#        msg:
-#          - "PERCONA_TOOLKIT_BRANCH: {{ PERCONA_TOOLKIT_BRANCH }}"
-#          - "TMP_DIR: {{ TMP_DIR }}"
-#          - "LOG_FILE: {{ LOG_FILE }}"
-#          - "DOWNLOAD_URL: {{ DOWNLOAD_URL }}"
-#          - "PATH: {{ PATH }}"
-#          - "SSL_PATH: {{ SSL_PATH }}"
-#          - "LD_LIBRARY_PATH: {{ LD_LIBRARY_PATH }}"
-#          - "GLIBC": "{{ GLIBC }}"
+    #    - name: Print the variables
+    #      ansible.builtin.debug:
+    #        msg:
+    #          - "PERCONA_TOOLKIT_BRANCH: {{ PERCONA_TOOLKIT_BRANCH }}"
+    #          - "TMP_DIR: {{ TMP_DIR }}"
+    #          - "LOG_FILE: {{ LOG_FILE }}"
+    #          - "DOWNLOAD_URL: {{ DOWNLOAD_URL }}"
+    #          - "PATH: {{ PATH }}"
+    #          - "SSL_PATH: {{ SSL_PATH }}"
+    #          - "LD_LIBRARY_PATH: {{ LD_LIBRARY_PATH }}"
+    #          - "GLIBC": "{{ GLIBC }}"
 
     - name: Grant permissions to WORKSPACE
       shell: |
@@ -298,7 +298,7 @@
       become: false
       register: prepare_sandbox
 
-#    - debug: msg="{{ prepare_sandbox.stdout }}"
+    #    - debug: msg="{{ prepare_sandbox.stdout }}"
 
     - name: Start sandbox
       shell: |
