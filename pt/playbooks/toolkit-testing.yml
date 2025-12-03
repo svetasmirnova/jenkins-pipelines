@@ -128,11 +128,17 @@
       yum: name=https://dl.fedoraproject.org/pub/epel/epel-release-latest-{{ ansible_distribution_major_version }}.noarch.rpm state=present
       when: ansible_os_family == "RedHat"
 
-    - name: Enable powertools
+    - name: Enable powertools on OEL
       shell: |
         yum install -y dnf-plugins-core
         dnf config-manager --enable ol{{ ansible_distribution_major_version }}_codeready_builder
-      when: ansible_os_family == "RedHat" and ansible_distribution_major_version | int == 8
+      when: ansible_os_family == "RedHat" and ansible_distribution_major_version | int < 10
+
+    - name: Enable powertools on RedHat 10
+      shell: |
+        yum install -y dnf-plugins-core
+        dnf config-manager --enable codeready-builder-for-rhel-10-rhui-rpms
+      when: ansible_os_family == "RedHat" and ansible_distribution_major_version | int == 10
 
     - name: Update apt cache on Debian
       ansible.builtin.apt:
