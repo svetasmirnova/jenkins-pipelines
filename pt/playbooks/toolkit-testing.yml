@@ -251,9 +251,9 @@
           # - perl-DBD-MySQL
       when: ansible_os_family == "RedHat"
 
-    # - name: Upgrade Perl JSON module
-    #  ansible.builtin.shell: echo yes | cpan upgrade JSON
-    #  when: ansible_os_family == "RedHat"
+    - name: Upgrade Perl JSON module
+      ansible.builtin.shell: echo yes | cpan upgrade JSON
+      when: ansible_os_family == "RedHat"
 
     - name: Install Perl DBD::MySQL module
       ansible.builtin.shell: echo yes | sudo cpan install DBD::mysql
