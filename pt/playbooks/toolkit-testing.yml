@@ -236,7 +236,7 @@
           - perl-Test-Simple
           - perl-Digest-MD5
           - perl-File-Slurp
-          - perl-JSON
+          # - perl-JSON
           - perl-NetAddr-IP
           - perl-Locale-Codes
           - perl-Text-Diff
@@ -251,12 +251,12 @@
           # - perl-DBD-MySQL
       when: ansible_os_family == "RedHat"
 
-    - name: Upgrade Perl JSON module
-      ansible.builtin.shell: echo yes | cpan upgrade JSON
+    - name: Install Perl JSON module
+      ansible.builtin.shell: echo yes | cpan install JSON
       when: ansible_os_family == "RedHat"
 
     - name: Install Perl DBD::MySQL module
-      ansible.builtin.shell: echo yes | sudo cpan install DBD::mysql
+      ansible.builtin.shell: echo yes | cpan install DBD::mysql
       when: ansible_os_family == "RedHat"
 
     #    - name: Print all available facts
