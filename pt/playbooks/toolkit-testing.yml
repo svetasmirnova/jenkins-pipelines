@@ -236,7 +236,6 @@
           - perl-Test-Simple
           - perl-Digest-MD5
           - perl-File-Slurp
-          # - perl-JSON
           - perl-NetAddr-IP
           - perl-Locale-Codes
           - perl-Text-Diff
@@ -248,7 +247,6 @@
           - percona-server-server
           - percona-server-client
           - percona-server-devel
-          # - perl-DBD-MySQL
       when: ansible_os_family == "RedHat"
 
     - name: Install Perl JSON module
@@ -279,11 +277,10 @@
       shell: |
         mkdir -p {{ WORKSPACE }}
         chown -R {{ ansible_facts['env']['SUDO_USER'] }} {{ WORKSPACE }}
-        echo $PERL_JSON_PP_USE_B
       become: yes
       register: workspace_perms
 
-    - debug: msg="{{ workspace_perms.stdout }}"
+    # - debug: msg="{{ workspace_perms.stdout }}"
 
     - name: Clone Percona Toolkit repository
       git:
