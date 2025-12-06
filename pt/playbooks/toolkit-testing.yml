@@ -279,6 +279,7 @@
       shell: |
         mkdir -p {{ WORKSPACE }}
         chown -R {{ ansible_facts['env']['SUDO_USER'] }} {{ WORKSPACE }}
+        perl -MJSON -le 'print $JSON::VERSION'
       become: yes
       register: workspace_perms
 
