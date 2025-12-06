@@ -229,6 +229,7 @@
           - tar
           - libaio
           - strace
+          - lsof
           - moreutils
           - perl-Time-HiRes
           - perl-Test-Harness
