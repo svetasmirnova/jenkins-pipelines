@@ -208,7 +208,7 @@
           - percona-server-server
           - percona-server-client
           # - libperconaserverclient21-dev # Debian
-        state: present
+        state: latest
         update_cache: yes
       when: ansible_os_family == "Debian"
 
@@ -230,6 +230,7 @@
           - libaio
           - strace
           - lsof
+          - gawk
           - moreutils
           - perl-Time-HiRes
           - perl-Test-Harness
