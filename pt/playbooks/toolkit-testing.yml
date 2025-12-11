@@ -308,6 +308,8 @@
     - name: Start sandbox
       shell: |
         cd "{{ PERCONA_TOOLKIT_BRANCH }}"
+        echo "{{ MYSQL_VERSION }}"
+        echo $MYSQL_VERSION
         ./util/check-dev-env
         ./sandbox/test-env checkconfig
         ./sandbox/test-env stop
@@ -324,7 +326,7 @@
       become: false
       register: start_sandbox
 
-    # - debug: msg="{{ start_sandbox.stdout }}"
+    - debug: msg="{{ start_sandbox.stdout }}"
 
     - name: Run tests
       command:
