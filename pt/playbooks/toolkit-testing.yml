@@ -298,12 +298,13 @@
         curl "{{ DOWNLOAD_URL }}/{{ MYSQL_BASEDIR }}.tar.gz" --output "{{ MYSQL_BASEDIR }}.tar.gz"
         tar -xzf "{{ MYSQL_BASEDIR }}.tar.gz"
         cd "{{ MYSQL_BASEDIR }}"
+        ./bin/mysqld --version
       environment:
         PERCONA_TOOLKIT_SANDBOX_DIR: "{{ PERCONA_TOOLKIT_SANDBOX_DIR }}"
       become: false
       register: prepare_sandbox
 
-    #    - debug: msg="{{ prepare_sandbox.stdout }}"
+    - debug: msg="{{ prepare_sandbox.stdout }}"
 
     - name: Start sandbox
       shell: |
