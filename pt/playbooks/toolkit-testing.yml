@@ -193,6 +193,7 @@
           - make
           - gcc
           - moreutils
+          - libaio
           - libkrb5-3
           - libssl-dev
           - libcrypt-dev
@@ -230,6 +231,7 @@
           - libaio
           - strace
           - lsof
+          - libcrypt
           - moreutils
           - perl-Time-HiRes
           - perl-Test-Harness
