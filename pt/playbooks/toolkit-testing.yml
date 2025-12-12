@@ -234,7 +234,6 @@
           - libaio
           - strace
           - lsof
-          - libcrypt1
           - moreutils
           - perl-Time-HiRes
           - perl-Test-Harness
