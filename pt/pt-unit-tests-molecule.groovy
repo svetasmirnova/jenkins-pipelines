@@ -36,7 +36,6 @@ pipeline {
     parameters {
         choice(
             choices: [
-                'debian-11',
                 'debian-12',
                 'debian-13',
                 'ol-8',
@@ -45,6 +44,7 @@ pipeline {
                 'ubuntu-focal',
                 'ubuntu-jammy',
                 'ubuntu-noble',
+                'ubuntu-resolute',
             ],
             description: 'Node to run tests on',
             name: 'node_to_test'
@@ -145,6 +145,7 @@ pipeline {
             }
         }
 
+/*
         stage('Prepare') {
             steps {
                 script {
@@ -152,7 +153,7 @@ pipeline {
                 }
             }
         }
-
+*/
         stage('RUN TESTS') {
                     steps {
                         script {

@@ -151,9 +151,9 @@ pipeline {
                     }
                 }
 
-                stage('Debian Bullseye') {
+                stage('Ubuntu Resolute') {
                     steps {
-                        runNodeBuild('debian-11')
+                        runNodeBuild('ubuntu-resolute')
                     }
                 }
 
