@@ -16,6 +16,7 @@
     gnupg_home: /root/.gnupg
     percona_key1: 4D1BB29D63D98E422B2113B19334A25F8507EFA5
     percona_key1_file: "{{ gnupg_home }}/PERCONA-PACKAGING-KEY"
+    ansible_ssh_transfer_method: piped
   tasks:
     - set_fact:
         WORKSPACE: "{{ lookup('env', 'WORKSPACE', default='/mnt/jenkins/workspace/pt-unit-tests-molecule/') }}"
@@ -282,6 +283,8 @@
     #          - "GLIBC": "{{ GLIBC }}"
 
     - name: Grant permissions to WORKSPACE
+      vars:
+        ansible_ssh_transfer_method: piped
       shell: |
         mkdir -p {{ WORKSPACE }}
         chown -R {{ ansible_facts['env']['SUDO_USER'] }} {{ WORKSPACE }}
