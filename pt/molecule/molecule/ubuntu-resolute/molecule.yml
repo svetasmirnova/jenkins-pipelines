@@ -5,9 +5,9 @@ driver:
   name: ec2
 platforms:
   - name: ubuntu-resolute-${BUILD_NUMBER}-${JOB_NAME}-${PLAYBOOK_VAR}
-    region: us-west-1
+    region: us-west-2
     image: ami-0d13e2317a7e75c95
-    vpc_subnet_id: subnet-04a8ad1b1d4da874c
+    vpc_subnet_id: subnet-0430e63d7cdbcd237
     instance_type: t2.large
     ssh_user: ubuntu
     root_device_name: /dev/sda1
