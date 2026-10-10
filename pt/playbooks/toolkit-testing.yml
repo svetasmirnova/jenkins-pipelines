@@ -260,6 +260,8 @@
       when: ansible_os_family == "RedHat"
 
     - name: Install Perl DBD::MySQL module
+      vars:
+        ansible_ssh_transfer_method: piped
       ansible.builtin.shell: echo yes | cpan install DBD::mysql
       when: ansible_os_family == "RedHat"
 
