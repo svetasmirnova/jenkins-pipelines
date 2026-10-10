@@ -162,8 +162,8 @@
     #
     #    - debug: msg="{{ os_info.stdout }}"
 
-    - name: Setup Percona pdps-8.0
-      ansible.builtin.command: percona-release enable pdps-8.0
+    - name: Setup Percona pdps-97-lts
+      ansible.builtin.command: percona-release enable pdps-97-lts
 
     - name: Upgrade Perl package on Debian
       ansible.builtin.apt:
