@@ -253,9 +253,11 @@
           - percona-server-devel
       when: ansible_os_family == "RedHat"
 
-    #- name: Install Perl JSON module
-    #  ansible.builtin.shell: echo yes | cpan install JSON
-    #  when: ansible_os_family == "RedHat"
+    - name: Install Perl JSON module
+      vars:
+        ansible_ssh_transfer_method: piped
+      ansible.builtin.shell: echo yes | cpan install JSON
+      when: ansible_os_family == "RedHat"
 
     - name: Install Perl DBD::MySQL module
       ansible.builtin.shell: echo yes | cpan install DBD::mysql
