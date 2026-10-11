@@ -83,19 +83,19 @@
       vars:
         packages:
           - gnupg2
-      when: ansible_os_family == "RedHat" and ansible_distribution != "Amazon"
+      when: ansible_os_family == "RedHat" and ansible_distribution == "Amazon"
 
     - name: Remove gnupg2-minimal (AL2023 only)
       package:
         name: gnupg2-minimal
         state: absent
-      when: os_version == "amzn:2023"
+      when: ansible_os_family == "RedHat" and ansible_distribution == "Amazon"
 
     - name: Install full gnupg2 (for dirmngr support)
       package:
         name: gnupg2
         state: present
-      when: os_version == "amzn:2023"
+      when: ansible_os_family == "RedHat" and ansible_distribution != "Amazon"
 
     - name: Install Percona release package on Debian
       ansible.builtin.command:
