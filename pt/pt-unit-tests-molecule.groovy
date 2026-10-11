@@ -41,7 +41,6 @@ pipeline {
                 'ol-8',
                 'ol-9',
                 'rh-10',
-                'ubuntu-focal',
                 'ubuntu-jammy',
                 'ubuntu-noble',
                 'ubuntu-resolute',

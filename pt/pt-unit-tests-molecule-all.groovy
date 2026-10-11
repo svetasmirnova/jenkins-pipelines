@@ -133,12 +133,6 @@ pipeline {
                     }
                 }
 
-                stage('Ubuntu Focal') {
-                    steps {
-                        runNodeBuild('ubuntu-focal')
-                    }
-                }
-
                 stage('Ubuntu Jammy') {
                     steps {
                         runNodeBuild('ubuntu-jammy')
