@@ -12,12 +12,13 @@ platforms:
     ssh_user: ec2-user
     root_device_name: /dev/xvda
     instance_tags:
-      iit-billing-tag: ${IIT_BILLING_TAG}
+      iit-billing-tag: toolkit-package-testing
       job-name: ${JOB_NAME}
-      build-number: ${BUILD_NUMBER}
 provisioner:
   name: ansible
   log: True
+  env:
+    GLIBC: "2.35"
   playbooks:
     create: ../../playbooks/create.yml
     destroy: ../../playbooks/destroy.yml
