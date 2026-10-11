@@ -162,6 +162,12 @@ pipeline {
                         runNodeBuild('debian-13')
                     }
                 }
+
+                stage('Amazon Linux 2023') {
+                    steps {
+                        runNodeBuild('amazon-linux-2023')
+                    }
+                }
             }
         }
     }

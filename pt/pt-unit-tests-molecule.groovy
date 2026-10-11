@@ -44,6 +44,7 @@ pipeline {
                 'ubuntu-jammy',
                 'ubuntu-noble',
                 'ubuntu-resolute',
+                'amazon-linux-2023',
             ],
             description: 'Node to run tests on',
             name: 'node_to_test'
