@@ -247,7 +247,6 @@
           - libaio
           - strace
           - lsof
-          - moreutils
           - perl-Time-HiRes
           - perl-Test-Harness
           - perl-Test-Simple
@@ -265,6 +264,16 @@
           - percona-server-client
           - percona-server-devel
       when: ansible_os_family == "RedHat"
+
+    - name: Install required dependencies for tests on OEL and not on Amazon
+      yum:
+        name: "{{ packages }}"
+        state: present
+        update_cache: yes
+      vars:
+        packages:
+          - moreutils
+      when: ansible_os_family == "RedHat" and ansible_distribution != "Amazon"
 
     - name: Install Perl JSON module
       vars:
